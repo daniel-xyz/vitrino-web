@@ -1,0 +1,22 @@
+{
+  "name": "vitrino",
+  "version": "0.0.1",
+  "description": "A shopping app for local stores",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flur3x/Vitrino.git"
+  },
+  "author": "Daniel Bischoff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Flur3x/Vitrino/issues"
+  },
+  "homepage": "https://github.com/Flur3x/Vitrino#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
