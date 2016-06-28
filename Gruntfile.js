@@ -3,6 +3,8 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    // JSHINT
     jshint: {
       files: ['Gruntfile.js', 'app.js', '.jshintrc', 'src/**/*.js', 'test/**/*.js'],
       options: {
@@ -10,32 +12,47 @@ module.exports = function(grunt) {
         reporter: require('jshint-stylish')
       }
     },
+
+    // LESS
     less: {
       build: {
         options: {
-          paths: ['assets/stylesheets'],
+          paths: ['app/assets/less'],
           plugins: [
               new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]})
           ]
         },
         files: {
-            'app/public/css/vitrino.css': 'assets/stylesheets/vitrino.less'
+            'public/css/vitrino.css': 'app/assets/less/vitrino.less'
         }
       }
     },
+
+    // CSSMIN
     cssmin: {
       options: {
         banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
     },
     build: {
       files: {
-        'app/public/css/vitrino.min.css': 'app/public/css/vitrino.css'
+        'public/css/vitrino.min.css': 'public/css/vitrino.css'
       }
       }
     },
+
+    // NUNJUCKS
+    nunjucks: {
+      precompile: {
+        baseDir: 'views/',
+        src: 'views/*',
+        dest: 'public/js/templates.js'
+      }
+    },
+
+    // WATCH
     watch: {
       files: ['<%= jshint.files %>', 'views/*', 'assets/**'],
-      tasks: ['jshint', 'less', 'cssmin']
+      tasks: ['jshint', 'less', 'cssmin', 'nunjucks']
     }
   });
 
@@ -45,5 +62,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nunjucks');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jshint', 'less', 'cssmin', 'watch']);
+  grunt.registerTask('default', ['jshint', 'less', 'cssmin', 'nunjucks', 'watch']);
 };
