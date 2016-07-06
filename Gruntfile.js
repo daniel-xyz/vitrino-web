@@ -43,8 +43,8 @@ module.exports = function(grunt) {
     // NUNJUCKS
     nunjucks: {
       precompile: {
-        baseDir: 'views/',
-        src: 'views/*',
+        baseDir: 'app/views/',
+        src: 'app/views/*',
         dest: 'public/js/templates.js'
       }
     },

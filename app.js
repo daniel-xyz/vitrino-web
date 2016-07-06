@@ -3,7 +3,6 @@ var nunjucks = require('nunjucks');
 
 var app = express();
 
-// Setup nunjucks templating engine
 nunjucks.configure('views', {
   autoescape: true,
   express: app
@@ -11,7 +10,6 @@ nunjucks.configure('views', {
 
 app.set('port', process.env.PORT || 3000);
 
-// Home page
 app.get('/', function(req, res) {
   'use strict';
   res.render('index.html', {
@@ -20,7 +18,6 @@ app.get('/', function(req, res) {
   });
 });
 
-// Other example
 app.get('/example', function(req, res) {
   'use strict';
   res.render('example.html', {
@@ -29,8 +26,6 @@ app.get('/example', function(req, res) {
     });
 });
 
-
-// Kick start our server
 app.listen(app.get('port'), function() {
   'use strict';
   console.log('Server started on port', app.get('port'));
