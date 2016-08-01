@@ -16,13 +16,13 @@ If your github account is authenticated, clone the project via git:
 $ git clone https://github.com/Flur3x/Vitrino.git
 ```
 
-Now that you have the project, download all necessary dependencies:
+Download all necessary dependencies:
 
 ```
 $ npm install
 ```
 
-Now you can start the node.js server locally:
+Start the node.js server locally:
 
 ```
 $ node app.js
@@ -33,9 +33,9 @@ $ node app.js
 
 We use Heroku as our cloud service. All pushes to the github master branch are automatically deployed to it. It is also possible to start the node.js server locally within the Heroku environment, which is recommended.
 
-First, sign up for a heroku.com account and install the toolbelt (https://toolbelt.heroku.com/) and tell us your mail so we can give you access to the project.
+Sign up for a heroku.com account and install the toolbelt (https://toolbelt.heroku.com/) and tell us your mail so we can give you access to the project.
 
-Once installed, use the heroku command from your command shell. Log in using the email address and password for heroku:
+Once installed, you're able to use the heroku cli. Log in using the email address and password for Heroku:
 
 ```
 $ heroku login
@@ -47,7 +47,7 @@ Open the productive website by typing:
 $ heroku open
 ```
 
-To start a local server via Heroku, use this command:
+Start a local server:
 
 ```
 $ heroku local
@@ -58,7 +58,7 @@ Additional information about this process can be found here: https://devcenter.h
 
 ### Development
 
-We use grunt as task runner. To build the project, use the 'grunt' command:
+We use grunt as task runner. To build the project, use:
 
 ```
 $ grunt
@@ -70,4 +70,4 @@ While developing, it is recommended to use "grunt watch" which triggers grunt im
 $ grunt watch
 ```
 
-When you want to commit changes, use the github master branch. They'll be deployed to heroku within seconds automatically.
+When you want to commit changes, please commit to the github master branch. The deployment to heroku will be triggered within seconds automatically.
