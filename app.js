@@ -1,8 +1,10 @@
 var express = require('express');
+var path = require("path");
 var nunjucks = require('nunjucks');
 var logger = require('morgan');
 
 var app = express();
+var oneDay = 86400000;
 
 nunjucks.configure('server/views', {
   autoescape: true,
@@ -14,8 +16,7 @@ nunjucks.configure('server/views', {
 app.set('port', process.env.PORT || 3000);
 
 app.use(logger("dev"));
-app.use(express.static('public'));
-app.use('/js/nunjucks-slim.min.js', express.static(__dirname + '/node_modules/nunjucks/browser/nunjucks-slim.min.js'));
+app.use(express.static(path.resolve(__dirname, "public"), { maxAge: oneDay }));
 
 app.get('/', function(req, res) {
   'use strict';
