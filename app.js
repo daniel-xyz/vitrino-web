@@ -1,5 +1,6 @@
 var express = require('express');
 var nunjucks = require('nunjucks');
+var logger = require('morgan');
 
 var app = express();
 
@@ -12,6 +13,7 @@ nunjucks.configure('server/views', {
 
 app.set('port', process.env.PORT || 3000);
 
+app.use(logger("dev"));
 app.use(express.static('public'));
 app.use('/js/nunjucks-slim.min.js', express.static(__dirname + '/node_modules/nunjucks/browser/nunjucks-slim.min.js'));
 
@@ -23,10 +25,10 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/example', function(req, res) {
+app.get('/login', function(req, res) {
   'use strict';
-  res.render('example.html', {
-    page: 'example',
+  res.render('login.html', {
+    page: 'login',
     port: app.get('port')
   });
 });
