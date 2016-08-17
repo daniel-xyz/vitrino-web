@@ -41,11 +41,11 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: oneDay }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: oneDay }));
 app.use(routes);
 
 app.listen(app.get('port'), function() {
