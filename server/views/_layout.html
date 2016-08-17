@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>vitrino</title>
+  <link href="/css/vitrino.min.css" rel="stylesheet">
+</head>
+<body>
+<header>
+
+  <h3>vitrino</h3>
+  <nav>
+    <ul>
+      <li><a href="/">Startseite</a></li>
+      <li><a href="/login">Einloggen</a></li>
+      <li><a href="/signup">Registrieren</a></li>
+
+      {% if currentUser %}
+        <li><a href="/logout">{{ currentUser.name() }} ausloggen</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+<hr>
+</header>
+
+{% block body %}
+{% endblock %}
+
+{% for error in errors %}
+  {{ error }}
+{% endfor %}
+
+{% for info in infos %}
+  {{ info }}
+{% endfor %}
+
+<footer></footer>
+</body>
+</html>

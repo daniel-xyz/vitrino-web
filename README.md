@@ -31,7 +31,7 @@ $ node app.js
 
 ### Setting up Heroku
 
-We use Heroku as our cloud service. All pushes to the github master branch are automatically deployed to it. It is also possible to start the node.js server locally within the Heroku environment, which is recommended.
+We use Heroku as our cloud service. All pushes to the github master branch are automatically deployed to it. It is also possible to start the node.js server locally within the Heroku environment, which is recommended since the environment variables like the mongoDB uri woruldn't be taken otherwise.
 
 Sign up for a heroku.com account and install the toolbelt (https://toolbelt.heroku.com/) and tell us your mail so we can give you access to the project.
 
@@ -47,7 +47,7 @@ Open the productive website by typing:
 $ heroku open
 ```
 
-Start a local server:
+Start a local server (and connect to the external mongoDB sandbox database):
 
 ```
 $ heroku local

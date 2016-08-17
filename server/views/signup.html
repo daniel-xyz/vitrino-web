@@ -1,0 +1,14 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+  {% block content %}
+
+  <h1>{{ page_title }}</h1>
+  <form action="/signup" method="post">
+    <input name="username" type="text" placeholder="Nutzername" required autofocus>
+    <input name="password" type="text" placeholder="Passwort" required>
+    <input type="submit" value="Registrieren">
+  </form>
+
+  {% endblock %}
+{% endblock %}

@@ -1,8 +1,10 @@
-{% extends 'layout.html' %}
+{% extends '_layout.html' %}
 
 {% block body %}
-    {% block content %}
-    <h1>Page: {{ page }}</h1>
-    <p>Looks like we're up and running!</p>
-    {% endblock %}
+  {% block content %}
+
+  <h1>{{ page_title }}</h1>
+  <p>Looks like we're up and running!</p>
+
+  {% endblock %}
 {% endblock %}

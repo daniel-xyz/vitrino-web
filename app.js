@@ -1,10 +1,28 @@
-var express = require('express');
-var path = require("path");
-var nunjucks = require('nunjucks');
-var logger = require('morgan');
+let express = require('express');
+let mongoose = require ("mongoose");
+let passport = require('passport');
+let session = require('express-session');
+let nunjucks = require('nunjucks');
+let path = require("path");
+let logger = require('morgan');
+let flash = require("connect-flash");
+let bodyParser = require("body-parser");
 
-var app = express();
-var oneDay = 86400000;
+var passportConfig = require("./server/modules/passportConfig");
+let routes = require('./routes');
+
+let app = express();
+let oneDay = 86400000;
+let mongoURI = process.env.MONGODB_URI || process.env.MONGODB_URI_SANDBOX || 'mongodb://localhost:27017/test';
+
+mongoose.connect(mongoURI, function (err) {
+  'use strict';
+  if (err) {
+    console.log ('ERROR connecting to: ' + mongoURI + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + mongoURI);
+  }
+});
 
 nunjucks.configure('server/views', {
   autoescape: true,
@@ -13,26 +31,22 @@ nunjucks.configure('server/views', {
   express: app
 });
 
+passportConfig();
+
 app.set('port', process.env.PORT || 3000);
 
-app.use(logger("dev"));
-app.use(express.static(path.resolve(__dirname, "public"), { maxAge: oneDay }));
-
-app.get('/', function(req, res) {
-  'use strict';
-  res.render('index.html', {
-      page: 'home',
-      port: app.get('port')
-  });
-});
-
-app.get('/login', function(req, res) {
-  'use strict';
-  res.render('login.html', {
-    page: 'login',
-    port: app.get('port')
-  });
-});
+app.use(logger('dev'));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: oneDay }));
+app.use(routes);
 
 app.listen(app.get('port'), function() {
   'use strict';
