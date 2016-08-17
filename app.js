@@ -1,37 +1,20 @@
 let express = require('express');
-let mongoose = require ("mongoose");
 let passport = require('passport');
 let session = require('express-session');
-let nunjucks = require('nunjucks');
 let path = require("path");
 let logger = require('morgan');
 let flash = require("connect-flash");
 let bodyParser = require("body-parser");
 
-var passportConfig = require("./server/modules/passportConfig");
 let routes = require('./routes');
 
 let app = express();
 let oneDay = 86400000;
-let mongoURI = process.env.MONGODB_URI || process.env.MONGODB_URI_SANDBOX || 'mongodb://localhost:27017/test';
 
-mongoose.connect(mongoURI, function (err) {
-  'use strict';
-  if (err) {
-    console.log ('ERROR connecting to: ' + mongoURI + '. ' + err);
-  } else {
-    console.log ('Succeeded connected to: ' + mongoURI);
-  }
-});
-
-nunjucks.configure('server/views', {
-  autoescape: true,
-  noCache: true,
-  watch: true,
-  express: app
-});
-
-passportConfig();
+// Load modules
+require("./server/modules/mongoDB")();
+require("./server/modules/passport")();
+require("./server/modules/nunjucks")(app);
 
 app.set('port', process.env.PORT || 3000);
 

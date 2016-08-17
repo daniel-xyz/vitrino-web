@@ -3,7 +3,7 @@ let LocalStrategy = require("passport-local").Strategy;
 
 let User = require("../models/user");
 
-let passportConfig = function() {
+let configurePassport = function() {
   'use strict';
 
   passport.serializeUser(function(user, done) {
@@ -38,4 +38,4 @@ let passportConfig = function() {
   }));
 };
 
-module.exports = passportConfig;
+module.exports = configurePassport;
