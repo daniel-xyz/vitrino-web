@@ -59,23 +59,43 @@ router.post('/signup', function(req, res, next) {
 router.get('/login', function(req, res) {
   'use strict';
   res.render('login.html', {
-    page_title: 'Einloggen',
-    port: router.get('port')
+    page_title: 'Einloggen'
   });
 });
 
-//router.get('/users', function(req, res, next) {
-//  "use strict";
-//  User.find()
-//    .sort({createdAt: "descending" })
-//    .exec(function(err, users) {
-//      if (err) {
-//        return next (err);
-//      }
-//      res.render("userlist.html", {
-//        users: users
-//      });
-//    });
-//});
+router.get('/users', function(req, res, next) {
+  "use strict";
+  User.find()
+    .sort({createdAt: "descending" })
+    .exec(function(err, users) {
+
+      if (err) {
+        return next (err);
+      }
+
+      res.render("userlist.html", {
+        page_title: 'Benutzerliste',
+        users: users
+      });
+    });
+});
+
+router.get('/users/:username', function(req, res, next) {
+  "use strict";
+  User.findOne({ username: req.params.username }, function(err, user) {
+
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      return next(404);
+    }
+
+    res.render("profile.html", {
+      user: user
+    });
+  });
+});
 
 module.exports = router;

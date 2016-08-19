@@ -1,0 +1,16 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+  {% block content %}
+
+  <h1>{{ user.username }}</h1>
+
+  {% if currentUser and (currentUser.id == user.id) %}
+    <a href="/edit">Profil bearbeiten</a>
+  {% endif %}
+
+  <b>Profil erstellt am</b></br>
+  {{ user.createdAt }}
+
+  {% endblock %}
+{% endblock %}

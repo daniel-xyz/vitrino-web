@@ -35,11 +35,6 @@ userSchema.pre('save', function(done) {
   });
 });
 
-userSchema.methods.name = function() {
-  'use strict';
-  return this.username;
-};
-
 userSchema.methods.checkPassword = function(guess, done) {
   'use strict';
   bcrypt.compare(guess, this.password, function (err, isMatch) {

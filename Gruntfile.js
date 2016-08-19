@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
     // JSHINT
     jshint: {
-      files: ['Gruntfile.js', 'app.js', '.jshintrc', 'client/**/*.js', 'server/**/*.js', 'test/**/*.js'],
+      files: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'server/**/*.js'],
       options: {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
     // WATCH
     watch: {
       files: ['<%= jshint.files %>', 'client/**/*', 'server/**/*'],
-      tasks: ['jshint', 'less', 'cssmin']
+      tasks: ['build']
     }
   });
 

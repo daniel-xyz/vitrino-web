@@ -11,7 +11,6 @@ let routes = require('./routes');
 let app = express();
 let oneDay = 86400000;
 
-// Load modules
 require("./server/modules/mongoDB")();
 require("./server/modules/passport")();
 require("./server/modules/nunjucks")(app);
