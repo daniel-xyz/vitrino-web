@@ -4,6 +4,16 @@ let router = express.Router();
 
 let User = require("./server/models/user");
 
+function ensureAuthenticated(req, res, next) {
+  "use strict";
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    req.flash("info", "Bitte logge dich ein, um die gewünschte Seite zu sehen.");
+    res.redirect("/login");
+  }
+}
+
 router.use(function(req, res, next) {
   "use strict";
   res.locals.currentUser = req.user;
@@ -115,6 +125,37 @@ router.get('/logout', function(req, res) {
   "use strict";
   req.logout();
   res.redirect('/');
+});
+
+router.get('/edit', ensureAuthenticated, function (req, res) {
+  "use strict";
+  res.render('edit.html', {
+    page_title: 'Profil bearbeiten'
+  });
+});
+
+router.post('/edit', ensureAuthenticated, function (req, res, next) {
+  "use strict";
+  let newPassword = req.body.newPassword;
+  let newPasswordConfirm = req.body.newPasswordConfirm;
+
+  if (newPassword !== newPasswordConfirm) {
+    req.flash("error", "Die Wiederholung des Passworts stimmt nicht mit der ersten Eingabe überein.");
+    return res.redirect('/edit');
+  }
+
+  req.user.password = newPassword;
+
+  req.user.save(function(err) {
+
+    if (err) {
+      next(err);
+      return;
+    }
+
+    req.flash("info", "Dein Profil wurde erfolgreich gespeichert!");
+    res.redirect('/edit');
+  });
 });
 
 module.exports = router;

@@ -1,0 +1,15 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+  {% block content %}
+
+  <h1>{{ page_title }}</h1>
+
+  <form action="/edit" method="post">
+    <input name="newPassword" type="text" placeholder="Neues Passwort" required autofocus>
+    <input name="newPasswordConfirm" type="text" placeholder="Passwort wiederholen" required>
+    <input type="submit" value="Profil speichern">
+  </form>
+
+  {% endblock %}
+{% endblock %}
