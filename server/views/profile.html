@@ -5,12 +5,14 @@
 
   <h1>{{ user.username }}</h1>
 
-  {% if currentUser and (currentUser.id == user.id) %}
-    <a href="/edit">Profil bearbeiten</a>
-  {% endif %}
+  <p>
+    <b>Profil erstellt am</b></br>
+    {{ user.createdAt }}
+  </p>
 
-  <b>Profil erstellt am</b></br>
-  {{ user.createdAt }}
+  {% if currentUser and (currentUser.id == user.id) %}
+    <p><a href="/edit">Profil bearbeiten</a></p>
+  {% endif %}
 
   {% endblock %}
 {% endblock %}

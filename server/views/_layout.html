@@ -12,11 +12,12 @@
     <ul>
       <li><a href="/">Startseite</a></li>
       <li><a href="/users">Benutzerliste</a></li>
-      <li><a href="/login">Einloggen</a></li>
-      <li><a href="/signup">Registrieren</a></li>
 
-      {% if currentUser %}
-        <li><a href="/logout">{{ currentUser.name() }} ausloggen</a></li>
+      {% if not currentUser %}
+        <li><a href="/login">Einloggen</a></li>
+        <li><a href="/signup">Registrieren</a></li>
+      {% else %}
+        <li><a href="/logout">{{ currentUser.username }} ausloggen</a></li>
       {% endif %}
     </ul>
   </nav>

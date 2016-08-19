@@ -18,14 +18,23 @@ let configurePassport = function() {
 
   passport.use("local-login", new LocalStrategy(function(username, password, done) {
     User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
+
+      if (err) {
+        return done(err);
+      }
+
       if (!user) {
         return done(null, false, {
           message: "Dieser Benutzername existiert nicht"
         });
       }
+
       user.checkPassword(password, function(err, isMatch) {
-        if (err) { return done(err); }
+
+        if (err) {
+          return done(err);
+        }
+
         if (isMatch) {
           return done(null, user);
         } else {

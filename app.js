@@ -5,6 +5,7 @@ let path = require("path");
 let logger = require('morgan');
 let flash = require("connect-flash");
 let bodyParser = require("body-parser");
+let cookieParser = require("cookie-parser");
 
 let routes = require('./routes');
 
@@ -18,13 +19,14 @@ require("./server/modules/nunjucks")(app);
 app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev'));
+app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: oneDay }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'G"ZTq^Z|T/i!cbBH"Gj2tizi2"_.("$")&?#<S<zF§S',
   resave: true,
   saveUninitialized: true
 }));
-app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: oneDay }));
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());

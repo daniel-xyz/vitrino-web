@@ -13,7 +13,7 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
-  'use strict';
+  "use strict";
   res.render('index.html', {
     page_title: 'Startseite',
     port: router.get('port')
@@ -50,9 +50,9 @@ router.post('/signup', function(req, res, next) {
 
     newUser.save(next);
   });
-}, passport.authenticate("local-login", {
-  successRedirect: "/",
-  failureRedirect: "/signup",
+}, passport.authenticate('local-login', {
+  successRedirect: '/',
+  failureRedirect: '/signup',
   failureFlash: true
 }));
 
@@ -66,14 +66,14 @@ router.get('/login', function(req, res) {
 router.get('/users', function(req, res, next) {
   "use strict";
   User.find()
-    .sort({createdAt: "descending" })
+    .sort({createdAt: 'descending' })
     .exec(function(err, users) {
 
       if (err) {
         return next (err);
       }
 
-      res.render("userlist.html", {
+      res.render('userlist.html', {
         page_title: 'Benutzerliste',
         users: users
       });
@@ -92,10 +92,29 @@ router.get('/users/:username', function(req, res, next) {
       return next(404);
     }
 
-    res.render("profile.html", {
+    res.render('profile.html', {
       user: user
     });
   });
+});
+
+router.get('/login', function(req, res) {
+  "use strict";
+  res.render('login.html', {
+    page_title: 'Einloggen'
+  });
+});
+
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
+router.get('/logout', function(req, res) {
+  "use strict";
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;

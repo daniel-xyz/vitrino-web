@@ -1,9 +1,15 @@
-{% extends 'index.html' %}
+{% extends '_layout.html' %}
 
-{% block content %}
+{% block body %}
+  {% block content %}
 
-  {{ super() }}
+  <h1>{{ page_title }}</h1>
 
-  <p>... and the routing works too!</p>
+  <form action="/login" method="post">
+    <input name="username" type="text" placeholder="Nutzername" required autofocus>
+    <input name="password" type="text" placeholder="Passwort" required>
+    <input type="submit" value="Einloggen">
+  </form>
 
+  {% endblock %}
 {% endblock %}
