@@ -9,7 +9,7 @@
   "main": "app.js",
   "scripts": {
     "postinstall": "grunt build",
-    "heroku-postbuild": "grunt build & grunt lint & grunt test"
+    "heroku-postbuild": "grunt lint & grunt test"
   },
   "repository": {
     "type": "git",
