@@ -6,11 +6,12 @@ let logger = require('morgan');
 let flash = require("connect-flash");
 let bodyParser = require("body-parser");
 let cookieParser = require("cookie-parser");
+let helmet = require('helmet');
+let ms = require('ms');
 
 let routes = require('./routes');
 
 let app = express();
-let oneDay = 86400000;
 
 require("./server/modules/mongoDB")();
 require("./server/modules/passport")();
@@ -19,7 +20,8 @@ require("./server/modules/nunjucks")(app);
 app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev'));
-app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: oneDay }));
+app.use(helmet());
+app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: ms('7 days') }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
