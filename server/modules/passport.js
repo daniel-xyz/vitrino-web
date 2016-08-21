@@ -4,7 +4,6 @@ let LocalStrategy = require("passport-local").Strategy;
 let User = require("../models/user");
 
 let configurePassport = function() {
-  'use strict';
 
   passport.serializeUser(function(user, done) {
     done(null, user._id);

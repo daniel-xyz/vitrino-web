@@ -5,7 +5,6 @@ let router = express.Router();
 let User = require("./server/models/user");
 
 function ensureAuthenticated(req, res, next) {
-  "use strict";
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -15,7 +14,6 @@ function ensureAuthenticated(req, res, next) {
 }
 
 router.use(function(req, res, next) {
-  "use strict";
   res.locals.currentUser = req.user;
   res.locals.errors = req.flash('error');
   res.locals.infos = req.flash('info');
@@ -23,7 +21,6 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
-  "use strict";
   res.render('index.html', {
     page_title: 'Startseite',
     port: router.get('port')
@@ -31,14 +28,12 @@ router.get('/', function(req, res) {
 });
 
 router.get('/signup', function(req, res) {
-  "use strict";
   res.render('signup.html', {
     page_title: 'Registrieren'
   });
 });
 
 router.post('/signup', function(req, res, next) {
-  "use strict";
   let username = req.body.username;
   let password = req.body.password;
 
@@ -67,7 +62,6 @@ router.post('/signup', function(req, res, next) {
 }));
 
 router.get('/users', function(req, res, next) {
-  "use strict";
   User.find()
     .sort({createdAt: 'descending' })
     .exec(function(err, users) {
@@ -84,7 +78,6 @@ router.get('/users', function(req, res, next) {
 });
 
 router.get('/users/:username', function(req, res, next) {
-  "use strict";
   User.findOne({ username: req.params.username }, function(err, user) {
 
     if (err) {
@@ -102,7 +95,6 @@ router.get('/users/:username', function(req, res, next) {
 });
 
 router.get('/login', function(req, res) {
-  "use strict";
   res.render('login.html', {
     page_title: 'Einloggen'
   });
@@ -115,20 +107,17 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 
 router.get('/logout', function(req, res) {
-  "use strict";
   req.logout();
   res.redirect('/');
 });
 
 router.get('/edit', ensureAuthenticated, function (req, res) {
-  "use strict";
   res.render('edit.html', {
     page_title: 'Profil bearbeiten'
   });
 });
 
 router.post('/edit', ensureAuthenticated, function (req, res, next) {
-  "use strict";
   let newPassword = req.body.newPassword;
   let newPasswordConfirm = req.body.newPasswordConfirm;
 

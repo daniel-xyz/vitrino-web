@@ -1,16 +1,14 @@
 module.exports = function(grunt) {
-  'use strict';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    // JSHINT
-    jshint: {
-      files: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'server/**/*.js', 'test/**/*.js'],
+    // ESLINT
+    eslint: {
       options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      }
+        configFile: ".eslintrc"
+      },
+      target: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'server/**/*.js', 'test/**/*.js']
     },
 
     // MOCHA
@@ -54,19 +52,19 @@ module.exports = function(grunt) {
 
     // WATCH
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['build']
+      files: ['<%= eslint.target %>'],
+      tasks: ['build', 'lint']
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('test', ['mochaTest']);
-  grunt.registerTask('build', ['jshint', 'less', 'cssmin']);
-  grunt.registerTask('build-and-test', ['build', 'test']);
-  grunt.registerTask('default', ['build', 'watch']);
+  grunt.registerTask('lint', ['eslint']);
+  grunt.registerTask('build', ['less', 'cssmin']);
+  grunt.registerTask('default', ['build', 'lint', 'watch']);
 };

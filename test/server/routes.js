@@ -4,7 +4,6 @@ let cheerio = require('cheerio');
 let app = require('../../app');
 
 describe('router.js', function() {
-  "use strict";
 
   let request;
 

@@ -35,8 +35,7 @@ app.use(passport.session());
 app.use(routes);
 
 app.listen(app.get('port'), function() {
-  'use strict';
-  console.log('Server started on port', app.get('port'));
+  console.log('Server started on port', app.get('port')); // eslint-disable-line no-console
 });
 
 module.exports = app;

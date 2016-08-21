@@ -12,7 +12,6 @@ let userSchema = mongoose.Schema({
 let noop = function() {};
 
 userSchema.pre('save', function(done) {
-  'use strict';
   let user = this;
 
   if (!user.isModified('password')) {
@@ -36,7 +35,6 @@ userSchema.pre('save', function(done) {
 });
 
 userSchema.methods.checkPassword = function(guess, done) {
-  'use strict';
   bcrypt.compare(guess, this.password, function (err, isMatch) {
     done(err, isMatch);
   });

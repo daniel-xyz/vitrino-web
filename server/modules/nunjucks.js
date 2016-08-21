@@ -1,7 +1,6 @@
 let nunjucks = require('nunjucks');
 
 let configureNunjucks = function(app) {
-  'use strict';
 
   nunjucks.configure('server/views', {
     autoescape: true,
