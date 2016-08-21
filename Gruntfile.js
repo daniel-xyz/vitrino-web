@@ -6,10 +6,22 @@ module.exports = function(grunt) {
 
     // JSHINT
     jshint: {
-      files: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'server/**/*.js'],
+      files: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'server/**/*.js', 'test/**/*.js'],
       options: {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
+      }
+    },
+
+    // MOCHA
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          quiet: false,
+          clearRequireCache: false
+        },
+        src: ['test/**/*.js']
       }
     },
 
@@ -42,16 +54,19 @@ module.exports = function(grunt) {
 
     // WATCH
     watch: {
-      files: ['<%= jshint.files %>', 'client/**/*', 'server/**/*'],
+      files: ['<%= jshint.files %>'],
       tasks: ['build']
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
+  grunt.registerTask('test', ['mochaTest']);
   grunt.registerTask('build', ['jshint', 'less', 'cssmin']);
+  grunt.registerTask('build-and-test', ['build', 'test']);
   grunt.registerTask('default', ['build', 'watch']);
 };

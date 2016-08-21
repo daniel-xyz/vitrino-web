@@ -58,20 +58,22 @@ Additional information about this process can be found here: https://devcenter.h
 
 ### Development
 
-We use grunt as task runner. To build the project, use:
+To build the project and activate the watcher (which triggers on any further code changes automatically), type:
 
 ```
 $ grunt
 ```
 
-While developing, it is recommended to use "grunt watch" which triggers grunt immediately on code changes:
-
-```
-$ grunt watch
-```
-
-When you want to commit changes, please commit to the github master branch. The deployment to heroku will be triggered within seconds automatically.
+When you want to commit changes, please commit to the github master branch. The deployment to heroku (production) will be triggered within seconds automatically.
 
 ### Database
 
 When starting the app with the "heroku local" command, the app will try to connect to the mongoDB database specified in the ".env"-file. If the connection can't be established or you started the app not within the heroku environment, the app will look for a local running mongoDB.
+
+### Testing
+
+Start the test runner with:
+
+```
+$ grunt test
+```

@@ -36,3 +36,5 @@ app.listen(app.get('port'), function() {
   'use strict';
   console.log('Server started on port', app.get('port'));
 });
+
+module.exports = app;

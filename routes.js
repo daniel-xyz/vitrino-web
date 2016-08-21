@@ -66,13 +66,6 @@ router.post('/signup', function(req, res, next) {
   failureFlash: true
 }));
 
-router.get('/login', function(req, res) {
-  'use strict';
-  res.render('login.html', {
-    page_title: 'Einloggen'
-  });
-});
-
 router.get('/users', function(req, res, next) {
   "use strict";
   User.find()
