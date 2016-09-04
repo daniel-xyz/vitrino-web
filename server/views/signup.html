@@ -8,6 +8,7 @@
   <form action="/signup" method="post">
     <input name="username" type="text" placeholder="Nutzername" required autofocus>
     <input name="password" type="text" placeholder="Passwort" required>
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
     <input type="submit" value="Registrieren">
   </form>
 

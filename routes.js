@@ -29,7 +29,8 @@ router.get('/', function(req, res) {
 
 router.get('/signup', function(req, res) {
   res.render('signup.html', {
-    page_title: 'Registrieren'
+    page_title: 'Registrieren',
+    csrfToken: req.csrfToken()
   });
 });
 
@@ -96,7 +97,8 @@ router.get('/users/:username', function(req, res, next) {
 
 router.get('/login', function(req, res) {
   res.render('login.html', {
-    page_title: 'Einloggen'
+    page_title: 'Einloggen',
+    csrfToken: req.csrfToken()
   });
 });
 
@@ -113,7 +115,8 @@ router.get('/logout', function(req, res) {
 
 router.get('/edit', ensureAuthenticated, function (req, res) {
   res.render('edit.html', {
-    page_title: 'Profil bearbeiten'
+    page_title: 'Profil bearbeiten',
+    csrfToken: req.csrfToken()
   });
 });
 

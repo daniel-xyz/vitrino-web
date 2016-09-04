@@ -3,7 +3,7 @@
 ### Requirements
 
   - git
-  - node.js and npm (latest version)
+  - node.js and npm (latest versions)
   
 
 ### Getting started
@@ -68,7 +68,7 @@ When you want to commit changes, please commit to the github master branch. The 
 
 ### Database
 
-When starting the app with the "heroku local" command, the app will try to connect to the mongoDB database specified in the ".env"-file. If the connection can't be established or you started the app not within the heroku environment, the app will look for a local running mongoDB.
+When starting the app with the "heroku local" command, the app will try to connect to the mongoDB database specified in the ".env"-file. If the connection can't be established or you haven't started the app within the heroku environment, it will look for a local running mongoDB.
 
 ### Testing
 

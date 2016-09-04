@@ -1,12 +1,13 @@
 let express = require('express');
 let passport = require('passport');
 let session = require('express-session');
-let path = require("path");
+let path = require('path');
 let logger = require('morgan');
-let flash = require("connect-flash");
-let bodyParser = require("body-parser");
-let cookieParser = require("cookie-parser");
+let flash = require('connect-flash');
+let bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser');
 let helmet = require('helmet');
+let csrf = require('csurf');
 let ms = require('ms');
 
 let routes = require('./routes');
@@ -29,6 +30,20 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+// CSRF protection - needs to be modularized later on together with the other middlewares
+app.use(csrf({}));
+app.use(function (err, req, res, next) {
+
+  if (err.code !== 'EBADCSRFTOKEN') {
+    return next(err);
+  }
+
+  res.status(403);
+  res.send('Aus Sicherheitsgründen kann die gewünschte Aktion nicht ausgeführt werden');
+
+});
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
