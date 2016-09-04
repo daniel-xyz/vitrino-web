@@ -10,14 +10,13 @@ let helmet = require('helmet');
 let csrf = require('csurf');
 let ms = require('ms');
 
-let routes = require('./routes');
 let securityConfig = require('./config/security.js');
+let services = require('./server/services/index.js');
+let routes = require('./routes.js');
 
 let app = express();
 
-require("./server/modules/mongoDB")();
-require("./server/modules/passport")();
-require("./server/modules/nunjucks")(app);
+services.initialize(app);
 
 app.set('port', process.env.PORT || 3000);
 
@@ -28,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session(securityConfig.sessionOptions));
 
-// CSRF protection - needs to be modularized later on together with the other middlewares
+// CSRF protection - TODO: needs to be modularized later on together with the other middlewares
 app.use(csrf({}));
 app.use(function (err, req, res, next) {
 

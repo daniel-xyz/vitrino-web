@@ -40,6 +40,18 @@ userSchema.methods.checkPassword = function(guess, done) {
   });
 };
 
+userSchema.methods.findById = function(id, done) {
+  userSchema.findById(id, function(err, user) {
+    done(err, user);
+  });
+};
+
+userSchema.methods.findOne = function(username, done) {
+  userSchema.findOne({ username: username }, function(err, user) {
+    done(err, user);
+  });
+};
+
 let User = mongoose.model('User', userSchema);
 
 module.exports = User;

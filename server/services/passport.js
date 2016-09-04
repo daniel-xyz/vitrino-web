@@ -1,7 +1,7 @@
 let passport = require("passport");
 let LocalStrategy = require("passport-local").Strategy;
 
-let User = require("../models/user");
+let User = require("../components/user/User.js");
 
 let configurePassport = function() {
 

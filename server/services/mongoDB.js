@@ -1,5 +1,6 @@
 let mongoose = require ("mongoose");
-let mongoURI = process.env.MONGODB_URI || process.env.MONGODB_URI_SANDBOX || 'mongodb://localhost:27017/test';
+let config = require ("../../config/database.js");
+let mongoURI = config.uri.productive || config.uri.development || config.uri.local;
 
 let configureMongoDB = function() {
 

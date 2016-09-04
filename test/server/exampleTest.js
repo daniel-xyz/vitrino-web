@@ -1,4 +1,4 @@
-let capitalize = require('../../server/modules/helpers/exampleHelper');
+let capitalize = require('.././exampleHelper');
 
 let chai = require('chai');
 let expect = chai.expect;
