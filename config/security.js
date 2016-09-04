@@ -43,6 +43,19 @@ let helmetOptions = {
   }
 };
 
+let sessionOptions = {
+  secret: 'G"ZTq^Z|T/i!cbBH"Gj2tizi2"_.("$")&?#<S<zF§S',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    path: '/',
+    httpOnly: true,
+    secure: false, // TODO: Must be set to true as soon as we haved switched to https
+    maxAge: null
+  }
+};
+
 module.exports = {
-  helmetOptions
+  helmetOptions,
+  sessionOptions
 };

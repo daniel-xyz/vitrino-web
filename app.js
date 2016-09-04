@@ -26,11 +26,7 @@ app.use(helmet(securityConfig.helmetOptions));
 app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: ms('7 days') }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
-  secret: 'G"ZTq^Z|T/i!cbBH"Gj2tizi2"_.("$")&?#<S<zF§S',
-  resave: true,
-  saveUninitialized: true
-}));
+app.use(session(securityConfig.sessionOptions));
 
 // CSRF protection - needs to be modularized later on together with the other middlewares
 app.use(csrf({}));
