@@ -11,6 +11,7 @@ let csrf = require('csurf');
 let ms = require('ms');
 
 let routes = require('./routes');
+let securityConfig = require('./config/security.js');
 
 let app = express();
 
@@ -21,7 +22,7 @@ require("./server/modules/nunjucks")(app);
 app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev'));
-app.use(helmet());
+app.use(helmet(securityConfig.helmetOptions));
 app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: ms('7 days') }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -41,7 +42,6 @@ app.use(function (err, req, res, next) {
 
   res.status(403);
   res.send('Aus Sicherheitsgründen kann die gewünschte Aktion nicht ausgeführt werden');
-
 });
 
 app.use(flash());
