@@ -1,13 +1,8 @@
 # Basic configuration
 language: node_js
 node_js:
-  - "6"
+  - "6.2.2"
+install: npm install
 before_script:
-  - npm install grunt-cli -g
-
-# Heroku deployment
-deploy:
-  provider: heroku
-  app: vitrino
-  api_key:
-    secure: 99a5f6f7-383f-4aae-aedb-0e6ba27e4cc7
+  - npm install -g grunt-cli
+  - grunt build

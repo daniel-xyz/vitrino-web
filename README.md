@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Flur3x/Vitrino.svg?token=HAauytqpvPqx5oqGBkQp&branch=master)](https://travis-ci.com/Flur3x/Vitrino)
+
 # Vitrino
 
 ### Requirements
