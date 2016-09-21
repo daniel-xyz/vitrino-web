@@ -7,6 +7,8 @@ before_script:
   - npm install -g grunt-cli
   - grunt build
 notifications:
-  slack: vitrino:aAbButVsGTdvPXhnF903oeQ7
+  slack:
+    rooms:
+      - vitrino:aAbButVsGTdvPXhnF903oeQ7#development
     on_success: change
     on_failure: always
