@@ -1,20 +1,10 @@
 let nunjucks = require('nunjucks');
+let config = require('../../config/config.js');
 
-let viewPaths = [
-  'server/partials',
-  'server/components/home/views',
-  'server/components/user/views'
-];
+let setupNunjucks = function (app) {
+  config.nunjucks.options.express = app;
 
-let configureNunjucks = function(app) {
-
-  nunjucks.configure(viewPaths, {
-    autoescape: true,
-    trimBlocks: true,
-    noCache: true,
-    watch: true,
-    express: app
-  });
+  nunjucks.configure(config.nunjucks.viewPaths, config.nunjucks.options);
 };
 
-module.exports = configureNunjucks;
+module.exports = setupNunjucks;

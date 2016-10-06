@@ -3,10 +3,10 @@
 {% block body %}
   {% block content %}
 
-  <h1>{{ page_title }}</h1>
+  <h1>Einloggen</h1>
 
   <form action="/login" method="post">
-    <input name="username" type="text" placeholder="Nutzername" required autofocus>
+    <input name="email" type="text" placeholder="E-Mail" required autofocus>
     <input name="password" type="text" placeholder="Passwort" required>
     <input type="hidden" name="_csrf" value="{{csrfToken}}">
     <input type="submit" value="Einloggen">

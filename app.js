@@ -10,9 +10,10 @@ let helmet = require('helmet');
 let csrf = require('csurf');
 let ms = require('ms');
 
-let securityConfig = require('./config/security.js');
+let config = require('./config/config.js');
 let services = require('./server/services/index.js');
-let routes = require('./routes.js');
+let routes = require('./server/routes.js');
+let csrfError = require('./server/middleware/csrf-custom-error.js');
 
 let app = express();
 
@@ -21,24 +22,14 @@ services.initialize(app);
 app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev'));
-app.use(helmet(securityConfig.helmetOptions));
+app.use(helmet(config.helmet));
 app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: ms('7 days') }));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session(securityConfig.sessionOptions));
-
-// CSRF protection - TODO: needs to be modularized later on together with the other middlewares
+app.use(session(config.sessions));
 app.use(csrf({}));
-app.use(function (err, req, res, next) {
-
-  if (err.code !== 'EBADCSRFTOKEN') {
-    return next(err);
-  }
-
-  res.status(403);
-  res.send('Aus Sicherheitsgründen kann die gewünschte Aktion nicht ausgeführt werden');
-});
-
+app.use(csrfError);
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());

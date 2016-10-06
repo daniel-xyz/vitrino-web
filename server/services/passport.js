@@ -1,49 +1,50 @@
 let passport = require("passport");
 let LocalStrategy = require("passport-local").Strategy;
 
-let User = require("../components/user/User.js");
+let knex = require('./knex.js');
+let authHelper = require('../modules/auth.js');
 
-let configurePassport = function() {
+let setupPassport = function () {
 
-  passport.serializeUser(function(user, done) {
-    done(null, user._id);
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
   });
 
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
-    });
+  passport.deserializeUser((id, done) => {
+    knex('users').where({id}).first()
+      .then((user) => {
+        done(null, user);
+      })
+      .catch((err) => {
+        done(err, null);
+      });
   });
 
-  passport.use("local-login", new LocalStrategy(function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
+  passport.use("local", new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  }, function (email, password, done) {
+    knex('users').where({ email }).first()
+      .then((user) => {
 
-      if (err) {
-        return done(err);
-      }
-
-      if (!user) {
-        return done(null, false, {
-          message: "Dieser Benutzername existiert nicht"
-        });
-      }
-
-      user.checkPassword(password, function(err, isMatch) {
-
-        if (err) {
-          return done(err);
+        if (!user) {
+          return done(null, false, {
+            message: "Ein Benutzer mit dieser E-Mail existiert nicht"
+          });
         }
 
-        if (isMatch) {
+        if (authHelper.comparePassword(password, user.password)) {
           return done(null, user);
         } else {
           return done(null, false, {
             message: "Ungültiges Passwort"
           });
         }
+      })
+      .catch((err) => {
+        return done(err);
       });
-    });
   }));
 };
 
-module.exports = configurePassport;
+module.exports = setupPassport;

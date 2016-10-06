@@ -8,6 +8,6 @@ router.use(function(req, res, next) {
   next();
 });
 
-router.use(require('./server/components/index.js'));
+router.use(require('./components/index.js'));
 
 module.exports = router;

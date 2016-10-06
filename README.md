@@ -10,9 +10,9 @@
 
 ### Getting started
 
-Create an account on github.com if you don't have one. If you use an IDE like IntelliJ which has a github integration, the login to your github account is quite convenient. Otherwise, if you have to use the command line and need help, take a look here: https://help.github.com/articles/set-up-git/
+Create an account on github.com if you don't have one. If you have never used git before, check this out: https://help.github.com/articles/set-up-git/
 
-If your github account is authenticated, clone the project via git:
+If everything is set up, clone the project via git:
 
 ```
 $ git clone https://github.com/Flur3x/Vitrino.git
@@ -33,7 +33,7 @@ $ node app.js
 
 ### Setting up Heroku
 
-We use Heroku as our cloud service. All pushes to the github master branch are automatically deployed to it. It is also possible to start the node.js server locally within the Heroku environment, which is recommended since the environment variables like the mongoDB uri woruldn't be taken otherwise.
+This project is hosted on Heroku. All pushes to the github master branch will automatically be deployed after the build succeded in Travis CI.
 
 Sign up for a heroku.com account and install the toolbelt (https://toolbelt.heroku.com/) and tell us your mail so we can give you access to the project.
 
@@ -43,19 +43,7 @@ Once installed, you're able to use the heroku cli. Log in using the email addres
 $ heroku login
 ```
 
-Open the productive website by typing:
-
-```
-$ heroku open
-```
-
-Start a local server (and connect to the external mongoDB sandbox database):
-
-```
-$ heroku local
-```
-
-Additional information about this process can be found here: https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
+Additional information: https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
 
 
 ### Development
@@ -68,9 +56,22 @@ $ grunt
 
 When you want to commit changes, please commit to the github master branch. The deployment to heroku (production) will be triggered within seconds automatically.
 
+
 ### Database
 
-When starting the app with the "heroku local" command, the app will try to connect to the mongoDB database specified in the ".env"-file. If the connection can't be established or you haven't started the app within the heroku environment, it will look for a local running mongoDB.
+To connect to the postgreSQL CLI:
+
+```
+$ heroku pg:psql --app vitrino DATABASE
+```
+
+
+#### Some useful commands
+
+**\d** - list alle tables within the database
+
+**\q** - quit
+
 
 ### Testing
 
