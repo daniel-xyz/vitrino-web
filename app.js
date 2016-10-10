@@ -8,7 +8,6 @@ let bodyParser = require('body-parser');
 let cookieParser = require('cookie-parser');
 let helmet = require('helmet');
 let csrf = require('csurf');
-let ms = require('ms');
 
 let config = require('./config/config.js');
 let services = require('./server/services/index.js');
@@ -23,7 +22,7 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev'));
 app.use(helmet(config.helmet));
-app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: ms('7 days') }));
+app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: 604800000 })); // maxAge 7 days
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
