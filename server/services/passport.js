@@ -1,8 +1,8 @@
 let passport = require("passport");
 let LocalStrategy = require("passport-local").Strategy;
 
-let knex = require('./knex.js');
-let authHelper = require('../modules/auth.js');
+let authHelper = require('../helpers/auth.js');
+let User = require('../components/user/User.js');
 
 let setupPassport = function () {
 
@@ -11,7 +11,7 @@ let setupPassport = function () {
   });
 
   passport.deserializeUser((id, done) => {
-    knex('users').where({id}).first()
+    User.findById(id)
       .then((user) => {
         done(null, user);
       })
@@ -24,7 +24,7 @@ let setupPassport = function () {
     usernameField: 'email',
     passwordField: 'password'
   }, function (email, password, done) {
-    knex('users').where({ email }).first()
+    User.findByEmail(email)
       .then((user) => {
 
         if (!user) {

@@ -1,6 +1,8 @@
 let express = require('express');
 let passport = require('passport');
-let auth = require('../../modules/auth.js');
+
+let authHelper = require('../../helpers/auth.js');
+let User = require('./User.js');
 
 let router = express.Router();
 
@@ -14,7 +16,7 @@ router.get('/signup', function(req, res) {
 });
 
 router.post('/signup', (req, res, next)  => {
-  return auth.createUser(req, res)
+  User.create(req.body.email, req.body.password)
     .then(() => {
       next();
     })
@@ -51,13 +53,13 @@ router.get('/logout', function(req, res, next) {
 
 // Edit user profile
 
-router.get('/edit', auth.ensureAuthenticated, function (req, res) {
+router.get('/edit', authHelper.ensureAuthenticated, function (req, res) {
   res.render('edit.html', {
     csrfToken: req.csrfToken()
   });
 });
 
-router.post('/edit', auth.ensureAuthenticated, function (req, res, next) {
+router.post('/edit', authHelper.ensureAuthenticated, function (req, res, next) {
   let newPassword = req.body.newPassword;
   let newPasswordConfirm = req.body.newPasswordConfirm;
 
@@ -66,9 +68,8 @@ router.post('/edit', auth.ensureAuthenticated, function (req, res, next) {
     return res.redirect('/edit');
   }
 
-  req.user.password = newPassword;
-
-  // TODO - to be replaced with new knex queries
+  // TODO - to be replaced with new knex queries/user model
+  // req.user.password = newPassword;
   //req.user.save(function(err) {
   //
   //  if (err) {
