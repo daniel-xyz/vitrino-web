@@ -1,7 +1,16 @@
 let bcrypt = require('bcryptjs');
+let crypto = require('crypto');
 
-function getHashedPassword (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync());
+function generateSecureHash (string) {
+  let salt = bcrypt.genSaltSync();
+
+  return bcrypt.hashSync(string, salt);
+}
+
+function generateToken (string) {
+  let seed = crypto.randomBytes(20);
+
+  return crypto.createHash('sha1').update(seed + string).digest('hex');
 }
 
 function comparePassword (userPassword, databasePassword) {
@@ -17,10 +26,9 @@ function ensureAuthenticated (req, res, next) {
   }
 }
 
-// authToken = crypto.createHash('sha1').update(seed + req.body.email).digest('hex'); // TODO - re-implement this token when Double Opt-In is being implemented
-
 module.exports = {
-  getHashedPassword,
+  generateSecureHash,
+  generateToken,
   comparePassword,
   ensureAuthenticated
 };

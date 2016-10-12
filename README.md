@@ -31,7 +31,7 @@ $ node app.js
 ```
 
 
-### Setting up Heroku
+#### Setting up Heroku
 
 This project is hosted on Heroku. All pushes to the github master branch will automatically be deployed after the build succeded in Travis CI.
 
@@ -57,7 +57,17 @@ $ grunt
 When you want to commit changes, please commit to the github master branch. The deployment to heroku (production) will be triggered within seconds automatically.
 
 
-### Database
+#### ESLint
+
+To disable eslint rule warnings you have several options:
+
+- put a **/* eslint-disable */** block comment at the top of the file to disable rule warnings in an entire file
+- put a **// eslint-disable-line** comment next to a line to disable warnings for that specific line
+
+More options: http://eslint.org/docs/user-guide/configuring
+
+
+#### Database
 
 To connect to the postgreSQL CLI:
 
@@ -66,14 +76,14 @@ $ heroku pg:psql --app vitrino DATABASE
 ```
 
 
-#### Some useful commands
+##### Some useful commands
 
 **\d** - list alle tables within the database
 
 **\q** - quit
 
 
-### Testing
+#### Testing
 
 Start the test runner with:
 

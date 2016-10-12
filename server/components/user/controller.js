@@ -3,6 +3,7 @@ let passport = require('passport');
 
 let authHelper = require('../../helpers/auth.js');
 let User = require('./User.js');
+let sendgrid = require('../../services/sendgrid.js');
 
 let router = express.Router();
 
@@ -17,7 +18,9 @@ router.get('/signup', function(req, res) {
 
 router.post('/signup', (req, res, next)  => {
   User.create(req.body.email, req.body.password)
-    .then(() => {
+    .then((user) => {
+      console.log(user[0]); // eslint-disable-line
+      sendgrid.sendToken(user[0].email, user[0].authToken);
       next();
     })
     .catch((err) => {
@@ -29,6 +32,25 @@ router.post('/signup', (req, res, next)  => {
   failureRedirect: '/login',
   failureFlash: true
 }));
+
+router.get('/verify_email', function(req,res) {
+  console.log('verify_email token: ', req.query.token); // eslint-disable-line
+
+  User.verifyEmail(req.query.token)
+    .then((user) => {
+      console.log('succesfully updated user'); // eslint-disable-line
+      console.dir(user[0]); // eslint-disable-line
+      res.render('verify.html', {
+        status: 'Erfolgreich! :)'
+      });
+    })
+    .catch((err) => {
+      console.error(err); // eslint-disable-line
+      res.render('verify.html', {
+        status: 'Fehler :('
+      });
+  });
+});
 
 
 // Login / Logout

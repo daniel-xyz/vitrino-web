@@ -6,7 +6,8 @@ exports.up = function(knex, Promise) {
       table.string('email').unique().notNullable();
       table.string('username');
       table.string('password').notNullable();
-      table.boolean('verified').defaultTo(false);
+      table.boolean('emailVerified').defaultTo(false).notNullable();
+      table.string('authToken').unique().notNullable();
       table.integer('role')
         .references('id')
         .inTable('roles')
