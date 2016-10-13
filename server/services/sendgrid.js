@@ -1,7 +1,14 @@
 let sendgrid = require('sendgrid')("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");
+let config = require('../../config/config.js');
 
 function sendToken(receiver, token) {
-  let authenticationURL = 'http://localhost:3000/verify_email?token=' + token;
+  let verificationURL;
+
+  if (config.env === 'production') {
+    verificationURL = config.host + '/verify_email?token=' + token;
+  } else {
+    verificationURL = 'http://localhost:3000/verify_email?token=' + token;
+  }
 
   let request = sendgrid.emptyRequest({
     method: 'POST',
@@ -14,7 +21,9 @@ function sendToken(receiver, token) {
               email: receiver
             }
           ],
-          subject: 'Bitte bestätige deine E-Mail'
+          'substitutions': {
+            '-verificationURL-': verificationURL
+          }
         }
       ],
       from: {
@@ -23,9 +32,10 @@ function sendToken(receiver, token) {
       content: [
         {
           type: 'text/html',
-          value: '<a target=_blank href=\"' + authenticationURL + '\">E-Mail bestätigen</a>'
+          value: '<p></p>'
         }
-      ]
+      ],
+      'template_id': 'd2c7b6f5-42c5-411b-a911-114f76ec9f64'
     }
   });
 

@@ -1,5 +1,6 @@
 let config = {
   env: process.env.NODE_ENV || 'development',
+  host: 'http://vitrino.herokuapp.com',
 
   // --- Database ---
   database: {
