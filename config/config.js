@@ -1,6 +1,7 @@
 let config = {
   env: process.env.NODE_ENV || 'development',
   host: 'http://vitrino.herokuapp.com',
+  port: process.env.PORT || 3000,
 
   // --- Database ---
   database: {
@@ -80,6 +81,27 @@ let config = {
       // This may make the headers less compatible but it will be much faster.
       // This defaults to `true`.
       browserSniff: true
+    }
+  },
+
+  // Sendgrid E-Mail service provider
+  sendgrid: {
+    apikey: process.env.SENDGRID_API_KEY || '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',
+    mails: {
+      welcome: {
+        sender: {
+          email: 'info@vitrino.de',
+          name: 'Vitrino'
+        },
+        templateId: 'd2c7b6f5-42c5-411b-a911-114f76ec9f64'
+      },
+      passwordForgotten: {
+        sender: {
+          email: 'info@vitrino.de',
+          name: 'Vitrino'
+        },
+        templateId: 'be66a06b-9dc6-4c19-b1b1-457b99c45dd4'
+      }
     }
   }
 };

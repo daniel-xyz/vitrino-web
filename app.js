@@ -18,7 +18,7 @@ let app = express();
 
 services.initialize(app);
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', config.port);
 
 app.use(logger('dev'));
 app.use(helmet(config.helmet));

@@ -1,14 +1,9 @@
-let sendgrid = require('sendgrid')("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");
 let config = require('../../config/config.js');
+let sendgrid = require('sendgrid')(config.sendgrid.apikey);
 
 function sendToken(receiver, token) {
-  let verificationURL;
-
-  if (config.env === 'production') {
-    verificationURL = config.host + '/verify_email?token=' + token;
-  } else {
-    verificationURL = 'http://localhost:3000/verify_email?token=' + token;
-  }
+  let host = (config.env === 'production') ? config.host : 'http://localhost:' + config.port;
+  let verificationURL = host + '/verify_email?token=' + token;
 
   let request = sendgrid.emptyRequest({
     method: 'POST',
@@ -27,7 +22,8 @@ function sendToken(receiver, token) {
         }
       ],
       from: {
-        email: 'welcome@vitrino.de'
+        email: config.sendgrid.mails.welcome.sender.email,
+        name: config.sendgrid.mails.welcome.sender.name
       },
       content: [
         {
@@ -35,7 +31,7 @@ function sendToken(receiver, token) {
           value: '<p></p>'
         }
       ],
-      'template_id': 'd2c7b6f5-42c5-411b-a911-114f76ec9f64'
+      'template_id': config.sendgrid.mails.welcome.templateId
     }
   });
 
