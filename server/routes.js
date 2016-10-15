@@ -3,8 +3,7 @@ let router = express.Router();
 
 router.use(function(req, res, next) {
   res.locals.currentUser = req.user;
-  res.locals.errors = req.flash('error');
-  res.locals.infos = req.flash('info');
+  res.locals.flashes = req.flash();
   next();
 });
 

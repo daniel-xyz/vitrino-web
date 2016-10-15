@@ -9,6 +9,14 @@ let config = {
 
   },
 
+  // --- Passport authentication framework
+
+  passport: {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+  },
+
   // --- Nunjucks templating engine ---
   nunjucks: {
     options: {

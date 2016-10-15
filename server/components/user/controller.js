@@ -1,6 +1,7 @@
 let express = require('express');
 let passport = require('passport');
 
+let config = require('../../../config/config.js');
 let authHelper = require('../../helpers/auth.js');
 let User = require('./User.js');
 let sendgrid = require('../../services/sendgrid.js');
@@ -8,9 +9,9 @@ let sendgrid = require('../../services/sendgrid.js');
 let router = express.Router();
 
 
-// Signup
+// --- Signup and E-Mail verification
 
-router.get('/signup', function(req, res) {
+router.get('/signup', function (req, res) {
   res.render('signup.html', {
     csrfToken: req.csrfToken()
   });
@@ -19,33 +20,26 @@ router.get('/signup', function(req, res) {
 router.post('/signup', (req, res, next)  => {
   User.create(req.body.email, req.body.password)
     .then((user) => {
-      console.log(user[0]); // eslint-disable-line
-      sendgrid.sendToken(user[0].email, user[0].authToken);
+      console.log(user[0]);
+      sendgrid.sendToken(user[0].email, user[0].auth_token);
       next();
     })
     .catch((err) => {
-      // console.error(err.stack);
-      handleResponse(res, 500, 'error');
+      console.error(err.stack);
     });
-}, passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
+}, passport.authenticate('local', config.passport));
 
-router.get('/verify_email', function(req,res) {
-  console.log('verify_email token: ', req.query.token); // eslint-disable-line
-
-  User.verifyEmail(req.query.token)
+router.get('/verify_email/:token', function (req,res) {
+  User.verifyEmail(req.params.token)
     .then((user) => {
-      console.log('succesfully updated user'); // eslint-disable-line
-      console.dir(user[0]); // eslint-disable-line
+      console.log('succesfully updated user');
+      console.dir(user[0]);
       res.render('verify.html', {
         status: 'Erfolgreich! :)'
       });
     })
     .catch((err) => {
-      console.error(err); // eslint-disable-line
+      console.error(err);
       res.render('verify.html', {
         status: 'Fehler :('
       });
@@ -53,59 +47,97 @@ router.get('/verify_email', function(req,res) {
 });
 
 
-// Login / Logout
+// --- Login / Logout
 
-router.get('/login', function(req, res) {
+router.get('/login', function (req, res) {
   res.render('login.html', {
     csrfToken: req.csrfToken()
   });
 });
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
+router.post('/login', passport.authenticate('local', config.passport));
 
-router.get('/logout', function(req, res, next) {
+router.get('/logout', function (req, res) {
   req.logout();
   res.redirect('/');
 });
 
 
-// Edit user profile
+// --- Password forgotten
 
-router.get('/edit', authHelper.ensureAuthenticated, function (req, res) {
-  res.render('edit.html', {
+router.get('/forgot', function (req, res) {
+  res.render('forgotPassword.html', {
     csrfToken: req.csrfToken()
   });
 });
 
-router.post('/edit', authHelper.ensureAuthenticated, function (req, res, next) {
-  let newPassword = req.body.newPassword;
-  let newPasswordConfirm = req.body.newPasswordConfirm;
+router.post('/forgot', function (req, res) {
+  User.findByEmail(req.body.email)
+    .then((user) => {
+      let token = authHelper.generateToken(user.email);
 
-  if (newPassword !== newPasswordConfirm) {
-    req.flash("error", "Die Wiederholung des Passworts stimmt nicht mit der ersten Eingabe überein.");
-    return res.redirect('/edit');
-  }
-
-  // TODO - to be replaced with new knex queries/user model
-  // req.user.password = newPassword;
-  //req.user.save(function(err) {
-  //
-  //  if (err) {
-  //    next(err);
-  //    return;
-  //  }
-  //
-  //  req.flash("info", "Dein Profil wurde erfolgreich gespeichert!");
-  //  res.redirect('/edit');
-  //});
+      User.setResetPasswordExpiration(user.id, token)
+        .then((user) => {
+          sendgrid.sendResetPasswordLink(user[0].email, user[0].pw_reset_token);
+          req.flash('success', 'Wir haben dir eine E-Mail mit einem Link zugesandt, mit welchem du dein Passwort zurücksetzen kannst.');
+          return res.redirect('/');
+        })
+        .catch((err) => {
+          req.flash('error', 'Etwas scheint schiefgelaufen zu sein.');
+          return res.redirect('/');
+        });
+    })
+    .catch((err) => {
+      console.error(err);
+      req.flash('error', 'Es konnte kein Benutzer mit dieser E-Mail gefunden werden.');
+      return res.redirect('/forgot');
+    });
 });
 
-function handleResponse(res, code, statusMsg) {
-  res.status(code).json({status: statusMsg});
-}
+router.get('/reset/:token', function (req, res) {
+  User.findUserWithValidResetToken(req.params.token)
+    .then((user) => {
+      if (user) {
+        res.render('resetPassword.html', {
+          resetToken: req.params.token,
+          csrfToken: req.csrfToken()
+        });
+      } else {
+        req.flash('error', 'Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen.');
+        return res.redirect('/forgot');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
+router.post('/reset/:token', function (req, res, next) {
+  User.findUserWithValidResetToken(req.params.token)
+    .then((user) => {
+      let newPassword = req.body.newPassword;
+      let newPasswordConfirm = req.body.newPasswordConfirm;
+
+      if (newPassword !== newPasswordConfirm) {
+        req.flash("error", "Die Wiederholung des Passworts stimmt nicht mit der ersten Eingabe überein.");
+        return res.redirect('/reset/' + req.params.token);
+      }
+
+      User.updatePassword(user.id, newPassword)
+      .then((user) => {
+        req.body.email = user[0].email;
+        req.body.password = newPassword;
+
+          req.flash("success", "Passwort erfolgreich geändert!");
+          next();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}, passport.authenticate('local', config.passport));
 
 module.exports = router;

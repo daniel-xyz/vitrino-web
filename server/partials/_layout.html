@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>vitrino</title>
+  <title>Vitrino</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/css/vitrino.min.css" rel="stylesheet">
 </head>
 <body>
 <header>
-  <h3>vitrino</h3>
+  <h3>Vitrino</h3>
   <nav>
     <ul>
       <li><a href="/">Startseite</a></li>
@@ -25,12 +25,10 @@
 {% block body %}
 {% endblock %}
 
-{% for error in errors %}
-  {{ error }}
-{% endfor %}
-
-{% for info in infos %}
-  {{ info }}
+{% for type, flash in flashes %}
+  <div class="flash-{{ type }}">
+    {{ flash }}
+  </div>
 {% endfor %}
 
 <footer></footer>

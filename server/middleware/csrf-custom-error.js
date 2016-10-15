@@ -5,7 +5,7 @@ let csrfErrorCheck = function (err, req, res, next) {
   }
 
   res.status(403);
-  res.send('Aus Sicherheitsgründen kann die gewünschte Aktion nicht ausgeführt werden');
+  res.send('Bitte aktualisiere aus Sicherheitsgründen die Seite, um die gewünschte Aktion auszuführen.');
 };
 
 module.exports = csrfErrorCheck;
