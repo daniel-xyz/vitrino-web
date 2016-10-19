@@ -1,4 +1,8 @@
-process.env.NODE_ENV = 'test';
+let config = require('../../../config/config.js');
+
+if (config.env === 'development') {
+  config.env = 'test'
+}
 
 let chai = require('chai');
 let supertest = require('supertest');
