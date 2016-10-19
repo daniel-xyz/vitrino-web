@@ -1,25 +1,28 @@
 let supertest = require('supertest');
 let cheerio = require('cheerio');
 
-let app = require('../../../app');
+let server = require('../../../app.js');
+
+function getPageTitle (res) {
+  let htmlResponse = res.text;
+  let $ = cheerio.load(htmlResponse);
+
+  return $('h1').html().trim();
+}
 
 describe('router.js', function () {
 
   let request;
 
   beforeEach(function () {
-    request = supertest(app);
+    request = supertest(server);
   });
 
   it('returns the login page', function (done) {
-    request
-      .get('/login')
+    request.get('/login')
       .expect(function (res) {
-        let htmlResponse = res.text;
-        let $ = cheerio.load(htmlResponse);
-        let pageTitle = $('h1').html().trim();
 
-        if (pageTitle !== "Einloggen") {
+        if (getPageTitle(res) !== "Einloggen") {
           throw new Error("Page title doesn't match");
         }
       })
@@ -27,14 +30,10 @@ describe('router.js', function () {
   });
 
   it('returns the signup page', function (done) {
-    request
-      .get('/signup')
+    request.get('/signup')
       .expect(function (res) {
-        let htmlResponse = res.text;
-        let $ = cheerio.load(htmlResponse);
-        let pageTitle = $('h1').html().trim();
 
-        if (pageTitle !== "Registrieren") {
+        if (getPageTitle(res) !== "Registrieren") {
           throw new Error("Page title doesn't match");
         }
       })
@@ -42,14 +41,10 @@ describe('router.js', function () {
   });
 
   it('returns the password forgotten page', function (done) {
-    request
-      .get('/forgot')
+    request.get('/forgot')
       .expect(function (res) {
-        let htmlResponse = res.text;
-        let $ = cheerio.load(htmlResponse);
-        let pageTitle = $('h1').html().trim();
 
-        if (pageTitle !== "Passwort vergessen") {
+        if (getPageTitle(res) !== "Passwort vergessen") {
           throw new Error("Page title doesn't match");
         }
       })

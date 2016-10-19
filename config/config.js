@@ -6,7 +6,6 @@ let config = {
   // --- Database ---
   database: {
     uri: process.env.DATABASE_URL || 'postgres://asxemzsxuktjom:UjG1gCmN54eBoqyfSFzyIo5QoO@ec2-54-75-232-56.eu-west-1.compute.amazonaws.com:5432/ddm8rtt5jmaf7j?ssl=true'
-
   },
 
   // --- Passport authentication framework

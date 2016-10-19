@@ -20,7 +20,6 @@ router.get('/signup', function (req, res) {
 router.post('/signup', (req, res, next)  => {
   User.create(req.body.email, req.body.password)
     .then((user) => {
-      console.log(user[0]);
       sendgrid.sendToken(user[0].email, user[0].auth_token);
       next();
     })
@@ -32,8 +31,6 @@ router.post('/signup', (req, res, next)  => {
 router.get('/verify_email/:token', function (req,res) {
   User.verifyEmail(req.params.token)
     .then((user) => {
-      console.log('succesfully updated user');
-      console.dir(user[0]);
       res.render('verify.html', {
         status: 'Erfolgreich! :)'
       });

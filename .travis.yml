@@ -1,8 +1,12 @@
 # Basics
 language: node_js
+env:
+  - NODE_ENV=travis
 node_js:
-  - "6.2.2"
+  - "6.8.1"
 install: npm install
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 
 # Notifications
 notifications:
