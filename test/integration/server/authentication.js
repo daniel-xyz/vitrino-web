@@ -65,7 +65,7 @@ describe('authentication.js', function () {
     }
   });
 
-  // TODO - also check if the user cookie is set login
+  // TODO - also check if the user cookie is set after login
   it('should signup and login a user', (done) => {
     request.get('/signup')
       .expect(200)
