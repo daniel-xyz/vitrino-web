@@ -90,3 +90,9 @@ Start the test runner with:
 ```
 $ grunt test
 ```
+
+To run it-tests, it's necessary to setup a local PostgreSQL database and create the database named 'vitrino_test'. When the database is running, start the tests with:
+
+```
+$ grunt test-it
+```

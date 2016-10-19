@@ -1,5 +1,7 @@
 let config = require('../../../config/config.js');
 
+// To use local databse during it-tests: config.env = 'test'
+// To use external database during it-tests on Travis CI: config.env = 'travis' (set by Travis CI automatically)
 if (config.env === 'development') {
   config.env = 'test'
 }
