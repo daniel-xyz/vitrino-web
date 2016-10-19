@@ -40,4 +40,19 @@ describe('router.js', function () {
       })
       .end(done);
   });
+
+  it('returns the password forgotten page', function (done) {
+    request
+      .get('/forgot')
+      .expect(function (res) {
+        let htmlResponse = res.text;
+        let $ = cheerio.load(htmlResponse);
+        let pageTitle = $('h1').html().trim();
+
+        if (pageTitle !== "Passwort vergessen") {
+          throw new Error("Page title doesn't match");
+        }
+      })
+      .end(done);
+  });
 });

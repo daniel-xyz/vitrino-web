@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A shopping app for local stores",
   "engines": {
-    "node": "6.2.2",
+    "node": "6.8.1",
     "npm": "3.9.5"
   },
   "main": "app.js",

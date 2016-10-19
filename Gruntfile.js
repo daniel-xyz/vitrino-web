@@ -11,15 +11,18 @@ module.exports = function(grunt) {
       target: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'server/**/*.js', 'test/**/*.js']
     },
 
-    // MOCHA - TODO specifiy separate config for integration tests
+    // MOCHA
     mochaTest: {
+      options: {
+        reporter: 'spec',
+        quiet: false,
+        clearRequireCache: false
+      },
       test: {
-        options: {
-          reporter: 'spec',
-          quiet: false,
-          clearRequireCache: false
-        },
         src: ['test/*.js']
+      },
+      'test-it': {
+        src: ['test/integration/**/*.js']
       }
     },
 
@@ -75,6 +78,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('build', ['less', 'cssmin']);
-  grunt.registerTask('test', ['eslint', 'mochaTest']);
+  grunt.registerTask('test', ['eslint', 'mochaTest:test']);
+  grunt.registerTask('test-it', ['mochaTest:test-it']);
   grunt.registerTask('default', ['build', 'test', 'watch']);
 };
