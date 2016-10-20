@@ -52,7 +52,40 @@ router.get('/login', function (req, res) {
   });
 });
 
-router.post('/login', passport.authenticate('local', config.passport));
+router.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      if (info.message) {
+        req.flash('error', info.message);
+      }
+
+      return res.redirect('/login');
+    }
+
+    req.logIn(user, function (err) {
+
+      if (err) {
+        return next(err);
+      }
+
+      if (req.body.remember) {
+        let sevenDays = 604800000;
+
+        req.session.cookie.expires = new Date(Date.now() + sevenDays);
+        req.session.cookie.maxAge = sevenDays;
+      } else {
+        req.session.cookie.expires = false;
+      }
+
+      return res.redirect('/');
+    });
+  })(req, res, next);
+});
 
 router.get('/logout', function (req, res) {
   req.logout();

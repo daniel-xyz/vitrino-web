@@ -15,8 +15,7 @@ let server = require('../../../app.js');
 let knex = require('../../../server/services/knex.js');
 
 function getCsrfToken (res) {
-  let htmlResponse = res.text;
-  let $ = cheerio.load(htmlResponse);
+  let $ = cheerio.load(res.text);
 
   return $('input[name=_csrf]').val();
 }
@@ -47,9 +46,10 @@ describe('authentication.js', function () {
       });
   });
 
-  // TODO - also check if the user cookie is set after signup
+  // TODO - also check if the user is really logged in after signup (and note that the connect.sid cookie is not a reliable indicator)
   it('should signup a new user', (done) => {
-    request.get('/signup')
+
+    request.get('/signup') // Initial GET call to retrieve the csrf token
       .expect(200)
       .end(signup);
 
@@ -71,26 +71,34 @@ describe('authentication.js', function () {
     }
   });
 
-  // TODO - also check if the user cookie is set after login
+  // TODO - also check if the user is really logged in after login (and note that the connect.sid cookie is not a reliable indicator)
   it('should signup and login a user', (done) => {
-    request.get('/signup')
+
+    request.get('/signup') // Initial GET call to retrieve the csrf token
       .expect(200)
-      .end(function (err, res) {
-        request.post('/signup')
-          .set('cookie', res.headers['set-cookie'])
-          .send({
-            email: 'testuser@vitrino.de',
-            password: '123456',
-            _csrf: getCsrfToken(res)
-          })
-          .expect(302)
-          .end(login);
-      });
+      .end(signup);
+
+    function signup (err, res) {
+      request.post('/signup')
+        .set('cookie', res.headers['set-cookie'])
+        .send({
+          email: 'testuser@vitrino.de',
+          password: '123456',
+          _csrf: getCsrfToken(res)
+        })
+        .expect(302)
+        .end(logout);
+    }
+
+    function logout () {
+      request.get('/logout')
+        .end(login);
+    }
 
     function login () {
-      request.get('/login')
+      request.get('/login') // Initial GET call to retrieve the csrf token
         .expect(200)
-        .end(function (err, res) {
+        .end((err, res) => {
           request.post('/login')
             .set('cookie', res.headers['set-cookie'])
             .send({

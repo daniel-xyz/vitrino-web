@@ -4,8 +4,7 @@ let cheerio = require('cheerio');
 let server = require('../../../app.js');
 
 function getPageTitle (res) {
-  let htmlResponse = res.text;
-  let $ = cheerio.load(htmlResponse);
+  let $ = cheerio.load(res.text);
 
   return $('h1').html().trim();
 }
