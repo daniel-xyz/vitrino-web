@@ -78,7 +78,7 @@ $ heroku pg:psql --app vitrino DATABASE
 
 ##### Some useful commands
 
-**\d** - list alle tables within the database
+**\d** - lists all tables within the database
 
 **\q** - quit
 
