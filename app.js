@@ -1,6 +1,7 @@
 let express = require('express');
 let passport = require('passport');
 let session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 let path = require('path');
 let logger = require('morgan');
 let flash = require('connect-flash');
@@ -15,6 +16,10 @@ let routes = require('./server/routes.js');
 let csrfError = require('./server/middleware/csrf-custom-error.js');
 
 let app = express();
+
+if (config.env === 'production') {
+  config.sessions['store'] = new RedisStore(config.redis.sessions);
+}
 
 services.initialize(app);
 

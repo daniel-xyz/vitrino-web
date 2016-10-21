@@ -45,6 +45,15 @@ let config = {
     }
   },
 
+  // --- Redis storage ---
+  redis: {
+    sessions: {
+      host: 'pub-redis-11657.eu-central-1-1.1.ec2.redislabs.com',
+      port: 11657,
+      pass: process.env.REDIS_SESSIONS_PW
+    }
+  },
+
   // --- Helmet protection library ---
   helmet: {
     xssFilter: true,
