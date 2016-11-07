@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 
     // WATCH
     watch: {
-      files: ['<%= eslint.target %>', 'client/stylesheets/core/*.less'],
+      files: ['<%= eslint.target %>', 'client/stylesheets/**/*.less'],
       tasks: ['build', 'eslint']
     }
   });

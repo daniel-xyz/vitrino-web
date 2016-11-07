@@ -3,17 +3,19 @@
 {% block body %}
   {% block content %}
 
-  <h1>Einloggen</h1>
+  <div class="content-container">
+    <h1>Einloggen</h1>
 
-  <form action="/login" method="post">
-    <input name="email" type="text" placeholder="E-Mail" required autofocus>
-    <input name="password" type="text" placeholder="Passwort" required>
-    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-    <input type="submit" value="Einloggen"></br>
-    <input name="remember" type="checkbox"> Eingeloggt bleiben
-  </form>
+    <form action="/login" method="post">
+      <input name="email" type="text" placeholder="E-Mail" required autofocus>
+      <input name="password" type="text" placeholder="Passwort" required>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="submit" value="Einloggen"></br>
+      <input name="remember" type="checkbox"> Eingeloggt bleiben
+    </form>
 
-  <a href="/forgot">Passwort vergessen</a>
+    <a href="/forgot">Passwort vergessen</a>
+  </div>
 
   {% endblock %}
 {% endblock %}

@@ -3,14 +3,16 @@
 {% block body %}
   {% block content %}
 
-  <h1>Profil bearbeiten</h1>
+  <div class="content-container">
+    <h1>Profil bearbeiten</h1>
 
-  <form action="/edit" method="post">
-    <input name="newPassword" type="text" placeholder="Neues Passwort" required autofocus>
-    <input name="newPasswordConfirm" type="text" placeholder="Passwort wiederholen" required>
-    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-    <input type="submit" value="Profil speichern">
-  </form>
+    <form action="/edit" method="post">
+      <input name="newPassword" type="text" placeholder="Neues Passwort" required autofocus>
+      <input name="newPasswordConfirm" type="text" placeholder="Passwort wiederholen" required>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="submit" value="Profil speichern">
+    </form>
+  </div>
 
   {% endblock %}
 {% endblock %}

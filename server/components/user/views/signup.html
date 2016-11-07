@@ -3,14 +3,16 @@
 {% block body %}
   {% block content %}
 
-  <h1>Registrieren</h1>
+  <div class="content-container">
+    <h1>Registrieren</h1>
 
-  <form action="/signup" method="post">
-    <input name="email" type="text" placeholder="E-Mail" required autofocus>
-    <input name="password" type="text" placeholder="Passwort" required>
-    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-    <input type="submit" value="Registrieren">
-  </form>
+    <form action="/signup" method="post">
+      <input name="email" type="text" placeholder="E-Mail" required autofocus>
+      <input name="password" type="text" placeholder="Passwort" required>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="submit" value="Registrieren">
+    </form>
+  </div>
 
   {% endblock %}
 {% endblock %}

@@ -2313,6 +2313,11 @@
       "from": "map-obj@>=1.0.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/map-obj/-/map-obj-1.0.1.tgz"
     },
+    "mapbox": {
+      "version": "1.0.0-beta4",
+      "from": "mapbox@latest",
+      "resolved": "https://registry.npmjs.org/mapbox/-/mapbox-1.0.0-beta4.tgz"
+    },
     "marked": {
       "version": "0.3.6",
       "from": "marked@>=0.3.6 <0.4.0",
@@ -2887,6 +2892,11 @@
       "version": "1.0.1",
       "from": "resolve-from@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/resolve-from/-/resolve-from-1.0.1.tgz"
+    },
+    "rest": {
+      "version": "2.0.0",
+      "from": "rest@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/rest/-/rest-2.0.0.tgz"
     },
     "restore-cursor": {
       "version": "1.0.1",

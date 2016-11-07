@@ -2,12 +2,16 @@
 <html>
 <head>
   <title>Vitrino</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/css/vitrino.min.css" rel="stylesheet">
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link rel='stylesheet' href="/css/vitrino.min.css">
+  <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' />
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.1/mapbox-gl-geocoder.css' type='text/css' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.1/mapbox-gl-geocoder.js'></script>
 </head>
 <body>
-<header>
-  <h3>Vitrino</h3>
+<header id="header-container">
+  <a href="/"><h5>Vitrino</h5></a>
   <nav>
     <ul>
       <li><a href="/">Startseite</a></li>
@@ -19,7 +23,6 @@
       {% endif %}
     </ul>
   </nav>
-<hr>
 </header>
 
 {% block body %}

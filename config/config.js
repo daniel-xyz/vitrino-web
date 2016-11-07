@@ -27,7 +27,7 @@ let config = {
     },
     viewPaths: [
       'server/partials',
-      'server/components/home/views',
+      'server/components/map/views',
       'server/components/user/views'
     ]
   },
@@ -72,10 +72,11 @@ let config = {
       // Specify directives as normal
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'"],
-        styleSrc: ["'self'"],
-        childSrc: ["'self'"],
-        imgSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
+        styleSrc: ["'self'", "'unsafe-inline'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
+        childSrc: ["'self'", 'blob:'],
+        imgSrc: ["'self'", 'data:', 'blob:'],
+        connectSrc: ["'self'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
         formAction: ["'self'"],
         frameAncestors: ["'none'"],
         sandbox: ['allow-forms', 'allow-scripts'],
