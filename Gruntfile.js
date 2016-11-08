@@ -30,14 +30,23 @@ module.exports = function(grunt) {
     less: {
       build: {
         options: {
-          paths: ['client/stylesheets/core', 'client/stylesheets/custom'],
-          plugins: [
-              new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]})
-          ]
+          paths: ['client/stylesheets/core', 'client/stylesheets/custom']
         },
         files: {
             'public/css/vitrino.css': 'client/stylesheets/vitrino.less'
         }
+      }
+    },
+
+    // POSTCSS
+    postcss: {
+      options: {
+        processors: [
+          require('autoprefixer')({browsers: '> 0% in DE'}) // add vendor prefixes
+        ]
+      },
+      dist: {
+        src: 'public/css/vitrino.css'
       }
     },
 
@@ -53,16 +62,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // JSDOC
-    jsdoc : {
-      dist : {
-        src: ['<%= eslint.target %>'],
-        options: {
-          destination: 'doc'
-        }
-      }
-    },
-
     // WATCH
     watch: {
       files: ['<%= eslint.target %>', 'client/stylesheets/**/*.less'],
@@ -73,11 +72,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('build', ['less', 'cssmin']);
+  grunt.registerTask('build', ['less', 'postcss', 'cssmin']);
   grunt.registerTask('test', ['eslint', 'mochaTest:test']);
   grunt.registerTask('test-it', ['mochaTest:test-it']);
   grunt.registerTask('default', ['build', 'test', 'watch']);
