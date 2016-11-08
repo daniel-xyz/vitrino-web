@@ -4,19 +4,6 @@
   {% block content %}
 
   <div id='map'></div>
-  <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYmlzY2hvZmYiLCJhIjoiY2l1enE4cWY1MDAyazJ4cDZxYjdramk2OCJ9.MUanhYSFZNfJZOjiLRWybw';
-
-    var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/danielbischoff/citr5jj1b000d2irvg4mbic27'
-    });
-
-    map.addControl(new mapboxgl.Geocoder({
-      country: 'de',
-      placeholder: 'Ort, Straße, Hausnummer'
-    }));
-  </script>
 
   {% endblock %}
 {% endblock %}

@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       options: {
         configFile: ".eslintrc"
       },
-      target: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'server/**/*.js', 'test/**/*.js']
+      target: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'client/js/*.js', 'server/**/*.js', 'test/**/*.js']
     },
 
     // MOCHA
@@ -23,6 +23,15 @@ module.exports = function(grunt) {
       },
       'test-it': {
         src: ['test/integration/**/*.js']
+      }
+    },
+
+    // UGLIFY
+    uglify: {
+      my_target: {
+        files: {
+          'public/js/vitrino.min.js': ['client/js/map.js']
+        }
       }
     },
 
@@ -71,12 +80,13 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('build', ['less', 'postcss', 'cssmin']);
+  grunt.registerTask('build', ['uglify', 'less', 'postcss', 'cssmin']);
   grunt.registerTask('test', ['eslint', 'mochaTest:test']);
   grunt.registerTask('test-it', ['mochaTest:test-it']);
   grunt.registerTask('default', ['build', 'test', 'watch']);

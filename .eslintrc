@@ -9,7 +9,8 @@
     "mocha": true
   },
   "globals": {
-
+    "mapboxgl": true,
+    "document":true
   },
   "rules": {
     "no-alert": "off",

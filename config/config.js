@@ -75,7 +75,7 @@ let config = {
         scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
         styleSrc: ["'self'", "'unsafe-inline'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
         childSrc: ["'self'", 'blob:'],
-        imgSrc: ["'self'", 'data:', 'blob:'],
+        imgSrc: ["'self'", 'data:', 'blob:', 'https://www.mapbox.com'],
         connectSrc: ["'self'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
         formAction: ["'self'"],
         frameAncestors: ["'none'"],
