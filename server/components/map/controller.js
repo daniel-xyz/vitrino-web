@@ -1,8 +1,12 @@
 let express = require('express');
+let authHelper = require('../../helpers/auth.js');
 let router = express.Router();
 
-router.get('/', function(req, res) {
-  res.render('map.html', {});
-});
+
+router.get('/',
+  authHelper.ensureRolePermissions('admin'), function(req, res) {
+    res.render('map.html', {});
+  }
+);
 
 module.exports = router;

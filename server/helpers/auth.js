@@ -26,9 +26,38 @@ function ensureAuthenticated (req, res, next) {
   }
 }
 
+function ensureRolePermissions (role) {
+  return function(req, res, next) {
+    let roleId;
+
+    switch (role) {
+      case 'user':
+        roleId = 1;
+        break;
+      case 'vendor':
+        roleId = 2;
+        break;
+      case 'admin':
+        roleId = 3;
+        break;
+      default:
+        roleId = 1;
+    }
+
+    if (req.user && req.user.role === roleId)
+      next();
+    else {
+      req.flash("info", "Du verfügst leider nicht über die notwendigen Rechte um diese Seite zu sehen");
+      res.redirect("/login");
+      // res.send(403, 'Unauthorized'); TODO Flash messages may be replaced with error codes that could be handled by the frontend
+    }
+  };
+}
+
 module.exports = {
   generateSecureHash,
   generateToken,
   comparePassword,
-  ensureAuthenticated
+  ensureAuthenticated,
+  ensureRolePermissions
 };
