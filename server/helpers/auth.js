@@ -49,7 +49,6 @@ function ensureRolePermissions (role) {
     else {
       req.flash("info", "Du verfügst leider nicht über die notwendigen Rechte um diese Seite zu sehen");
       res.redirect("/login");
-      // res.send(403, 'Unauthorized'); TODO Flash messages may be replaced with error codes that could be handled by the frontend
     }
   };
 }
