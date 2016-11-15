@@ -80,7 +80,7 @@ function users () {
           password: authHelper.generateSecureHash(password),
           email_verified: true,
           auth_token: authHelper.generateToken(email_dummy_user),
-          role_id: knex.raw("(SELECT id FROM roles WHERE name='user')")
+          role: 'user'
         }),
         knex('users').insert({
           email: email_dummy_vendor,
@@ -88,7 +88,7 @@ function users () {
           password: authHelper.generateSecureHash(password),
           email_verified: true,
           auth_token: authHelper.generateToken(email_dummy_vendor),
-          role_id: knex.raw("(SELECT id FROM roles WHERE name='vendor')")
+          role: 'user'
         }),
         knex('users').insert({
           email: email_dummy_admin,
@@ -96,7 +96,7 @@ function users () {
           password: authHelper.generateSecureHash(password),
           email_verified: true,
           auth_token: authHelper.generateToken(email_dummy_admin),
-          role_id: knex.raw("(SELECT id FROM roles WHERE name='admin')")
+          role: 'user'
         })
       ]);
     });

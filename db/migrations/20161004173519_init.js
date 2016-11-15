@@ -11,18 +11,17 @@ exports.up = function(knex, Promise) {
       table.string('auth_token').unique().notNullable();
       table.string('pw_reset_token').unique();
       table.timestamp('pw_reset_requested_at');
-      table.integer('role_id')
-        .references('id')
+      table.string('role')
+        .references('name')
         .inTable('roles')
         .notNullable()
-        .defaultTo(1);
+        .defaultTo('user');
       table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
       table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now());
     }),
 
     knex.schema.createTableIfNotExists('roles', function (table) {
-      table.increments('id');
-      table.string('name').unique().notNullable();
+      table.string('name').primary();
     }),
 
     knex.schema.createTableIfNotExists('addresses', function (table) {
