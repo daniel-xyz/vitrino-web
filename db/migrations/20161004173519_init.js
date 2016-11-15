@@ -11,7 +11,7 @@ exports.up = function(knex, Promise) {
       table.string('auth_token').unique().notNullable();
       table.string('pw_reset_token').unique();
       table.timestamp('pw_reset_requested_at');
-      table.integer('roles_id')
+      table.integer('role_id')
         .references('id')
         .inTable('roles')
         .notNullable()
