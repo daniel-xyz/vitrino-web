@@ -28,7 +28,8 @@ let config = {
     viewPaths: [
       'server/partials',
       'server/components/map/views',
-      'server/components/user/views'
+      'server/components/user/views',
+      'server/components/admin/views'
     ]
   },
 

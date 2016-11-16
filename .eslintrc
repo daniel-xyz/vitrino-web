@@ -9,6 +9,7 @@
     "mocha": true
   },
   "globals": {
+    "window": true,
     "mapboxgl": true,
     "document":true
   },

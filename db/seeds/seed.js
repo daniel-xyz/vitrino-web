@@ -88,7 +88,7 @@ function users () {
           password: authHelper.generateSecureHash(password),
           email_verified: true,
           auth_token: authHelper.generateToken(email_dummy_vendor),
-          role: 'user'
+          role: 'vendor'
         }),
         knex('users').insert({
           email: email_dummy_admin,
@@ -96,7 +96,7 @@ function users () {
           password: authHelper.generateSecureHash(password),
           email_verified: true,
           auth_token: authHelper.generateToken(email_dummy_admin),
-          role: 'user'
+          role: 'admin'
         })
       ]);
     });
@@ -108,19 +108,19 @@ function companies () {
       return Promise.all([
         knex('companies').insert({
           name: 'Schuhzauberei GmbH',
-          company_verified: true,
+          verified: true,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 1
         }),
         knex('companies').insert({
           name: 'Die Glaserei GmbH & Co. KG',
-          company_verified: false,
+          verified: false,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           address_id: 1
         }),
         knex('companies').insert({
           name: 'We will hurt you AG',
-          company_verified: false,
+          verified: false,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           address_id: 1
         })

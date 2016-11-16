@@ -46,7 +46,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTableIfNotExists('companies', function (table) {
       table.increments('id');
       table.string('name').unique().notNullable();
-      table.boolean('company_verified').defaultTo(false).notNullable();
+      table.boolean('verified').defaultTo(false).notNullable();
       table.integer('user_id')
         .references('id')
         .inTable('users')

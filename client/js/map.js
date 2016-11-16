@@ -1,8 +1,8 @@
 var map;
 
-if (!mapboxgl.supported()) {
+if (window.mapboxgl && !mapboxgl.supported()) {
   console.log('Your browser doesn\'t support Mapbox GL.');
-} else {
+} else if (window.mapboxgl) {
   initMap();
   loadPlaceholderMarkers();
 }

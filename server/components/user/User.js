@@ -5,6 +5,14 @@ let authHelper = require('../../helpers/auth.js');
 let User = {
 
   /**
+   *
+   * @returns {*}
+   */
+  findAllUsers: function () {
+    return knex('users');
+  },
+
+  /**
    * Find a user based on his ID
    * @param {Number} id The user's ID
    * @return {Promise<User, Error>} The user object

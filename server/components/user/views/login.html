@@ -3,12 +3,12 @@
 {% block body %}
   {% block content %}
 
-  <div class="content-container">
+  <div class="container">
     <h1>Einloggen</h1>
 
     <form action="/login" method="post">
-      <input name="email" type="text" placeholder="E-Mail" required autofocus>
-      <input name="password" type="text" placeholder="Passwort" required>
+      <input name="email" type="text" placeholder="E-Mail" required autofocus autocomplete="on">
+      <input name="password" type="password" placeholder="Passwort" required>
       <input type="hidden" name="_csrf" value="{{csrfToken}}">
       <input type="submit" value="Einloggen"></br>
       <input name="remember" type="checkbox"> Eingeloggt bleiben

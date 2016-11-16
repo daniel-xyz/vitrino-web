@@ -1,0 +1,53 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+{% block content %}
+
+<div class="container">
+  <h1>Dashboard</h1>
+
+  <div class="row">
+    <div class="six columns">
+      <h5>Benutzer</h5>
+
+      <table class="full-width">
+        <tr>
+          <th>Id</th>
+          <th>E-Mail</th>
+          <th>Rolle</th>
+          <th>Verifiziert</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.email_verified }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="six columns">
+      <h5>Unternehmen</h5>
+
+      <table class="full-width">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Verifizert</th>
+        </tr>
+        {% for company in companies %}
+        <tr>
+          <td>{{ company.id }}</td>
+          <td>{{ company.name }}</td>
+          <td>{{ company.verified }} {% if not company.verified %} => <a href="/verify_company/{{ company.id }}">verifizieren</a>{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% endblock %}

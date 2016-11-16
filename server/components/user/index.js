@@ -1,3 +1,1 @@
-let user = require('./controller.js');
-
-module.exports = user;
+module.exports = require('./controller.js');
