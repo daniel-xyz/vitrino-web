@@ -136,6 +136,7 @@ function products () {
           name: 'Winterschuhe',
           description: 'Ganz tolle Schuhe.',
           image_url: '',
+          verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
@@ -143,6 +144,7 @@ function products () {
           name: 'Goldene Sneaker',
           description: 'Bitte Gewicht beachten!',
           image_url: '',
+          verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
@@ -150,6 +152,7 @@ function products () {
           name: 'Eine wundersamer Schuhkarton',
           description: 'Was mag wohl drin sein?!',
           image_url: '',
+          verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
@@ -157,6 +160,7 @@ function products () {
           name: 'Grüne Tanzschuhe',
           description: 'Ganz tolle Schuhe.',
           image_url: '',
+          verified: false,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
@@ -164,6 +168,7 @@ function products () {
           name: 'Jack Wolfskin Sandalen',
           description: 'Für die nächste Weltreise.',
           image_url: '',
+          verified: false,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         })

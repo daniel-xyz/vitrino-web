@@ -1,7 +1,7 @@
-{% extends '_layout.html' %}
+<% extends '_layout.html' %>
 
-{% block body %}
-  {% block content %}
+<% block body %>
+  <% block content %>
 
   <div class="container">
     <h1>Registrieren</h1>
@@ -9,10 +9,10 @@
     <form action="/signup" method="post">
       <input name="email" type="text" placeholder="E-Mail" required autofocus>
       <input name="password" type="password" placeholder="Passwort" required>
-      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="hidden" name="_csrf" value="<$csrfToken$>">
       <input type="submit" value="Registrieren">
     </form>
   </div>
 
-  {% endblock %}
-{% endblock %}
+  <% endblock %>
+<% endblock %>

@@ -11,28 +11,29 @@
     <nav>
       <ul>
         <li><a href="/">Startseite</a></li>
-        {% if not currentUser %}
+        <% if not currentUser %>
           <li><a href="/login">Einloggen</a></li>
           <li><a href="/signup">Registrieren</a></li>
-        {% else %}
-          {% if currentUser.role === 'admin' %}
+        <% else %>
+          <% if currentUser.role === 'admin' %>
             <li><a href="/admin">Admin-Bereich</a></li>
-          {% endif %}
-          <li><a href="/logout">{{ currentUser.email }} ausloggen</a></li>
-        {% endif %}
+          <% endif %>
+          <li><a href="/logout"><$ currentUser.email $> ausloggen</a></li>
+        <% endif %>
       </ul>
     </nav>
   </header>
 
-  {% block body %}
-  {% endblock %}
+  <% block body %>
+  <% endblock %>
 
-  {% for type, flash in flashes %}
-    <div class="content-container flash-{{ type }}">
+  <% for type, flash in flashes %>
+    <div class="content-container flash-<$ type $>">
       {{ flash }}
     </div>
-  {% endfor %}
+  <% endfor %>
 
+  <script src='https://unpkg.com/vue@2.0.7/dist/vue.min.js'></script>
   <script src='/js/vitrino.min.js'></script>
 </body>
 </html>

@@ -1,15 +1,15 @@
-{% extends '_layout.html' %}
+<% extends '_layout.html' %>
 
-{% block body %}
-  {% block content %}
+<% block body %>
+  <% block content %>
 
   <div class="container">
-    <h1>{{ page_title }}</h1>
+    <h1><$ page_title $></h1>
 
-    {% for user in users %}
-    <li><a href="/users/{{ user.email }}">{{ user.email }}</a></li>
-    {% endfor %}
+    <% for user in users %>
+    <li><a href="/users/<$ user.email $>"><$ user.email $></a></li>
+    <% endfor %>
   </div>
 
-  {% endblock %}
-{% endblock %}
+  <% endblock %>
+<% endblock %>

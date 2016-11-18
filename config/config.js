@@ -23,7 +23,15 @@ let config = {
       trimBlocks: true,
       noCache: true,
       watch: true,
-      express: null // Must point to the express app object after the app has been initialized
+      express: null, // Must point to the express app object after the app has been initialized,
+      tags: {
+        blockStart: '<%',
+        blockEnd: '%>',
+        variableStart: '<$',
+        variableEnd: '$>',
+        commentStart: '<#',
+        commentEnd: '#>'
+      }
     },
     viewPaths: [
       'server/partials',
@@ -73,7 +81,7 @@ let config = {
       // Specify directives as normal
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://*.tiles.mapbox.com https://api.mapbox.com', 'https://unpkg.com/vue@2.0.7/dist/vue.min.js'],
         styleSrc: ["'self'", "'unsafe-inline'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
         childSrc: ["'self'", 'blob:'],
         imgSrc: ["'self'", 'data:', 'blob:', 'https://www.mapbox.com'],

@@ -1,7 +1,7 @@
-{% extends '_layout.html' %}
+<% extends '_layout.html' %>
 
-{% block body %}
-  {% block content %}
+<% block body %>
+  <% block content %>
 
   <div class="container">
     <h1>Einloggen</h1>
@@ -9,13 +9,17 @@
     <form action="/login" method="post">
       <input name="email" type="text" placeholder="E-Mail" required autofocus autocomplete="on">
       <input name="password" type="password" placeholder="Passwort" required>
-      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="hidden" name="_csrf" value="<$ csrfToken $>">
       <input type="submit" value="Einloggen"></br>
       <input name="remember" type="checkbox"> Eingeloggt bleiben
     </form>
 
     <a href="/forgot">Passwort vergessen</a>
+
+    <div id="app">
+      {{ message }}
+    </div>
   </div>
 
-  {% endblock %}
-{% endblock %}
+  <% endblock %>
+<% endblock %>

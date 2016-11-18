@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     uglify: {
       my_target: {
         files: {
-          'public/js/vitrino.min.js': ['client/js/map.js']
+          'public/js/vitrino.min.js': ['client/js/*.js']
         }
       }
     },

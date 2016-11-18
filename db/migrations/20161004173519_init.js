@@ -83,6 +83,7 @@ exports.up = function(knex, Promise) {
       table.string('name').notNullable();
       table.text('description').notNullable();
       table.string('image_url').notNullable();
+      table.boolean('verified').defaultTo(false).notNullable();
       table.integer('product_category_id')
         .references('id')
         .inTable('product_categories')

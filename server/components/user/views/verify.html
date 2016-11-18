@@ -1,13 +1,13 @@
-{% extends '_layout.html' %}
+<% extends '_layout.html' %>
 
-{% block body %}
-  {% block content %}
+<% block body %>
+  <% block content %>
 
   <div class="container">
     <p>
-      <b>E-Mail Verifizierung:</b> {{ status }}
+      <b>E-Mail Verifizierung:</b> <$ status $>
     </p>
   </div>
 
-  {% endblock %}
-{% endblock %}
+  <% endblock %>
+<% endblock %>

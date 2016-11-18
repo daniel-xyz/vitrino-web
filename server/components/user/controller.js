@@ -8,6 +8,19 @@ let sendgrid = require('../../services/sendgrid.js');
 
 let router = express.Router();
 
+const endpoint = '/users';
+
+router.get(endpoint,
+  authHelper.ensureRolePermissions('admin'), function (req, res) {
+    User.findAllUsers()
+      .then((users) => {
+        res.json(users);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  }
+);
 
 // --- Signup and E-Mail verification
 

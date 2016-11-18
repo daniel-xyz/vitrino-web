@@ -1,20 +1,20 @@
-{% extends '_layout.html' %}
+<% extends '_layout.html' %>
 
-{% block body %}
-  {% block content %}
+<% block body %>
+  <% block content %>
 
   <div class="container">
-    <h1>{{ user.email }}</h1>
+    <h1><$ user.email $></h1>
 
     <p>
       <b>Profil erstellt am</b></br>
-      {{ user.createdAt }}
+      <$ user.createdAt $>
     </p>
 
-    {% if currentUser and (currentUser.id == user.id) %}
+    <% if currentUser and (currentUser.id == user.id) %>
     <p><a href="/edit">Profil bearbeiten</a></p>
-    {% endif %}
+    <% endif %>
   </div>
 
-  {% endblock %}
-{% endblock %}
+  <% endblock %>
+<% endblock %>

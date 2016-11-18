@@ -1,7 +1,7 @@
-{% extends '_layout.html' %}
+<% extends '_layout.html' %>
 
-{% block body %}
-  {% block content %}
+<% block body %>
+  <% block content %>
 
   <div class="container">
     <h1>Profil bearbeiten</h1>
@@ -9,10 +9,10 @@
     <form action="/edit" method="post">
       <input name="newPassword" type="text" placeholder="Neues Passwort" required autofocus>
       <input name="newPasswordConfirm" type="text" placeholder="Passwort wiederholen" required>
-      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="hidden" name="_csrf" value="<$csrfToken$>">
       <input type="submit" value="Profil speichern">
     </form>
   </div>
 
-  {% endblock %}
-{% endblock %}
+  <% endblock %>
+<% endblock %>
