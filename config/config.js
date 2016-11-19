@@ -81,10 +81,26 @@ let config = {
       // Specify directives as normal
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://*.tiles.mapbox.com https://api.mapbox.com', 'https://unpkg.com/vue@2.0.7/dist/vue.min.js'],
-        styleSrc: ["'self'", "'unsafe-inline'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "'unsafe-eval'",
+          'https://*.tiles.mapbox.com https://api.mapbox.com',
+          'https://unpkg.com/vue@2.0.7/dist/vue.min.js',
+          'https://unpkg.com/vue-resource@1.0.3/dist/vue-resource.min.js'
+        ],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          'https://*.tiles.mapbox.com https://api.mapbox.com'
+        ],
         childSrc: ["'self'", 'blob:'],
-        imgSrc: ["'self'", 'data:', 'blob:', 'https://www.mapbox.com'],
+        imgSrc: [
+          "'self'",
+          'data:',
+          'blob:',
+          'https://www.mapbox.com'
+        ],
         connectSrc: ["'self'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
         formAction: ["'self'"],
         frameAncestors: ["'none'"],

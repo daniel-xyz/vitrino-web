@@ -7,7 +7,7 @@ if (window.mapboxgl && !mapboxgl.supported()) {
   loadPlaceholderMarkers();
 }
 
-function initMap() {
+function initMap () {
   mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYmlzY2hvZmYiLCJhIjoiY2l1enE4cWY1MDAyazJ4cDZxYjdramk2OCJ9.MUanhYSFZNfJZOjiLRWybw';
 
   map = new mapboxgl.Map({
@@ -16,7 +16,7 @@ function initMap() {
   });
 }
 
-function loadPlaceholderMarkers() {
+function loadPlaceholderMarkers () {
   map.addControl(new mapboxgl.Geocoder({
     country: 'de',
     placeholder: 'Ort, Straße, Hausnummer'
@@ -42,7 +42,7 @@ function loadPlaceholderMarkers() {
           "properties": {
             "title": "Daniels Kleiderkiste",
             "description": "Ich verkaufe Mäntel in jeder Größe.",
-            "icon": "clothing-store",
+            "icon": "clothing-store"
           }
         }]
       }

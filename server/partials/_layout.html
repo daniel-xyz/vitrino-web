@@ -6,34 +6,43 @@
   <link rel='stylesheet' href='/css/vitrino.min.css'>
 </head>
 <body>
-  <header id="header-container">
-    <a href="/"><h5>Vitrino</h5></a>
-    <nav>
-      <ul>
-        <li><a href="/">Startseite</a></li>
-        <% if not currentUser %>
-          <li><a href="/login">Einloggen</a></li>
-          <li><a href="/signup">Registrieren</a></li>
-        <% else %>
-          <% if currentUser.role === 'admin' %>
-            <li><a href="/admin">Admin-Bereich</a></li>
+  <div id="vue-app">
+    <header id="header-container">
+      <a href="/"><h5>Vitrino</h5></a>
+      <nav>
+        <ul>
+          <li><a href="/">Startseite</a></li>
+          <% if not currentUser %>
+            <li><a href="/login">Einloggen</a></li>
+            <li><a href="/signup">Registrieren</a></li>
+          <% else %>
+            <% if currentUser.role === 'admin' %>
+              <li><a href="/admin">Admin-Bereich</a></li>
+            <% endif %>
+            <li><a href="/logout"><$ currentUser.email $> ausloggen</a></li>
           <% endif %>
-          <li><a href="/logout"><$ currentUser.email $> ausloggen</a></li>
-        <% endif %>
-      </ul>
-    </nav>
-  </header>
+        </ul>
+      </nav>
+    </header>
 
-  <% block body %>
-  <% endblock %>
+    <% block body %>
+    <% endblock %>
 
-  <% for type, flash in flashes %>
-    <div class="content-container flash-<$ type $>">
-      <$ flash $>
-    </div>
-  <% endfor %>
+    <% for type, flash in flashes %>
+      <div class="content-container flash-<$ type $>">
+        <$ flash $>
+      </div>
+    <% endfor %>
 
-  <script src='https://unpkg.com/vue@2.0.7/dist/vue.min.js'></script>
-  <script src='/js/vitrino.min.js'></script>
+    <script src='https://unpkg.com/vue@2.0.7/dist/vue.min.js'></script>
+    <script src='https://unpkg.com/vue-resource@1.0.3/dist/vue-resource.min.js'></script>
+    <script src='/js/vitrino.min.js'></script>
+    <script src='/js/vitrino.admin.min.js'></script>
+    <script>
+      var vRoot = new Vue({
+        el: '#vue-app'
+      });
+    </script>
+  </div>
 </body>
 </html>

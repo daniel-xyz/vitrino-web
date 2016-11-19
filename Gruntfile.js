@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       options: {
         configFile: ".eslintrc"
       },
-      target: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'client/js/*.js', 'server/**/*.js', 'test/**/*.js']
+      target: ['Gruntfile.js', 'app.js', 'routes.js', '.jshintrc', 'client/js/**/*.js', 'server/**/*.js', 'test/**/*.js']
     },
 
     // MOCHA
@@ -30,7 +30,8 @@ module.exports = function(grunt) {
     uglify: {
       my_target: {
         files: {
-          'public/js/vitrino.min.js': ['client/js/*.js']
+          'public/js/vitrino.min.js': ['client/js/*.js'],
+          'public/js/vitrino.admin.min.js': ['client/js/admin/**/*.js']
         }
       }
     },

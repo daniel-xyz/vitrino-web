@@ -5,8 +5,7 @@ let router = express.Router();
 
 const endpoint = '/products';
 
-router.get(endpoint,
-  authHelper.ensureRolePermissions('admin'), function (req, res) {
+router.get(endpoint, function (req, res) {
     Product.findAllProducts()
       .then((products) => {
         res.json(products);

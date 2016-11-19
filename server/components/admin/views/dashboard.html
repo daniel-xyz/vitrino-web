@@ -1,72 +1,71 @@
 <% extends '_layout.html' %>
 
 <% block body %>
-<% block content %>
+  <% block content %>
 
-<div class="container">
-  <h1>Dashboard</h1>
+  <component inline-template is="admin-dashboard">
+    <div class="container">
+      <h1>Dashboard</h1>
 
-  <div class="row">
-    <div class="four columns">
-      <h5>Benutzer</h5>
+      <div class="row">
+        <div class="four columns">
+          <h5>Benutzer</h5>
 
-      <table class="full-width">
-        <tr>
-          <th>Id</th>
-          <th>E-Mail</th>
-          <th>Rolle</th>
-          <th>Verifiziert</th>
-        </tr>
-        <% for user in users %>
-        <tr>
-          <td><$ user.id $></td>
-          <td><$ user.email $></td>
-          <td><$ user.role $></td>
-          <td><$ user.email_verified $></td>
-        </tr>
-        <% endfor %>
-      </table>
+          <table class="full-width">
+            <tr>
+              <th>Id</th>
+              <th>E-Mail</th>
+              <th>Rolle</th>
+              <th>Verifiziert</th>
+            </tr>
+            <% for user in users %>
+            <tr>
+              <td><$ user.id $></td>
+              <td><$ user.email $></td>
+              <td><$ user.role $></td>
+              <td><$ user.email_verified $></td>
+            </tr>
+            <% endfor %>
+          </table>
+        </div>
+
+        <div class="four columns">
+          <h5>Unternehmen</h5>
+
+          <table class="full-width">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Verifizert</th>
+            </tr>
+            <% for company in companies %>
+            <tr>
+              <td><$ company.id $></td>
+              <td><$ company.name $></td>
+              <td><$ company.verified $> <% if not company.verified %> => <a href="/verify_company/<$ company.id $>">verifizieren</a><% endif %></td>
+            </tr>
+            <% endfor %>
+          </table>
+        </div>
+
+        <div class="four columns">
+          <h5>Produkte</h5>
+          <table class="full-width">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Verifizert</th>
+            </tr>
+            <tr v-for="product in products">
+              <td>{{ product.id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.verified }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
+  </component>
 
-    <div class="four columns">
-      <h5>Unternehmen</h5>
-
-      <table class="full-width">
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Verifizert</th>
-        </tr>
-        <% for company in companies %>
-        <tr>
-          <td><$ company.id $></td>
-          <td><$ company.name $></td>
-          <td><$ company.verified $> <% if not company.verified %> => <a href="/verify_company/<$ company.id $>">verifizieren</a><% endif %></td>
-        </tr>
-        <% endfor %>
-      </table>
-    </div>
-
-    <div class="four columns">
-      <h5>Produkte</h5>
-
-      <table class="full-width">
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Verifizert</th>
-        </tr>
-        <% for product in products %>
-        <tr>
-          <td><$ product.id $></td>
-          <td><$ product.name $></td>
-          <td><$ product.verified $> <% if not product.verified %> => <a href="/verify_product/<$ product.id $>">verifizieren</a><% endif %></td>
-        </tr>
-        <% endfor %>
-      </table>
-    </div>
-  </div>
-</div>
-
-<% endblock %>
+  <% endblock %>
 <% endblock %>
