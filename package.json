@@ -61,5 +61,5 @@
   },
   "optionalDependencies": {
     "fsevents": "*"
-  },
+  }
 }
