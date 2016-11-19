@@ -58,5 +58,8 @@
     "pg": "6.1.0",
     "sendgrid": "^4.0.2",
     "supertest": "^2.0.0"
-  }
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
 }
