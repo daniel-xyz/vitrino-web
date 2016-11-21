@@ -1,12 +1,10 @@
 let express = require('express');
-let authHelper = require('../../helpers/auth.js');
 let Company = require('./Company.js');
-let router = express.Router();
+let api = express.Router();
 
-const endpoint = '/companies';
+const endpoint = '/api/companies';
 
-router.get(endpoint,
-  authHelper.ensureRolePermissions('admin'), function (req, res) {
+api.get(endpoint, function (req, res) {
     Company.findAllCompanies()
       .then((companies) => {
         res.json(companies);
@@ -17,8 +15,7 @@ router.get(endpoint,
   }
 );
 
-router.post(endpoint + '/:id/verify',
-  authHelper.ensureRolePermissions('admin'), function (req, res) {
+api.post(endpoint + '/:id/verify', function (req, res) {
     Company.verifyCompany(req.params.id)
       .then((companies) => {
         res.json(companies[0]);
@@ -29,4 +26,4 @@ router.post(endpoint + '/:id/verify',
   }
 );
 
-module.exports = router;
+module.exports = api;

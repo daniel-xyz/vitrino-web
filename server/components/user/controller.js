@@ -8,10 +8,9 @@ let sendgrid = require('../../services/sendgrid.js');
 
 let router = express.Router();
 
-const endpoint = '/users';
+// API
 
-router.get(endpoint,
-  authHelper.ensureRolePermissions('admin'), function (req, res) {
+router.get('/api/users', function (req, res) {
     User.findAllUsers()
       .then((users) => {
         res.json(users);

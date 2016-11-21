@@ -1,4 +1,6 @@
 {
+  "name": "vitrino",
+  "version": "0.0.1",
   "dependencies": {
     "abbrev": {
       "version": "1.0.9",
@@ -777,6 +779,11 @@
           "resolved": "https://registry.npmjs.org/strip-bom/-/strip-bom-3.0.0.tgz"
         }
       }
+    },
+    "eslint-config-google": {
+      "version": "0.6.0",
+      "from": "eslint-config-google@latest",
+      "resolved": "https://registry.npmjs.org/eslint-config-google/-/eslint-config-google-0.6.0.tgz"
     },
     "eslint-config-xo": {
       "version": "0.13.0",
@@ -1695,20 +1702,66 @@
       "from": "growl@1.9.2",
       "resolved": "https://registry.npmjs.org/growl/-/growl-1.9.2.tgz"
     },
+    "grunt": {
+      "version": "1.0.1",
+      "from": "grunt@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/grunt/-/grunt-1.0.1.tgz",
+      "dependencies": {
+        "grunt-cli": {
+          "version": "1.2.0",
+          "from": "grunt-cli@>=1.2.0 <1.3.0",
+          "resolved": "https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz"
+        }
+      }
+    },
     "grunt-cli": {
       "version": "1.2.0",
       "from": "grunt-cli@latest",
       "resolved": "https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz"
+    },
+    "grunt-contrib-concat": {
+      "version": "1.0.1",
+      "from": "grunt-contrib-concat@latest",
+      "resolved": "https://registry.npmjs.org/grunt-contrib-concat/-/grunt-contrib-concat-1.0.1.tgz",
+      "dependencies": {
+        "source-map": {
+          "version": "0.5.6",
+          "from": "source-map@>=0.5.3 <0.6.0",
+          "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.5.6.tgz"
+        }
+      }
     },
     "grunt-contrib-cssmin": {
       "version": "1.0.2",
       "from": "grunt-contrib-cssmin@latest",
       "resolved": "https://registry.npmjs.org/grunt-contrib-cssmin/-/grunt-contrib-cssmin-1.0.2.tgz"
     },
+    "grunt-contrib-less": {
+      "version": "1.4.0",
+      "from": "grunt-contrib-less@1.4.0",
+      "resolved": "https://registry.npmjs.org/grunt-contrib-less/-/grunt-contrib-less-1.4.0.tgz",
+      "dependencies": {
+        "async": {
+          "version": "2.0.1",
+          "from": "async@>=2.0.0 <3.0.0",
+          "resolved": "https://registry.npmjs.org/async/-/async-2.0.1.tgz"
+        },
+        "lodash": {
+          "version": "4.15.0",
+          "from": "lodash@>=4.8.2 <5.0.0",
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.15.0.tgz"
+        }
+      }
+    },
     "grunt-contrib-uglify": {
       "version": "2.0.0",
       "from": "grunt-contrib-uglify@latest",
       "resolved": "https://registry.npmjs.org/grunt-contrib-uglify/-/grunt-contrib-uglify-2.0.0.tgz"
+    },
+    "grunt-contrib-watch": {
+      "version": "1.0.0",
+      "from": "grunt-contrib-watch@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/grunt-contrib-watch/-/grunt-contrib-watch-1.0.0.tgz"
     },
     "grunt-eslint": {
       "version": "19.0.0",
@@ -1758,6 +1811,11 @@
       "version": "0.13.2",
       "from": "grunt-mocha-test@0.13.2",
       "resolved": "https://registry.npmjs.org/grunt-mocha-test/-/grunt-mocha-test-0.13.2.tgz"
+    },
+    "grunt-nunjucks": {
+      "version": "0.1.4",
+      "from": "grunt-nunjucks@>=0.1.4 <0.2.0",
+      "resolved": "https://registry.npmjs.org/grunt-nunjucks/-/grunt-nunjucks-0.1.4.tgz"
     },
     "grunt-postcss": {
       "version": "0.8.0",

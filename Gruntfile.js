@@ -26,12 +26,24 @@ module.exports = function(grunt) {
       }
     },
 
-    // UGLIFY
+    // CONCAT JS
+    concat: {
+      basic: {
+        src: ['client/js/*.js'],
+        dest: 'public/js/vitrino.js'
+      },
+      extras: {
+        src: ['client/js/admin/**/*.js'],
+        dest: 'public/js/vitrino.admin.js'
+      }
+    },
+
+    // MINIFY JS
     uglify: {
       my_target: {
         files: {
-          'public/js/vitrino.min.js': ['client/js/*.js'],
-          'public/js/vitrino.admin.min.js': ['client/js/admin/**/*.js']
+          'public/js/vitrino.min.js': ['public/js/vitrino.js'],
+          'public/js/vitrino.admin.min.js': ['public/js/vitrino.admin.js']
         }
       }
     },
@@ -81,13 +93,14 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('build', ['uglify', 'less', 'postcss', 'cssmin']);
+  grunt.registerTask('build', ['concat', 'uglify', 'less', 'postcss', 'cssmin']);
   grunt.registerTask('test', ['eslint', 'mochaTest:test']);
   grunt.registerTask('test-it', ['mochaTest:test-it']);
   grunt.registerTask('default', ['build', 'test', 'watch']);

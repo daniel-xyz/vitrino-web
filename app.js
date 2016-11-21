@@ -25,21 +25,19 @@ services.initialize(app);
 
 app.set('port', config.port);
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 app.use(logger('dev'));
 app.use(helmet(config.helmet));
 app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: 604800000 })); // maxAge 7 days
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(cookieParser(config.cookies.secret));
 app.use(session(config.sessions));
 app.use(flash());
 app.use(csrf({}));
+app.use(function(req, res, next) {
+  res.cookie('XSRF-TOKEN', req.csrfToken());
+  return next();
+});
 app.use(csrfError);
 app.use(passport.initialize());
 app.use(passport.session());

@@ -41,6 +41,11 @@ let config = {
     ]
   },
 
+  // --- Cookie parser ---
+  cookies: {
+    secret: 'iz"(_:;Q3tib<29/N˜ﬁbhgfj:Sljgs.,ss224/!%'
+  },
+
   // --- Sessions library ---
   sessions: {
     secret: process.env.SECRET_SESSION_KEY || 'G"ZTq^Z|T/i!cbBH"Gj2tizi2"_.("$")&?#<S<zF§S',
@@ -48,7 +53,7 @@ let config = {
     saveUninitialized: true,
     cookie: {
       path: '/',
-      httpOnly: true,
+      httpOnly: false,
       secure: false, // TODO: Must be set to true as soon as we haved switched to https
       maxAge: null
     }
@@ -85,14 +90,16 @@ let config = {
           "'self'",
           "'unsafe-inline'",
           "'unsafe-eval'",
-          'https://*.tiles.mapbox.com https://api.mapbox.com',
-          'https://unpkg.com/vue@2.0.7/dist/vue.min.js',
-          'https://unpkg.com/vue-resource@1.0.3/dist/vue-resource.min.js'
+          'https://*.tiles.mapbox.com',
+          'https://api.mapbox.com',
+          'https://unpkg.com/vue@2.0.7/dist/vue.js',
+          'https://unpkg.com/axios/dist/axios.min.js'
         ],
         styleSrc: [
           "'self'",
           "'unsafe-inline'",
-          'https://*.tiles.mapbox.com https://api.mapbox.com'
+          'https://*.tiles.mapbox.com',
+          'https://api.mapbox.com'
         ],
         childSrc: ["'self'", 'blob:'],
         imgSrc: [
@@ -101,10 +108,14 @@ let config = {
           'blob:',
           'https://www.mapbox.com'
         ],
-        connectSrc: ["'self'", 'https://*.tiles.mapbox.com https://api.mapbox.com'],
+        connectSrc: [
+          "'self'",
+          'https://*.tiles.mapbox.com',
+          'https://api.mapbox.com'
+        ],
         formAction: ["'self'"],
         frameAncestors: ["'none'"],
-        sandbox: ['allow-forms', 'allow-scripts'],
+        sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin'],
         objectSrc: []
         // TODO: Specify 'reportUri' to report CSP violations in a log file
       },

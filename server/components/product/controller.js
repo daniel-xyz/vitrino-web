@@ -1,11 +1,10 @@
 let express = require('express');
-let authHelper = require('../../helpers/auth.js');
 let Product = require('./Product.js');
-let router = express.Router();
+let api = express.Router();
 
-const endpoint = '/products';
+const endpoint = '/api/products';
 
-router.get(endpoint, function (req, res) {
+api.get(endpoint, function (req, res) {
     Product.findAllProducts()
       .then((products) => {
         res.json(products);
@@ -16,8 +15,7 @@ router.get(endpoint, function (req, res) {
   }
 );
 
-router.post(endpoint + '/:id/verify',
-  authHelper.ensureRolePermissions('admin'), function (req, res) {
+api.post(endpoint + '/:id/verify', function (req, res) {
     Product.verifyProduct(req.params.id)
       .then((products) => {
         res.json(products[0]);
@@ -28,4 +26,4 @@ router.post(endpoint + '/:id/verify',
   }
 );
 
-module.exports = router;
+module.exports = api;
