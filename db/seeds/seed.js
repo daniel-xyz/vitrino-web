@@ -64,7 +64,30 @@ function addresses () {
         knex('addresses').insert({
           street: 'Pfuelstraße 5',
           city: 'Berlin',
-          zip_code: 10997
+          zip_code: 10997,
+          lat: 52.502717,
+          lng: 13.440806
+        }),
+        knex('addresses').insert({
+          street: 'Wenckebachstr. 11',
+          city: 'Berlin',
+          zip_code: 12099,
+          lat: 52.457710,
+          lng: 13.386780
+        }),
+        knex('addresses').insert({
+          street: 'Treskowallee 8',
+          city: 'Berlin',
+          zip_code: 10318,
+          lat: 52.492293,
+          lng: 13.525906
+        }),
+        knex('addresses').insert({
+          street: 'Pfuelstraße 1',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.502091,
+          lng: 13.440505
         })
       ])
     })
@@ -181,10 +204,28 @@ function stores () {
     .then(function () {
       return Promise.all([
         knex('stores').insert({
-          name: 'Laden in Friedrichshain',
+          name: 'Laden XYZ',
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 1
+        }),
+        knex('stores').insert({
+          name: 'Laden XYZ',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 2
+        }),
+        knex('stores').insert({
+          name: 'Laden XYZ',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 3
+        }),
+        knex('stores').insert({
+          name: 'Laden XYZ',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 4
         })
       ])
     })
@@ -211,7 +252,42 @@ function store_has_product () {
         }),
         knex('store_has_product').insert({
           product_id: 4,
-          store_id: 1,
+          store_id: 2,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 1,
+          store_id: 2,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 2,
+          store_id: 3,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 3,
+          store_id: 3,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 4,
+          store_id: 4,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 1,
+          store_id: 4,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 2,
+          store_id: 4,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 3,
+          store_id: 4,
           price: 4.90
         })
       ])

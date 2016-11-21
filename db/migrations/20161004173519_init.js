@@ -29,6 +29,8 @@ exports.up = function(knex, Promise) {
       table.string('street');
       table.string('city');
       table.integer('zip_code');
+      table.double('lat');
+      table.double('lng');
     }),
 
     knex.schema.createTableIfNotExists('user_has_address', function (table) {
