@@ -1,10 +1,12 @@
+/* eslint-disable */
+
 var map;
 
 if (window.mapboxgl && !mapboxgl.supported()) {
   console.log('Your browser doesn\'t support Mapbox GL.');
 } else if (window.mapboxgl) {
   initMap();
-  loadPlaceholderMarkers();
+  initEventListeners();
 }
 
 function initMap () {
@@ -16,50 +18,66 @@ function initMap () {
   });
 }
 
-function loadPlaceholderMarkers () {
+function initGeoSearch () {
   map.addControl(new mapboxgl.Geocoder({
     country: 'de',
     placeholder: 'Ort, Straße, Hausnummer'
   }));
+}
 
-  var coord = [13.386780, 52.457710];
+function loadAllMarkers () {
+  var features = [];
 
-  // create DOM element for the marker
-  var el = document.createElement('div');
-  el.id = 'marker';
+  axios.get('/api/stores/')
+    .then(function(response) { // TODO - fallback for IE 11 and other browser that don't support promises
+      response.data.forEach(function (store) {
 
-  map.on('load', function () {
-    map.addSource("points", {
-      "type": "geojson",
-      "data": {
-        "type": "FeatureCollection",
-        "features": [{
+        features.push({
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": coord
+            "coordinates": [store.lng, store.lat]
           },
           "properties": {
-            "title": "Daniels Kleiderkiste",
+            "title": store.name,
             "description": "Ich verkaufe Mäntel in jeder Größe.",
-            "icon": "clothing-store"
+            "icon": "marker_store_shoes"
           }
-        }]
-      }
-    });
+        });
 
-    map.addLayer({
-      "id": "points",
-      "type": "symbol",
-      "source": "points",
-      "layout": {
-        "icon-image": "{icon}-15",
-        "text-field": "{title}",
-        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-        "text-offset": [0, 0.6],
-        "text-anchor": "top"
-      }
-    });
+      });
+      addSource(features);
+      addLayer();
+    }).catch(function (err) {
+    console.error(err.stack);
+  });
+}
+
+function addSource(features) {
+  map.addSource("points", {
+    "type": "geojson",
+    "data": {
+      "type": "FeatureCollection",
+      "features": features
+    }
+  });
+}
+
+function addLayer () {
+  map.addLayer({
+    "id": "points",
+    "type": "symbol",
+    "source": "points",
+    "layout": {
+      "icon-image": "{icon}"
+    }
+  });
+}
+
+function initEventListeners () {
+  map.once('load', function () {
+    loadAllMarkers();
+    initGeoSearch();
   });
 
   map.on('click', function (e) {

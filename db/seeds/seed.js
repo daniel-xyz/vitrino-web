@@ -204,25 +204,25 @@ function stores () {
     .then(function () {
       return Promise.all([
         knex('stores').insert({
-          name: 'Laden XYZ',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
+          name: 'Der Saftladen',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 1
         }),
         knex('stores').insert({
-          name: 'Laden XYZ',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
+          name: 'Bruno\'s Glaskunst',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Die Glaserei GmbH & Co. KG')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 2
         }),
         knex('stores').insert({
-          name: 'Laden XYZ',
+          name: 'Skater Shop',
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 3
         }),
         knex('stores').insert({
-          name: 'Laden XYZ',
+          name: 'Schuhe des Manitu',
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 4

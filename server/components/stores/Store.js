@@ -4,15 +4,17 @@ let knex = require('../../services/knex.js');
 let Store = {
 
   /**
-   * Find all stores in the database and return them
+   * Find all stores in the database and return them. Including their coordinates.
    * @return {Promise<Array, Error>} An array containing the store objects
    */
   findAllStores: function () {
-    return knex('stores');
+    return knex.select('stores.*', 'addresses.lat', 'addresses.lng')
+      .from('stores')
+      .innerJoin('addresses', 'stores.address_id', 'addresses.id')
   },
 
   /**
-   * Find all stores in the database that can be found in the speciefied radius
+   * Find all stores in the database that have their address within the speciefied radius
    * @param lat
    * @param lng
    * @param radius Search radius in meters
