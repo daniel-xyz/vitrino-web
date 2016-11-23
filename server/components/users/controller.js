@@ -24,9 +24,7 @@ router.get('/api/users', function (req, res) {
 // --- Signup and E-Mail verification
 
 router.get('/signup', function (req, res) {
-  res.render('signup.html', {
-    csrfToken: req.csrfToken()
-  });
+  res.render('signup.html', {});
 });
 
 router.post('/signup', (req, res, next)  => {
@@ -59,9 +57,7 @@ router.get('/verify_email/:token', function (req,res) {
 // --- Login / Logout
 
 router.get('/login', function (req, res) {
-  res.render('login.html', {
-    csrfToken: req.csrfToken()
-  });
+  res.render('login.html', {});
 });
 
 router.post('/login', function (req, res, next) {
@@ -108,9 +104,7 @@ router.get('/logout', function (req, res) {
 // --- Password forgotten
 
 router.get('/forgot', function (req, res) {
-  res.render('forgotPassword.html', {
-    csrfToken: req.csrfToken()
-  });
+  res.render('forgotPassword.html', {});
 });
 
 router.post('/forgot', function (req, res) {
@@ -141,8 +135,7 @@ router.get('/reset/:token', function (req, res) {
     .then((user) => {
       if (user) {
         res.render('resetPassword.html', {
-          resetToken: req.params.token,
-          csrfToken: req.csrfToken()
+          resetToken: req.params.token
         });
       } else {
         req.flash('error', 'Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen.');

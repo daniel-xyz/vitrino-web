@@ -36,7 +36,7 @@ function initGeoSearch () {
 }
 
 function loadAllMarkers () {
-  VitrinoLib.Api.getAllStores(function (error, response) {
+  VitrinoLib.Api.stores.getAll(function (error, response) {
     var features = [];
 
     if (error) {

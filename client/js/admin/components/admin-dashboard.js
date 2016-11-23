@@ -13,37 +13,43 @@ Vue.component('admin-dashboard', {
     verifyCompany: function (id) {
       var that = this;
 
-      this.$http.post('/api/companies/' + id + '/verify')
-        .then(function(response) {
-          var item = that.companies.find(function(company) {
-            return company.id === id;
-          });
+      VitrinoLib.Api.companies.verify(id, function (error, response) {
+        var item, index;
 
-          var index = that.companies.indexOf(item);
+        if (error) {
+          return console.error(error.stack);
+        }
 
-          if (index !== -1) {
-            Vue.set(that.companies, index, response.data)
-          }
-        }).catch(function (err) {
-        console.error(err.stack);
+        item = that.companies.find(function(company) {
+          return company.id === id;
+        });
+
+        index = that.companies.indexOf(item);
+
+        if (index !== -1) {
+          Vue.set(that.companies, index, response)
+        }
       });
     },
     verifyProduct: function (id) {
       var that = this;
 
-      this.$http.post('/api/products/' + id + '/verify')
-        .then(function(response) {
-          var item = that.products.find(function(product) {
-            return product.id === id;
-          });
+      VitrinoLib.Api.products.verify(id, function (error, response) {
+        var item, index;
 
-          var index = that.products.indexOf(item);
+        if (error) {
+          return console.error(error.stack);
+        }
 
-          if (index !== -1) {
-            Vue.set(that.products, index, response.data)
-          }
-        }).catch(function (err) {
-        console.error(err.stack);
+        item = that.products.find(function(product) {
+          return product.id === id;
+        });
+
+        index = that.products.indexOf(item);
+
+        if (index !== -1) {
+          Vue.set(that.products, index, response)
+        }
       });
     }
   },
@@ -51,25 +57,31 @@ Vue.component('admin-dashboard', {
   created: function() {
     var that = this;
 
-    this.$http.get('/api/users')
-      .then(function(response) {
-        that.users = response.data;
-      }).catch(function (err) {
-      console.error(err.stack);
+    VitrinoLib.Api.users.getAll(function (error, response) {
+
+      if (error) {
+        return console.error(error.stack);
+      }
+
+      that.users = response;
     });
 
-    this.$http.get('/api/companies')
-      .then(function(response) {
-        that.companies = response.data;
-      }).catch(function (err) {
-      console.error(err.stack);
+    VitrinoLib.Api.companies.getAll(function (error, response) {
+
+      if (error) {
+        return console.error(error.stack);
+      }
+
+      that.companies = response;
     });
 
-    this.$http.get('/api/products')
-      .then(function(response) {
-        that.products = response.data;
-      }).catch(function (err) {
-      console.error(err.stack);
+    VitrinoLib.Api.products.getAll(function (error, response) {
+
+      if (error) {
+        return console.error(error.stack);
+      }
+
+      that.products = response;
     });
   }
 });
