@@ -30,27 +30,35 @@ function productCategories () {
     .then(function () {
       return Promise.all([
         knex('product_categories').insert({
+          id: 1,
           name: 'Mode & Accessoires'
         }),
         knex('product_categories').insert({
+          id: 2,
           name: 'Schmuck'
         }),
         knex('product_categories').insert({
+          id: 3,
           name: 'Design & Geschenkartikel'
         }),
         knex('product_categories').insert({
+          id: 4,
           name: 'Parfumerie & Kosmetik'
         }),
         knex('product_categories').insert({
+          id: 5,
           name: 'Kunst'
         }),
         knex('product_categories').insert({
+          id: 6,
           name: 'Hobby'
         }),
         knex('product_categories').insert({
+          id: 7,
           name: 'Haus & Wohnen'
         }),
         knex('product_categories').insert({
+          id: 8,
           name: 'Kinder'
         })
       ])
@@ -95,6 +103,27 @@ function addresses () {
           zip_code: 10999,
           lat: 52.498966,
           lng: 13.419543
+        }),
+        knex('addresses').insert({
+          street: 'Oppelner Str. 43',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.499757,
+          lng: 13.44111
+        }),
+        knex('addresses').insert({
+          street: 'Schlesische Str 4',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.500394,
+          lng: 13.442619
+        }),
+        knex('addresses').insert({
+          street: 'Falckensteinstraße 46',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.500511,
+          lng: 13.444584
         })
       ])
     })
@@ -140,18 +169,21 @@ function companies () {
           name: 'Schuhzauberei GmbH',
           verified: true,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          product_category_id: 1,
           address_id: 1
         }),
         knex('companies').insert({
           name: 'Die Glaserei GmbH & Co. KG',
           verified: false,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
+          product_category_id: 2,
           address_id: 1
         }),
         knex('companies').insert({
           name: 'We will hurt you AG',
           verified: false,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
+          product_category_id: 3,
           address_id: 1
         })
       ]);
@@ -239,6 +271,24 @@ function stores () {
           company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 5
+        }),
+        knex('stores').insert({
+          name: 'Rosa Rote Buntstifte',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 6
+        }),
+        knex('stores').insert({
+          name: 'Rosa Rote Buntstifte',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 7
+        }),
+        knex('stores').insert({
+          name: 'Rosa Rote Buntstifte',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 8
         })
       ])
     })

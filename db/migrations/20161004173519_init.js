@@ -53,6 +53,10 @@ exports.up = function(knex, Promise) {
         .references('id')
         .inTable('users')
         .notNullable();
+      table.integer('product_category_id')
+        .references('id')
+        .inTable('product_categories')
+        .notNullable();
       table.integer('address_id')
         .references('id')
         .inTable('addresses');
@@ -76,7 +80,7 @@ exports.up = function(knex, Promise) {
     }),
 
     knex.schema.createTableIfNotExists('product_categories', function (table) {
-      table.increments('id');
+      table.integer('id').primary();
       table.string('name').unique().notNullable();
     }),
 
@@ -128,9 +132,9 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTableIfExists('store_has_employee'),
     knex.schema.dropTableIfExists('store_has_product'),
     knex.schema.dropTableIfExists('products'),
-    knex.schema.dropTableIfExists('product_categories'),
     knex.schema.dropTableIfExists('stores'),
     knex.schema.dropTableIfExists('companies'),
+    knex.schema.dropTableIfExists('product_categories'),
     knex.schema.dropTableIfExists('user_has_address'),
     knex.schema.dropTableIfExists('addresses'),
     knex.schema.dropTableIfExists('users'),

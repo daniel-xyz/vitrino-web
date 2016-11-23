@@ -28,28 +28,24 @@ function initGeoSearch () {
 function loadAllMarkers () {
   var features = [];
 
-  axios.get('/api/stores/')
-    .then(function(response) { // TODO - fallback for IE 11 and other browser that don't support promises (https://github.com/mzabriskie/axios/issues/135)
-      response.data.forEach(function (store) {
+  VitrinoLib.Api.getAllStores(function (error, response) {
+    response.data.forEach(function (store) {
 
-        features.push({
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [store.lng, store.lat]
-          },
-          "properties": {
-            "title": store.name,
-            "description": "Ich verkaufe Mäntel in jeder Größe.",
-            "icon": "marker-jewellery"
-          }
-        });
-
+      features.push({
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [store.lng, store.lat]
+        },
+        "properties": {
+          "title": store.name,
+          "description": "Ich verkaufe Mäntel in jeder Größe.",
+          "icon": "marker-jewellery"
+        }
       });
-      addSource(features);
-      addLayer();
-    }).catch(function (err) {
-    console.error(err.stack);
+    });
+    addSource(features);
+    addLayer();
   });
 }
 
@@ -69,7 +65,9 @@ function addLayer () {
     "type": "symbol",
     "source": "points",
     "layout": {
-      "icon-image": "{icon}"
+      "icon-image": "{icon}",
+      "icon-offset": [0, -51],
+      "icon-allow-overlap": true
     }
   });
 }

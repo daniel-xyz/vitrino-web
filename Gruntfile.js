@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     // CONCAT JS
     concat: {
       basic: {
-        src: ['client/js/*.js'],
+        src: ['client/js/lib/*.js', 'client/js/*.js'],
         dest: 'public/js/vitrino.js'
       },
       extras: {
