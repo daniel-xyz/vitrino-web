@@ -1,6 +1,16 @@
 /* eslint-disable */
 
 var map;
+var markerIcons = {
+  1: 'marker-clothes',
+  2: 'marker-jewellery',
+  3: 'marker-gifts',
+  4: 'marker-cosmetics',
+  5: 'marker-clothes',
+  6: 'marker-clothes',
+  7: 'marker-home',
+  8: 'marker-clothes'
+};
 
 if (window.mapboxgl && !mapboxgl.supported()) {
   console.log('Your browser doesn\'t support Mapbox GL.');
@@ -26,10 +36,17 @@ function initGeoSearch () {
 }
 
 function loadAllMarkers () {
-  var features = [];
-
   VitrinoLib.Api.getAllStores(function (error, response) {
-    response.data.forEach(function (store) {
+    var features = [];
+
+    if (error) {
+      return console.error(error.stack);
+    }
+
+    console.log(response);
+
+    response.forEach(function (store) {
+      var icon = markerIcons[store['product_category']];
 
       features.push({
         "type": "Feature",
@@ -40,10 +57,11 @@ function loadAllMarkers () {
         "properties": {
           "title": store.name,
           "description": "Ich verkaufe Mäntel in jeder Größe.",
-          "icon": "marker-jewellery"
+          "icon": icon
         }
       });
     });
+
     addSource(features);
     addLayer();
   });

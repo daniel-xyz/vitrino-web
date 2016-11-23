@@ -93,7 +93,7 @@ let config = {
           'https://*.tiles.mapbox.com',
           'https://api.mapbox.com',
           'https://unpkg.com/vue@2.0.7/dist/vue.js',
-          'https://unpkg.com/axios/dist/axios.min.js'
+          'https://code.jquery.com/jquery-3.1.1.min.js'
         ],
         styleSrc: [
           "'self'",
