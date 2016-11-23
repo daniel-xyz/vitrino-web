@@ -30,6 +30,16 @@ Start the node.js server locally:
 $ node app.js
 ```
 
+#### Test accounts
+
+For testing purposes, there are always three different accounts setup and free for use:
+
+| E-Mail                  | Password    | Role   |
+|-------------------------|-------------|--------|
+| dummy.admin@vitrino.de  | Vitrino2017 | admin  |
+| dummy.vendor@vitrino.de | Vitrino2017 | vendor |
+| dummy.user@vitrino.de   | Vitrino2017 | user   |
+
 
 #### Setting up Heroku
 

@@ -88,6 +88,13 @@ function addresses () {
           zip_code: 10997,
           lat: 52.502091,
           lng: 13.440505
+        }),
+        knex('addresses').insert({
+          street: 'Skalitzer Str 14',
+          city: 'Berlin',
+          zip_code: 10999,
+          lat: 52.498966,
+          lng: 13.419543
         })
       ])
     })
@@ -226,6 +233,12 @@ function stores () {
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 4
+        }),
+        knex('stores').insert({
+          name: 'Rosa Rote Buntstifte',
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 5
         })
       ])
     })
@@ -288,6 +301,16 @@ function store_has_product () {
         knex('store_has_product').insert({
           product_id: 3,
           store_id: 4,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 1,
+          store_id: 5,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 2,
+          store_id: 5,
           price: 4.90
         })
       ])

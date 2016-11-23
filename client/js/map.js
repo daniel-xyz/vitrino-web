@@ -29,7 +29,7 @@ function loadAllMarkers () {
   var features = [];
 
   axios.get('/api/stores/')
-    .then(function(response) { // TODO - fallback for IE 11 and other browser that don't support promises
+    .then(function(response) { // TODO - fallback for IE 11 and other browser that don't support promises (https://github.com/mzabriskie/axios/issues/135)
       response.data.forEach(function (store) {
 
         features.push({
@@ -41,7 +41,7 @@ function loadAllMarkers () {
           "properties": {
             "title": store.name,
             "description": "Ich verkaufe Mäntel in jeder Größe.",
-            "icon": "marker_store_shoes"
+            "icon": "marker-jewellery"
           }
         });
 
