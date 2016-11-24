@@ -9,10 +9,21 @@
 @breakpoint-xl: 1200px;
 
 // Media Queries
+@xs:   ~"only screen and (max-width: @{breakpoint-sm} -1)";
+@sm:    ~"only screen and (min-width: @{breakpoint-sm}) and (max-width: @{breakpoint-md} -1)";
+@md:    ~"only screen and (min-width: @{breakpoint-md}) and (max-width: @{breakpoint-lg} -1)";
+@lg:    ~"only screen and (min-width: @{breakpoint-lg}) and (max-width: @{breakpoint-xl} -1)";
+@xl:    ~"only screen and (min-width: @{breakpoint-xl})";
+
 @xs-and-up:   ~"only screen and (min-width:@{breakpoint-xs})";
 @sm-and-up:    ~"only screen and (min-width: @{breakpoint-sm})";
 @md-and-up:    ~"only screen and (min-width: @{breakpoint-md})";
 @lg-and-up:    ~"only screen and (min-width: @{breakpoint-lg})";
+
+@sm-and-down:    ~"only screen and (max-width: @{breakpoint-sm})";
+@md-and-down:    ~"only screen and (max-width: @{breakpoint-md})";
+@lg-and-down:    ~"only screen and (max-width: @{breakpoint-lg})";
+@xl-and-down:    ~"only screen and (max-width: @{breakpoint-xl})";
 
 // Colors
 @light-grey: #e1e1e1;

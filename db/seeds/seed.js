@@ -167,6 +167,7 @@ function companies () {
       return Promise.all([
         knex('companies').insert({
           name: 'Schuhzauberei GmbH',
+          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
           verified: true,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           product_category_id: 1,
@@ -174,6 +175,7 @@ function companies () {
         }),
         knex('companies').insert({
           name: 'Die Glaserei GmbH & Co. KG',
+          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
           verified: false,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 2,
@@ -181,6 +183,7 @@ function companies () {
         }),
         knex('companies').insert({
           name: 'We will hurt you AG',
+          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
           verified: false,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 3,

@@ -12,9 +12,10 @@ var markerIcons = {
   8: 'marker-clothes'
 };
 
+
 if (window.mapboxgl && !mapboxgl.supported()) {
   console.log('Your browser doesn\'t support Mapbox GL.');
-} else if (window.mapboxgl) {
+} else if (window.mapboxgl && $('#map').length !== 0) {
   initMap();
   initEventListeners();
 }
@@ -55,8 +56,9 @@ function loadAllMarkers () {
           "coordinates": [store.lng, store.lat]
         },
         "properties": {
-          "title": store.name,
-          "description": "Ich verkaufe Mäntel in jeder Größe.",
+          "id": store.id,
+          "company": store.company,
+          "description": store.description,
           "icon": icon
         }
       });
@@ -100,16 +102,16 @@ function initEventListeners () {
     var features = map.queryRenderedFeatures(e.point, {layers: ['points']});
 
     if (!features.length) {
+      eventHub.$emit('mapClicked');
       return;
     }
 
     var feature = features[0];
 
-    // Populate the popup and set its coordinates
-    // based on the feature found.
-    new mapboxgl.Popup()
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML(feature.properties.description)
-      .addTo(map);
-  });
+    eventHub.$emit('markerClicked', {
+      id: feature.properties.id,
+      company: feature.properties.company,
+      description: feature.properties.description
+    });
+  })
 }
