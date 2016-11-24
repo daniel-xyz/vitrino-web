@@ -1,8 +1,9 @@
 #store-window {
   position: absolute;
-  height: 100%;
+  top: @header-height;
+  bottom: 0;
+  height:  ~"calc(100% - @{header-height})";
   width: 30%;
   padding: 30px 40px;
   background-color: white;
-  overflow-y: hidden;
 }
