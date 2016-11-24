@@ -11,7 +11,7 @@ Vue.component('store-window', {
     }
   },
 
-  mounted: function () {
+  created: function () {
     var self = this;
 
     eventHub.$on('markerClicked', function (store) {
@@ -24,6 +24,10 @@ Vue.component('store-window', {
     eventHub.$on('mapClicked', function () {
       self.show = false;
     });
+  },
 
+  destroyed: function () {
+    eventHub.$off('markerClicked');
+    eventHub.$off('mapClicked');
   }
 });

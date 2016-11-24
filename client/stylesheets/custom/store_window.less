@@ -1,9 +1,15 @@
 #store-window {
   position: absolute;
-  top: @header-height;
   bottom: 0;
-  height:  ~"calc(100% - @{header-height})";
-  width: 30%;
+  height: 30%;
+  width: 100%;
   padding: 30px 40px;
   background-color: white;
+
+  @media @md-and-up {
+    top: @header-height;
+    height:  ~"calc(100% - @{header-height})";
+    width: 30%;
+    padding: 30px 40px;
+  }
 }
