@@ -43,6 +43,13 @@
   <script src='/js/vitrino.js'></script>
   <script src='/js/vitrino.admin.js'></script>
   <script>
+    var csrfToken = '<$ csrfToken $>';
+
+    $( document ).ajaxSend(function(event, request, settings ) {
+      if (settings.type == "POST") {
+        request.setRequestHeader('X-CSRF-Token', csrfToken);
+      }    });
+
     var vm = new Vue({
       el: '#vue-app'
     });

@@ -17,10 +17,10 @@ Vue.component('admin-dashboard', {
         var item, index;
 
         if (error) {
-          return console.error(error.stack);
+          return console.error(error);
         }
 
-        item = that.companies.find(function(company) {
+        item = that.companies.find(function (company) {
           return company.id === id;
         });
 
@@ -31,6 +31,7 @@ Vue.component('admin-dashboard', {
         }
       });
     },
+
     verifyProduct: function (id) {
       var that = this;
 
@@ -38,10 +39,10 @@ Vue.component('admin-dashboard', {
         var item, index;
 
         if (error) {
-          return console.error(error.stack);
+          return console.error(error);
         }
 
-        item = that.products.find(function(product) {
+        item = that.products.find(function (product) {
           return product.id === id;
         });
 
@@ -60,8 +61,8 @@ Vue.component('admin-dashboard', {
     VitrinoLib.Api.users.getAll(function (error, response) {
 
       if (error) {
-        return console.error(error.stack);
-      }
+        return console.error(error);
+     }
 
       that.users = response;
     });
@@ -69,7 +70,7 @@ Vue.component('admin-dashboard', {
     VitrinoLib.Api.companies.getAll(function (error, response) {
 
       if (error) {
-        return console.error(error.stack);
+        return console.error(error);
       }
 
       that.companies = response;
@@ -78,7 +79,7 @@ Vue.component('admin-dashboard', {
     VitrinoLib.Api.products.getAll(function (error, response) {
 
       if (error) {
-        return console.error(error.stack);
+        return console.error(error);
       }
 
       that.products = response;

@@ -5,8 +5,7 @@ let csrfErrorCheck = function (err, req, res, next) {
   }
 
   res.status(403);
-  req.flash('error', 'Bitte aktualisiere aus Sicherheitsgründen die Seite und führe die gewünschte Aktion erneut aus.');
-  res.redirect('/')
+  res.send('Fehler: Bitte aktualisiere aus Sicherheitsgründen die Seite und führe die gewünschte Aktion erneut aus.')
 };
 
 module.exports = csrfErrorCheck;

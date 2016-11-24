@@ -8,12 +8,12 @@ let flash = require('connect-flash');
 let bodyParser = require('body-parser');
 let cookieParser = require('cookie-parser');
 let helmet = require('helmet');
-// let csrf = require('csurf');
+let csrf = require('csurf');
 
 let config = require('./config/config.js');
 let services = require('./server/services/index.js');
 let routes = require('./server/routes.js');
-// let csrfError = require('./server/middleware/csrf-custom-error.js');
+let csrfError = require('./server/middleware/csrf-custom-error.js');
 
 let app = express();
 
@@ -33,16 +33,8 @@ app.use(bodyParser.json());
 app.use(cookieParser(config.cookies.secret));
 app.use(session(config.sessions));
 app.use(flash());
-
-/*
 app.use(csrf({}));
-app.use(function(req, res, next) {
-  res.cookie('XSRF-TOKEN', req.csrfToken());
-  return next();
-});
 app.use(csrfError);
-*/
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);
