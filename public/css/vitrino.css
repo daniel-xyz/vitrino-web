@@ -200,22 +200,22 @@ input[type="password"] {
 }
 .button-green {
   display: inline-block;
-  height: 38px;
-  padding: 0 30px;
-  color: #B4ED50;
+  height: 48px;
+  padding: 0 52px;
+  color: #fff;
   text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 38px;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 48px;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-  border: 1px solid #bbb;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#89CA9E), to(#A3DF6E));
+  background-image: -webkit-linear-gradient(bottom, #89CA9E 0%, #A3DF6E 100%);
+  background-image: -moz-linear-gradient(bottom, #89CA9E 0%, #A3DF6E 100%);
+  background-image: -o-linear-gradient(bottom, #89CA9E 0%, #A3DF6E 100%);
+  background-image: linear-gradient(0deg, #89CA9E 0%, #A3DF6E 100%);
+  -webkit-border-radius: 20px;
+     -moz-border-radius: 20px;
+          border-radius: 20px;
   cursor: pointer;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -701,9 +701,12 @@ header nav ul > li > .log {
 }
 #store-window .container {
   position: absolute;
+  top: 85px;
   bottom: 0;
-  height: 30%;
-  width: 100%;
+  height: -webkit-calc(100% - 85px);
+  height: -moz-calc(100% - 85px);
+  height: calc(100% - 85px);
+  width: 30%;
   max-width: 480px;
   padding: 24px;
   background-color: white;
@@ -711,18 +714,16 @@ header nav ul > li > .log {
      -moz-box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
           box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
 }
-@media only screen and (min-width: 768px) {
-  #store-window .container {
-    top: 85px;
-    height: -webkit-calc(100% - 85px);
-    height: -moz-calc(100% - 85px);
-    height: calc(100% - 85px);
-    width: 30%;
-  }
+#store-window .container #company-logo {
+  text-align: center;
+  margin-top: 50px;
 }
 #store-window .container #description {
   color: #929292;
   margin-bottom: 30px;
+}
+#store-window .container #shop-link {
+  margin-top: 12px;
 }
 #store-window .fade-enter-active,
 #store-window .fade-leave-active {

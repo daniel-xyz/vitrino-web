@@ -1,23 +1,27 @@
 #store-window {
   .container {
     position: absolute;
+    top: @header-height;
     bottom: 0;
-    height: 30%;
-    width: 100%;
+    height:  ~"calc(100% - @{header-height})";
+    width: 30%;
     max-width: 480px;
     padding: 24px;
     background-color: white;
     box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
 
-    @media @md-and-up {
-      top: @header-height;
-      height:  ~"calc(100% - @{header-height})";
-      width: 30%;
+    #company-logo {
+      text-align: center;
+      margin-top: 50px;
     }
 
     #description {
       color: #929292;
       margin-bottom: 30px;
+    }
+
+    #shop-link {
+      margin-top: 12px;
     }
   }
 

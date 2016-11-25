@@ -2,23 +2,33 @@
   <div id="store-window">
     <transition name="fade">
       <div class="container" v-show="show" v-cloak>
+
         <div class="row">
           <div class="one-half column">
-            < Bild >
-            <!--<div class="button-green">-->
-              <!--Zum Shop-->
-            <!--</div>-->
+            <div id="company-logo">
+              < Bild >
+            </div>
           </div>
 
           <div class="one-half column">
-            <div id="company">
-              <h5 id="title">{{ company.name }}</h5>
-              <div id="description">{{ company.description }}</div>
-              <div>
-                <b>Öfnungszeiten</b> <br>
-                Mo-Fr: 10 - 20 Uhr <br>
-                Sa: 10 - 16 Uhr
-              </div>
+            <h5 id="title">{{ company.name }}</h5>
+            <div id="description">{{ company.description }}</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="one-half column">
+            <div id="shop-link" class="button-green">
+              Zum Shop
+            </div>
+          </div>
+
+          <div class="one-half column">
+
+            <div id="opening-hours">
+              <b>Öfnungszeiten</b> <br>
+              Mo-Fr: 10 - 20 Uhr <br>
+              Sa: 10 - 16 Uhr
             </div>
           </div>
         </div>
