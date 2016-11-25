@@ -1,22 +1,39 @@
-#header-container {
-  height: 25px;
-  padding: 10px;
-  background: #fff;
+header {
 
-  h5 {
-    display: inline-block;
-    line-height: 1;
-    color: #000;
+  height: 85px;
+  background: #fff;
+  border-bottom: 5px solid #fff;
+  background-image: linear-gradient(90deg, #00aaff 0%, #00c5ff 25%, #00dafb 50%, #2be3ef 65%, #96fdce 100%);
+  box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  z-index: 999;
+
+  #logo {
+    margin-top: 5px;
+    max-width: 200px;
+  }
+
+  #search {
+    align-self: flex-end;
   }
 
   nav {
     display: inline-block;
-    float: right;
-
     ul {
       & > li {
         display: inline-block;
         margin-left: 10px;
+        margin-bottom: 0;
+
+        & > .log {
+          background: #fff;
+          box-shadow: 0px 1px 2px 0px rgba(123,123,123,0.50);
+          border-radius: 45px;
+          color: @light-grey;
+          padding: 13px;
+        }
       }
     }
   }
