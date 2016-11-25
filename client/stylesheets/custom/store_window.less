@@ -1,15 +1,30 @@
 #store-window {
-  position: absolute;
-  bottom: 0;
-  height: 30%;
-  width: 100%;
-  padding: 30px 40px;
-  background-color: white;
+  .container {
+    position: absolute;
+    bottom: 0;
+    height: 30%;
+    width: 100%;
+    max-width: 480px;
+    padding: 24px;
+    background-color: white;
+    box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
 
-  @media @md-and-up {
-    top: @header-height;
-    height:  ~"calc(100% - @{header-height})";
-    width: 30%;
-    padding: 30px 40px;
+    @media @md-and-up {
+      top: @header-height;
+      height:  ~"calc(100% - @{header-height})";
+      width: 30%;
+    }
+
+    #description {
+      color: #929292;
+      margin-bottom: 30px;
+    }
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
   }
 }

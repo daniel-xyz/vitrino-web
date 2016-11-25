@@ -167,7 +167,7 @@ function companies () {
       return Promise.all([
         knex('companies').insert({
           name: 'Schuhzauberei GmbH',
-          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+          description: 'Für jeden Fuß den passenden Schuh. Es ist wie Zauberei! Lassen Sie sich von uns nach dem perfekten Schuh beraten.',
           verified: true,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           product_category_id: 1,
@@ -175,15 +175,15 @@ function companies () {
         }),
         knex('companies').insert({
           name: 'Die Glaserei GmbH & Co. KG',
-          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+          description: 'Egal ob rund, eckig oder oval, kommen Sie uns besuchen und wir werden sie begeistern.',
           verified: false,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 2,
           address_id: 1
         }),
         knex('companies').insert({
-          name: 'We will hurt you AG',
-          description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+          name: 'Voo Store Berlin',
+          description: 'Lässt Sie Lebensmittel in ihrer natürlichen Form ohne Verpackung kaufen.',
           verified: false,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 3,
@@ -247,7 +247,7 @@ function stores () {
       return Promise.all([
         knex('stores').insert({
           name: 'Der Saftladen',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Voo Store Berlin')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 1
         }),
@@ -271,25 +271,25 @@ function stores () {
         }),
         knex('stores').insert({
           name: 'Rosa Rote Buntstifte',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Voo Store Berlin')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 5
         }),
         knex('stores').insert({
           name: 'Rosa Rote Buntstifte',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Voo Store Berlin')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 6
         }),
         knex('stores').insert({
           name: 'Rosa Rote Buntstifte',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Voo Store Berlin')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 7
         }),
         knex('stores').insert({
           name: 'Rosa Rote Buntstifte',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='We will hurt you AG')"),
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Voo Store Berlin')"),
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 8
         })
