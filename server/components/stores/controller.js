@@ -26,4 +26,15 @@ api.get(endpoint + '/radius/:lat/:lng/:meters', function (req, res) {
   }
 );
 
+api.get(endpoint + '/:store/products/window', function (req, res) {
+    Store.findProductsInStoreWindow(req.params.store)
+      .then((products) => {
+        res.json(products);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  }
+);
+
 module.exports = api;

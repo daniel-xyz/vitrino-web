@@ -29,6 +29,21 @@ let Store = {
       .whereRaw('cube_contains(earth_box(ll_to_earth(?, ?), ?), ll_to_earth(addresses.lat, addresses.lng))', [lat, lng, radius])
       .innerJoin('companies', 'stores.company_id', 'companies.id')
       .innerJoin('product_categories', 'companies.product_category_id', 'product_categories.id')
+  },
+
+  /**
+   * Find all products that are present in a store's window and return the product id's and image url's
+   * @param storeId
+   * @return {Promise<Array, Error>} An array containing the objects
+     */
+  findProductsInStoreWindow: function (storeId) {
+    return knex.select('products.id', 'products.image_url')
+      .from('store_has_product')
+      .where({
+        store_id: storeId,
+        in_store_window: true
+      })
+      .innerJoin('products', 'products.id', 'store_has_product.product_id')
   }
 };
 

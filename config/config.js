@@ -34,7 +34,7 @@ let config = {
       }
     },
     viewPaths: [
-      'server/partials',
+      'server/components',
       'server/components/map/views',
       'server/components/users/views',
       'server/components/admin/views'
@@ -106,7 +106,8 @@ let config = {
           "'self'",
           'data:',
           'blob:',
-          'https://www.mapbox.com'
+          'https://www.mapbox.com',
+          'https://res.cloudinary.com/dj82hrksp/'
         ],
         connectSrc: [
           "'self'",

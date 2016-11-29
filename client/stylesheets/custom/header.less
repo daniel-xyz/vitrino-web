@@ -1,6 +1,6 @@
 header {
 
-  height: 85px;
+  height: @header-height;
   background: #fff;
   border-bottom: 5px solid #fff;
   background-image: linear-gradient(90deg, #00aaff 0%, #00c5ff 25%, #00dafb 50%, #2be3ef 65%, #96fdce 100%);
@@ -30,7 +30,7 @@ header {
         & > .log {
           background: #fff;
           box-shadow: 0px 1px 2px 0px rgba(123,123,123,0.50);
-          border-radius: 45px;
+          border-radius: @button-border-radius;
           color: @light-grey;
           padding: 13px;
         }

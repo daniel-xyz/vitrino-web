@@ -4,8 +4,7 @@
     top: @header-height;
     bottom: 0;
     height:  ~"calc(100% - @{header-height})";
-    width: 30%;
-    max-width: 480px;
+    width: 726px;
     padding: 24px;
     background-color: white;
     box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
@@ -23,11 +22,22 @@
     #shop-link {
       margin-top: 12px;
     }
+
+    #products {
+      margin: 80px -24px 0 0;
+      line-height: 1;
+
+      .product {
+        display: inline-block;
+        margin: 0 24px 24px 0;
+      }
+    }
   }
 
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s
   }
+
   .fade-enter, .fade-leave-active {
     opacity: 0
   }

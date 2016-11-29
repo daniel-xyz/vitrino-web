@@ -200,7 +200,7 @@ function products () {
         knex('products').insert({
           name: 'Winterschuhe',
           description: 'Ganz tolle Schuhe.',
-          image_url: '',
+          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,w_210/v1480335366/hanging-terrarium_uynhd0.jpg',
           verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -208,7 +208,7 @@ function products () {
         knex('products').insert({
           name: 'Goldene Sneaker',
           description: 'Bitte Gewicht beachten!',
-          image_url: '',
+          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_south,h_210,w_210/v1480342102/54e08a69b868da678e8481fa730d0dda_qpi7fe.jpg',
           verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -216,7 +216,7 @@ function products () {
         knex('products').insert({
           name: 'Eine wundersamer Schuhkarton',
           description: 'Was mag wohl drin sein?!',
-          image_url: '',
+          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,w_210/v1480335365/55d20aacd3728_e7uloa.jpg',
           verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -224,7 +224,7 @@ function products () {
         knex('products').insert({
           name: 'Grüne Tanzschuhe',
           description: 'Ganz tolle Schuhe.',
-          image_url: '',
+          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,w_210/v1480335365/33b5efe7ddcd2ca3a43f51be4cc6fc6e_az1uhh.jpg',
           verified: false,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -232,7 +232,15 @@ function products () {
         knex('products').insert({
           name: 'Jack Wolfskin Sandalen',
           description: 'Für die nächste Weltreise.',
-          image_url: '',
+          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,q_100,w_210/v1480347134/438a-nest_qulq95.jpg',
+          verified: false,
+          product_category_id: 1,
+          company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
+        }),
+        knex('products').insert({
+          name: 'Herrenschuhe',
+          description: 'Aus besonders schönem Leder.',
+          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,w_210/v1480409424/SHOE012_101_DEFAULT_ovkj1n.jpg',
           verified: false,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -304,66 +312,79 @@ function store_has_product () {
         knex('store_has_product').insert({
           product_id: 1,
           store_id: 1,
+          in_store_window: true,
           price: 14.90
         }),
         knex('store_has_product').insert({
           product_id: 2,
           store_id: 1,
+          in_store_window: true,
           price: 9.90
         }),
         knex('store_has_product').insert({
           product_id: 3,
           store_id: 1,
+          in_store_window: true,
           price: 9.90
         }),
         knex('store_has_product').insert({
           product_id: 4,
           store_id: 2,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 1,
           store_id: 2,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 2,
           store_id: 3,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 3,
           store_id: 3,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 4,
           store_id: 4,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 1,
           store_id: 4,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 2,
           store_id: 4,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 3,
           store_id: 4,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 1,
           store_id: 5,
+          in_store_window: true,
           price: 4.90
         }),
         knex('store_has_product').insert({
           product_id: 2,
           store_id: 5,
+          in_store_window: true,
           price: 4.90
         })
       ])

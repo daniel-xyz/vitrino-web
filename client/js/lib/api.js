@@ -56,6 +56,17 @@ VitrinoLib.Api = (function () {
           var error = textStatus + ", " + error;
           callback(error, null);
         });
+    },
+
+    getStoreWindowProducts: function (storeId, callback) {
+      $.getJSON(endpoint + '/stores/' + storeId + '/products/window')
+        .done(function (json) {
+          callback(null, json);
+        })
+        .fail(function (jqxhr, textStatus, error ) {
+          var error = textStatus + ", " + error;
+          callback(error, null);
+        });
     }
   };
 

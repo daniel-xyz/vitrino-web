@@ -9,7 +9,6 @@
               < Bild >
             </div>
           </div>
-
           <div class="one-half column">
             <h5 id="title">{{ company.name }}</h5>
             <div id="description">{{ company.description }}</div>
@@ -22,9 +21,7 @@
               Zum Shop
             </div>
           </div>
-
           <div class="one-half column">
-
             <div id="opening-hours">
               <b>Öfnungszeiten</b> <br>
               Mo-Fr: 10 - 20 Uhr <br>
@@ -32,6 +29,13 @@
             </div>
           </div>
         </div>
+
+        <div id="products">
+          <div class="product" v-for="product in products.store_window">
+            <img :src="product.image_url" width='210' height='210'>
+          </div>
+        </div>
+
       </div>
     </transition>
   </div>

@@ -6,6 +6,7 @@
   <link rel='stylesheet' href='/css/vitrino.min.css'>
   <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' />
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.1/mapbox-gl-geocoder.css' type='text/css' />
+  <link rel='stylesheet' href='/css/vitrino.min.css'>
 </head>
 <body>
   <header class="container">
@@ -57,10 +58,24 @@
         request.setRequestHeader('X-CSRF-Token', csrfToken);
       }    });
 
+    $(document).ready(function(){
+      $('#product-slides').slick({
+        infinite: false,
+        lazyLoad: 'ondemand',
+        speed: 300,
+        rows: 2,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        variableWidth: true,
+        centerMode: false,
+        autoplay: false,
+        autoplaySpeed: 2500,
+        vertical: false,
+        verticalSwiping: false,
+        arrows: false
+      });
+    });
 
-  </script>
-
-  <script>
     $("body").on("markerClickedEvent", function(e) {
       console.log("Marker clicked: " + e.text);
     });

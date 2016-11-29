@@ -204,7 +204,7 @@ input[type="password"] {
   padding: 0 52px;
   color: #fff;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 48px;
   text-decoration: none;
   white-space: nowrap;
@@ -213,15 +213,21 @@ input[type="password"] {
   background-image: -moz-linear-gradient(bottom, #89CA9E 0%, #A3DF6E 100%);
   background-image: -o-linear-gradient(bottom, #89CA9E 0%, #A3DF6E 100%);
   background-image: linear-gradient(0deg, #89CA9E 0%, #A3DF6E 100%);
-  -webkit-border-radius: 20px;
-     -moz-border-radius: 20px;
-          border-radius: 20px;
+  -webkit-border-radius: 45px;
+     -moz-border-radius: 45px;
+          border-radius: 45px;
   cursor: pointer;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
 /* Self Clearing Goodness */
+.row:after,
+.cf {
+  content: "";
+  display: table;
+  clear: both;
+}
 code {
   padding: .2rem .5rem;
   margin: 0 .2rem;
@@ -706,8 +712,7 @@ header nav ul > li > .log {
   height: -webkit-calc(100% - 85px);
   height: -moz-calc(100% - 85px);
   height: calc(100% - 85px);
-  width: 30%;
-  max-width: 480px;
+  width: 726px;
   padding: 24px;
   background-color: white;
   -webkit-box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
@@ -724,6 +729,14 @@ header nav ul > li > .log {
 }
 #store-window .container #shop-link {
   margin-top: 12px;
+}
+#store-window .container #products {
+  margin: 80px -24px 0 0;
+  line-height: 1;
+}
+#store-window .container #products .product {
+  display: inline-block;
+  margin: 0 24px 24px 0;
 }
 #store-window .fade-enter-active,
 #store-window .fade-leave-active {

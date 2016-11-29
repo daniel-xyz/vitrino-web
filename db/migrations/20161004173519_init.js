@@ -110,6 +110,7 @@ exports.up = function(knex, Promise) {
         .references('id')
         .inTable('stores')
         .notNullable();
+      table.boolean('in_store_window').notNullable();
       table.decimal('price', 14, 2);
       table.primary(['product_id', 'store_id'])
     }),
