@@ -721,13 +721,17 @@ header nav ul > li > .log {
 }
 #store-window .container #company-logo {
   text-align: center;
-  margin-top: 50px;
+  width: 260px;
+  height: 130px;
 }
 #store-window .container #description {
   color: #929292;
   margin-bottom: 30px;
 }
-#store-window .container #shop-link {
+#store-window .container #second-row {
+  margin-top: 24px;
+}
+#store-window .container #second-row #shop-link {
   margin-top: 12px;
 }
 #store-window .container #products {
@@ -736,6 +740,8 @@ header nav ul > li > .log {
 }
 #store-window .container #products .product {
   display: inline-block;
+  width: 210px;
+  height: 210px;
   margin: 0 24px 24px 0;
 }
 #store-window .fade-enter-active,

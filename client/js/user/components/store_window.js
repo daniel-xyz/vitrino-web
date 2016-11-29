@@ -6,7 +6,8 @@ Vue.component('store-window', {
       show: false,
       company: {
         name: '',
-        description: ''
+        description: '',
+        logo_url: ''
       },
       store: {
         id: ''
@@ -43,6 +44,7 @@ Vue.component('store-window', {
     eventHub.$on('markerClicked', function (store) {
       self.company.name = store.company;
       self.company.description = store.description;
+      self.company.logo_url = store.logo_url;
       self.store.id = store.id;
       self.show = true;
     });

@@ -169,6 +169,7 @@ function companies () {
           name: 'Schuhzauberei GmbH',
           description: 'Für jeden Fuß den passenden Schuh. Es ist wie Zauberei! Lassen Sie sich von uns nach dem perfekten Schuh beraten.',
           verified: true,
+          logo_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_130,w_260/v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           product_category_id: 1,
           address_id: 1
@@ -177,6 +178,7 @@ function companies () {
           name: 'Die Glaserei GmbH & Co. KG',
           description: 'Egal ob rund, eckig oder oval, kommen Sie uns besuchen und wir werden sie begeistern.',
           verified: false,
+          logo_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_130,w_260/v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 2,
           address_id: 1
@@ -185,6 +187,7 @@ function companies () {
           name: 'Voo Store Berlin',
           description: 'Lässt Sie Lebensmittel in ihrer natürlichen Form ohne Verpackung kaufen.',
           verified: false,
+          logo_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_130,w_260/v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 3,
           address_id: 1

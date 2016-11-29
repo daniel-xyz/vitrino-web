@@ -1,17 +1,21 @@
+@containerPadding: 24px;
+@productImageWidth: 210px;
+
 #store-window {
   .container {
     position: absolute;
     top: @header-height;
     bottom: 0;
     height:  ~"calc(100% - @{header-height})";
-    width: 726px;
-    padding: 24px;
+    width: (3 * @productImageWidth) + (4 * @containerPadding);
+    padding: @containerPadding;
     background-color: white;
     box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
 
     #company-logo {
       text-align: center;
-      margin-top: 50px;
+      width: 260px;
+      height: 130px;
     }
 
     #description {
@@ -19,8 +23,12 @@
       margin-bottom: 30px;
     }
 
-    #shop-link {
-      margin-top: 12px;
+    #second-row {
+      margin-top: 24px;
+
+      #shop-link {
+        margin-top: 12px;
+      }
     }
 
     #products {
@@ -29,7 +37,9 @@
 
       .product {
         display: inline-block;
-        margin: 0 24px 24px 0;
+        width: @productImageWidth;
+        height: 210px;
+        margin: 0 24px @containerPadding 0;
       }
     }
   }

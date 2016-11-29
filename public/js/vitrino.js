@@ -111,7 +111,8 @@ Vue.component('store-window', {
       show: false,
       company: {
         name: '',
-        description: ''
+        description: '',
+        logo_url: ''
       },
       store: {
         id: ''
@@ -148,6 +149,7 @@ Vue.component('store-window', {
     eventHub.$on('markerClicked', function (store) {
       self.company.name = store.company;
       self.company.description = store.description;
+      self.company.logo_url = store.logo_url;
       self.store.id = store.id;
       self.show = true;
     });
@@ -223,6 +225,7 @@ function loadAllMarkers () {
           "id": store.id,
           "company": store.company,
           "description": store.description,
+          "logo_url": store.logo_url ? store.logo_url : '',
           "icon": icon
         }
       });
@@ -275,7 +278,8 @@ function initEventListeners () {
     eventHub.$emit('markerClicked', {
       id: feature.properties.id,
       company: feature.properties.company,
-      description: feature.properties.description
+      description: feature.properties.description,
+      logo_url: feature.properties.logo_url
     });
   })
 }

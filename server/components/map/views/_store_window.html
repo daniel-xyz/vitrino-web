@@ -3,10 +3,10 @@
     <transition name="fade">
       <div class="container" v-show="show" v-cloak>
 
-        <div class="row">
+        <div id="first-row" class="row">
           <div class="one-half column">
             <div id="company-logo">
-              < Bild >
+              <img v-if="company.logo_url" :src="company.logo_url">
             </div>
           </div>
           <div class="one-half column">
@@ -15,7 +15,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div id="second-row" class="row">
           <div class="one-half column">
             <div id="shop-link" class="button-green">
               Zum Shop
@@ -32,7 +32,7 @@
 
         <div id="products">
           <div class="product" v-for="product in products.store_window">
-            <img :src="product.image_url" width='210' height='210'>
+            <img :src="product.image_url">
           </div>
         </div>
 

@@ -49,6 +49,7 @@ exports.up = function(knex, Promise) {
       table.increments('id');
       table.string('name').unique().notNullable();
       table.string('description');
+      table.string('logo_url');
       table.boolean('verified').defaultTo(false).notNullable();
       table.integer('user_id')
         .references('id')

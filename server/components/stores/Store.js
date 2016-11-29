@@ -8,7 +8,7 @@ let Store = {
    * @return {Promise<Array, Error>} An array containing the store objects
    */
   findAllStores: function () {
-    return knex.select('stores.id AS id', 'stores.name AS store', 'companies.name AS company', 'companies.description AS description', 'product_categories.id AS product_category', 'addresses.lat', 'addresses.lng')
+    return knex.select('stores.id AS id', 'stores.name AS store', 'companies.name AS company', 'companies.description AS description', 'companies.logo_url AS logo_url', 'product_categories.id AS product_category', 'addresses.lat', 'addresses.lng')
       .from('stores')
       .innerJoin('companies', 'stores.company_id', 'companies.id')
       .innerJoin('product_categories', 'companies.product_category_id', 'product_categories.id')

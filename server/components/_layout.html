@@ -58,24 +58,6 @@
         request.setRequestHeader('X-CSRF-Token', csrfToken);
       }    });
 
-    $(document).ready(function(){
-      $('#product-slides').slick({
-        infinite: false,
-        lazyLoad: 'ondemand',
-        speed: 300,
-        rows: 2,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        variableWidth: true,
-        centerMode: false,
-        autoplay: false,
-        autoplaySpeed: 2500,
-        vertical: false,
-        verticalSwiping: false,
-        arrows: false
-      });
-    });
-
     $("body").on("markerClickedEvent", function(e) {
       console.log("Marker clicked: " + e.text);
     });
