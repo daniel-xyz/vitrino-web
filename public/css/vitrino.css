@@ -712,19 +712,22 @@ header nav ul > li > .log {
   height: -webkit-calc(100% - 85px);
   height: -moz-calc(100% - 85px);
   height: calc(100% - 85px);
-  width: 726px;
-  padding: 24px;
+  width: 678px;
+  padding: 12px;
   background-color: white;
   -webkit-box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
      -moz-box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
           box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
 }
-#store-window .container #company-logo {
+#store-window .container #first-row {
+  margin-top: 12px;
+}
+#store-window .container #first-row #company-logo {
   text-align: center;
   width: 260px;
   height: 130px;
 }
-#store-window .container #description {
+#store-window .container #first-row #description {
   color: #929292;
   margin-bottom: 30px;
 }
@@ -732,17 +735,17 @@ header nav ul > li > .log {
   margin-top: 24px;
 }
 #store-window .container #second-row #shop-link {
-  margin-top: 12px;
+  margin: 8px 0 0 34px;
 }
 #store-window .container #products {
-  margin: 80px -24px 0 0;
+  margin: 72px -24px 0 0;
   line-height: 1;
 }
 #store-window .container #products .product {
   display: inline-block;
   width: 210px;
   height: 210px;
-  margin: 0 24px 24px 0;
+  margin: 0 12px 12px 0;
 }
 #store-window .fade-enter-active,
 #store-window .fade-leave-active {
