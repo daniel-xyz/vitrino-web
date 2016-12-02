@@ -3,13 +3,18 @@ let config = {
   host: 'http://vitrino.herokuapp.com',
   port: process.env.PORT || 3000,
 
+  // --- Staging authentication ---
+  stagingCredentials: {
+    login: process.env.STAGING_LOGIN,
+    password: process.env.STAGING_PW
+  },
+
   // --- Database ---
   database: {
     uri: process.env.DATABASE_URL || 'postgres://asxemzsxuktjom:UjG1gCmN54eBoqyfSFzyIo5QoO@ec2-54-75-232-56.eu-west-1.compute.amazonaws.com:5432/ddm8rtt5jmaf7j?ssl=true'
   },
 
   // --- Passport authentication framework
-
   passport: {
     successRedirect: '/',
     failureRedirect: '/login',
