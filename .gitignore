@@ -9,5 +9,5 @@ npm-debug.log
 *.env
 *.dev
 .DS_Store
-/public/css/*
-/public/js/*
+public/
+!public/img/

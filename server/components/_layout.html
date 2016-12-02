@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <title>Vitrino</title>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <link rel='stylesheet' href='/css/vitrino.min.css'>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' />
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.1/mapbox-gl-geocoder.css' type='text/css' />
   <link rel='stylesheet' href='/css/vitrino.min.css'>
@@ -40,12 +41,13 @@
   <% endfor %>
 
   <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-supported/v1.2.0/mapbox-gl-supported.js'></script>
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
-  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.1/mapbox-gl-geocoder.js'></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.min.js'></script>
   <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
-  <script src='https://unpkg.com/vue@2.1.0/dist/vue.js'></script>
+  <script src='https://unpkg.com/vue@2.1.0/dist/vue.min.js'></script>
   <script src='/js/vitrino.js'></script>
   <script src='/js/vitrino.admin.js'></script>
+
   <script>
     const csrfToken = '<$ csrfToken $>';
     const eventHub = new Vue();
@@ -56,7 +58,8 @@
     $(document).ajaxSend(function(event, request, settings ) {
       if (settings.type == "POST") {
         request.setRequestHeader('X-CSRF-Token', csrfToken);
-      }    });
+      }
+    });
 
     $("body").on("markerClickedEvent", function(e) {
       console.log("Marker clicked: " + e.text);

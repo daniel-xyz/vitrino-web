@@ -92,7 +92,7 @@ let config = {
           "'unsafe-eval'",
           'https://*.tiles.mapbox.com',
           'https://api.mapbox.com',
-          'https://unpkg.com/vue@2.1.0/dist/vue.js',
+          'https://unpkg.com/vue@2.1.0/dist/vue.min.js',
           'https://code.jquery.com/jquery-3.1.1.min.js'
         ],
         styleSrc: [
@@ -106,7 +106,7 @@ let config = {
           "'self'",
           'data:',
           'blob:',
-          'https://www.mapbox.com',
+          'https://*.mapbox.com',
           'https://res.cloudinary.com/dj82hrksp/'
         ],
         connectSrc: [
