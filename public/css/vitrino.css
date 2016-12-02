@@ -43,7 +43,7 @@
     display: none !important;
   }
 }
-@media only screen and (min-width:0px) {
+@media only screen and (min-width: 0px) {
   .hide-xs-and-up {
     display: none !important;
   }

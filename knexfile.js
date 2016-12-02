@@ -52,6 +52,22 @@ module.exports = {
     }
   },
 
+  staging: {
+    client: 'postgresql',
+    connection: config.database.uri,
+    pool: {
+      min: 2,
+      max: 20
+    },
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds'
+    }
+  },
+
   production: {
     client: 'postgresql',
     connection: config.database.uri,

@@ -13,11 +13,15 @@ let csrf = require('csurf');
 let config = require('./config/config.js');
 let services = require('./server/services/index.js');
 let routes = require('./server/routes.js');
+
+
+// Custom middleware
 let csrfError = require('./server/middleware/csrf-custom-error.js');
+let deadEnd = require('./server/middleware/dead-end.js');
 
 let app = express();
 
-if (config.env === 'production') {
+if (config.env === 'production' || config.env === 'staging') {
   config.sessions['store'] = new RedisStore(config.redis.sessions);
 }
 
@@ -35,6 +39,7 @@ app.use(session(config.sessions));
 app.use(flash());
 app.use(csrf({}));
 app.use(csrfError);
+app.use(deadEnd);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);

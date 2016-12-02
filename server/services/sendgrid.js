@@ -1,8 +1,8 @@
 let config = require('../../config/config.js');
 let sendgrid = require('sendgrid')(config.sendgrid.apikey);
+let host = (config.env === 'production' || config.env === 'staging') ? config.host : 'http://localhost:' + config.port;
 
 function sendToken(receiver, token) {
-  let host = (config.env === 'production') ? config.host : 'http://localhost:' + config.port;
   let verificationURL = host + '/verify_email/' + token;
 
   let request = sendgrid.emptyRequest({
@@ -47,7 +47,6 @@ function sendToken(receiver, token) {
 }
 
 function sendResetPasswordLink(receiver, token) {
-  let host = (config.env === 'production') ? config.host : 'http://localhost:' + config.port;
   let resetURL = host + '/reset/' + token;
 
   let request = sendgrid.emptyRequest({

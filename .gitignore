@@ -10,4 +10,3 @@ npm-debug.log
 *.dev
 public/js/*.js
 public/css/*.css
-!public/img/
