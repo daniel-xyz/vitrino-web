@@ -8,6 +8,6 @@ npm-debug.log
 # Local development
 *.env
 *.dev
-.DS_Store
-public/
+public/js/*.js
+public/css/*.css
 !public/img/
