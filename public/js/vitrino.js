@@ -167,17 +167,20 @@ Vue.component('store-window', {
 /* eslint-disable */
 
 var map;
-var markerIcons = {
-  1: 'marker-clothes',
-  2: 'marker-jewellery',
-  3: 'marker-gifts',
-  4: 'marker-cosmetics',
-  5: 'marker-clothes',
-  6: 'marker-clothes',
-  7: 'marker-home',
-  8: 'marker-clothes'
+var mapConfig = {
+  accessToken: 'pk.eyJ1IjoiZGFuaWVsYmlzY2hvZmYiLCJhIjoiY2l1enE4cWY1MDAyazJ4cDZxYjdramk2OCJ9.MUanhYSFZNfJZOjiLRWybw',
+  style: 'mapbox://styles/danielbischoff/citr5jj1b000d2irvg4mbic27',
+  markerIcons: {
+    1: 'marker-clothes',
+    2: 'marker-jewellery',
+    3: 'marker-gifts',
+    4: 'marker-cosmetics',
+    5: 'marker-clothes',
+    6: 'marker-clothes',
+    7: 'marker-home',
+    8: 'marker-clothes'
+  }
 };
-
 
 if (window.mapboxgl && !mapboxgl.supported()) {
   console.log('Your browser doesn\'t support Mapbox GL.');
@@ -187,16 +190,17 @@ if (window.mapboxgl && !mapboxgl.supported()) {
 }
 
 function initMap () {
-  mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYmlzY2hvZmYiLCJhIjoiY2l1enE4cWY1MDAyazJ4cDZxYjdramk2OCJ9.MUanhYSFZNfJZOjiLRWybw';
+  mapboxgl.accessToken = mapConfig.accessToken;
 
   map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/danielbischoff/citr5jj1b000d2irvg4mbic27'
+    style: mapConfig.style
   });
 }
 
 function initGeoSearch () {
-  map.addControl(new mapboxgl.Geocoder({
+  map.addControl(new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
     country: 'de',
     placeholder: 'Ort, Straße, Hausnummer'
   }));
@@ -213,7 +217,7 @@ function loadAllMarkers () {
     console.log(response);
 
     response.forEach(function (store) {
-      var icon = markerIcons[store['product_category']];
+      var icon = mapConfig.markerIcons[store['product_category']];
 
       features.push({
         "type": "Feature",
