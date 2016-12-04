@@ -4,94 +4,74 @@ var VitrinoLib = VitrinoLib || {};
 
 VitrinoLib.Api = (function () {
 
+  const ajax = VitrinoLib.Ajax;
   const endpoint = '/api';
 
   var users = {
 
     getAll: function (callback) {
-      $.getJSON(endpoint + '/users/')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/users/', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     }
   };
 
   var companies = {
 
     getAll: function (callback) {
-      $.getJSON(endpoint + '/companies/')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/companies/', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     },
 
     verify: function (id, callback) {
-      $.post(endpoint + '/companies/' + id + '/verify')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.post(endpoint + '/companies/' + id + '/verify', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     }
   };
 
   var stores = {
 
     getAll: function (callback) {
-      $.getJSON(endpoint + '/stores/')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/stores/', function (data) {
+        callback(null, data);
+      }, function (status) {
+        callback(status, null);
+      });
     },
 
     getStoreWindowProducts: function (storeId, callback) {
-      $.getJSON(endpoint + '/stores/' + storeId + '/products/window')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/stores/' + storeId + '/products/window', function (json) {
+        callback(null, json)
+      }, function (status) {
+        callback(status, null);
+      });
     }
   };
 
   var products = {
 
     getAll: function (callback) {
-      $.getJSON(endpoint + '/products/')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/products/', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     },
 
     verify: function (id, callback) {
-      $.post(endpoint + '/products/' + id + '/verify')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.post(endpoint + '/products/' + id + '/verify', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     }
   };
 

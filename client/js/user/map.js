@@ -18,7 +18,7 @@ var mapConfig = {
 
 if (window.mapboxgl && !mapboxgl.supported()) {
   console.log('Your browser doesn\'t support Mapbox GL.');
-} else if (window.mapboxgl && $('#map').length !== 0) {
+} else if (window.mapboxgl && document.getElementById("map") !== null) {
   initMap();
   initEventListeners();
 }
@@ -47,8 +47,6 @@ function loadAllMarkers () {
     if (error) {
       return console.error(error.stack);
     }
-
-    console.log(response);
 
     response.forEach(function (store) {
       var icon = mapConfig.markerIcons[store['product_category']];
