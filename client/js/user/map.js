@@ -20,6 +20,7 @@ if (window.mapboxgl && !mapboxgl.supported()) {
   console.log('Your browser doesn\'t support Mapbox GL.');
 } else if (window.mapboxgl && document.getElementById("map") !== null) {
   initMap();
+  initControls();
   initEventListeners();
 }
 
@@ -32,12 +33,14 @@ function initMap () {
   });
 }
 
-function initGeoSearch () {
+function initControls () {
   map.addControl(new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     country: 'de',
     placeholder: 'Ort, Straße, Hausnummer'
   }));
+  map.addControl(new mapboxgl.GeolocateControl());
+  map.addControl(new mapboxgl.NavigationControl());
 }
 
 function loadAllMarkers () {
@@ -98,7 +101,6 @@ function addLayer () {
 function initEventListeners () {
   map.once('load', function () {
     loadAllMarkers();
-    initGeoSearch();
   });
 
   map.on('click', function (e) {
