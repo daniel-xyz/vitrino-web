@@ -97,7 +97,7 @@ let config = {
           "'unsafe-eval'",
           'https://*.tiles.mapbox.com',
           'https://api.mapbox.com',
-          'https://unpkg.com/vue@2.1.0/dist/vue.min.js',
+          'https://unpkg.com/vue@2.1.4/dist/vue.min.js',
           'https://code.jquery.com/jquery-3.1.1.min.js'
         ],
         styleSrc: [
