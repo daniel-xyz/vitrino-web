@@ -39,8 +39,6 @@ function initControls () {
     country: 'de',
     placeholder: 'Ort, Straße, Hausnummer'
   }));
-  map.addControl(new mapboxgl.GeolocateControl());
-  map.addControl(new mapboxgl.NavigationControl());
 }
 
 function loadAllMarkers () {
@@ -98,8 +96,19 @@ function addLayer () {
   });
 }
 
+function removeLoadingLayer () {
+  var loadingLayer = document.getElementById("loading");
+
+  loadingLayer.classList.add("hide-opacity");
+
+  window.setTimeout(function () {
+    loadingLayer.classList.add("hide");
+  }, 1000);
+}
+
 function initEventListeners () {
   map.once('load', function () {
+    removeLoadingLayer();
     loadAllMarkers();
   });
 

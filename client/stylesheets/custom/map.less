@@ -19,14 +19,21 @@
   .mapboxgl-popup {
     max-width: 200px;
   }
+}
 
-  @media @md-and-up {
-    .mapboxgl-ctrl-geolocate {
-      display: none !important;
-    }
+#loading {
+  position: absolute;
+  top: @header-height;
+  width: 100%;
+  height:  ~"calc(100% - @{header-height})";
+  background-color: #fff;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 1s;
 
-    .mapboxgl-ctrl-compass {
-      display: none !important;
-    }
+  img {
+    margin-top: 25%;
+    width: 100%;
+    height: auto;
   }
 }
