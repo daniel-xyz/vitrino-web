@@ -8,3 +8,5 @@ npm-debug.log
 # Local development
 *.env
 *.dev
+public/js/*.js
+public/css/*.css
