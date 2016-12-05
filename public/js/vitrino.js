@@ -2,96 +2,127 @@
 
 var VitrinoLib = VitrinoLib || {};
 
+VitrinoLib.Ajax = (function () {
+
+  function send (method, json, url, successHandler, errorHandler) {
+    var xhr = typeof XMLHttpRequest != 'undefined'
+      ? new XMLHttpRequest()
+      : new ActiveXObject('Microsoft.XMLHTTP');
+
+    xhr.open(method, url, true);
+
+    if (method === 'post') {
+      xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+    }
+
+    xhr.onreadystatechange = function() {
+      var status;
+      var data;
+
+      // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
+      if (xhr.readyState == 4) { // `DONE`
+        status = xhr.status;
+
+        if (status == 200) {
+          data = json ? JSON.parse(xhr.responseText) : xhr.responseText;
+          successHandler && successHandler(data);
+        } else {
+          errorHandler && errorHandler(status);
+        }
+      }
+    };
+
+    xhr.send();
+  }
+
+  function getJSON (url, successHandler, errorHandler) {
+    send('get', true, url, successHandler, errorHandler)
+  }
+
+  function post (url, successHandler, errorHandler) {
+    send('post', true, url, successHandler, errorHandler)
+  }
+
+  return {
+    getJSON: getJSON,
+    post: post
+  };
+
+})();
+/* eslint-disable */
+
+var VitrinoLib = VitrinoLib || {};
+
 VitrinoLib.Api = (function () {
 
+  const ajax = VitrinoLib.Ajax;
   const endpoint = '/api';
 
   var users = {
 
     getAll: function (callback) {
-      $.getJSON(endpoint + '/users/')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/users/', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     }
   };
 
   var companies = {
 
     getAll: function (callback) {
-      $.getJSON(endpoint + '/companies/')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/companies/', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     },
 
     verify: function (id, callback) {
-      $.post(endpoint + '/companies/' + id + '/verify')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.post(endpoint + '/companies/' + id + '/verify', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     }
   };
 
   var stores = {
 
     getAll: function (callback) {
-      $.getJSON(endpoint + '/stores/')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/stores/', function (data) {
+        callback(null, data);
+      }, function (status) {
+        callback(status, null);
+      });
     },
 
     getStoreWindowProducts: function (storeId, callback) {
-      $.getJSON(endpoint + '/stores/' + storeId + '/products/window')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/stores/' + storeId + '/products/window', function (json) {
+        callback(null, json)
+      }, function (status) {
+        callback(status, null);
+      });
     }
   };
 
   var products = {
 
     getAll: function (callback) {
-      $.getJSON(endpoint + '/products/')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.getJSON(endpoint + '/products/', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     },
 
     verify: function (id, callback) {
-      $.post(endpoint + '/products/' + id + '/verify')
-        .done(function (json) {
-          callback(null, json);
-        })
-        .fail(function (jqxhr, textStatus, error ) {
-          var error = textStatus + ", " + error;
-          callback(error, null);
-        });
+      ajax.post(endpoint + '/products/' + id + '/verify', function (json) {
+        callback(null, json);
+      }, function (status) {
+        callback(status, null);
+      })
     }
   };
 
@@ -184,8 +215,9 @@ var mapConfig = {
 
 if (window.mapboxgl && !mapboxgl.supported()) {
   console.log('Your browser doesn\'t support Mapbox GL.');
-} else if (window.mapboxgl && $('#map').length !== 0) {
+} else if (window.mapboxgl && document.getElementById("map") !== null) {
   initMap();
+  initControls();
   initEventListeners();
 }
 
@@ -198,7 +230,7 @@ function initMap () {
   });
 }
 
-function initGeoSearch () {
+function initControls () {
   map.addControl(new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     country: 'de',
@@ -213,8 +245,6 @@ function loadAllMarkers () {
     if (error) {
       return console.error(error.stack);
     }
-
-    console.log(response);
 
     response.forEach(function (store) {
       var icon = mapConfig.markerIcons[store['product_category']];
@@ -263,10 +293,20 @@ function addLayer () {
   });
 }
 
+function removeLoadingLayer () {
+  var loadingLayer = document.getElementById("loading");
+
+  loadingLayer.classList.add("hide-opacity");
+
+  window.setTimeout(function () {
+    loadingLayer.classList.add("hide");
+  }, 500);
+}
+
 function initEventListeners () {
   map.once('load', function () {
+    removeLoadingLayer();
     loadAllMarkers();
-    initGeoSearch();
   });
 
   map.on('click', function (e) {

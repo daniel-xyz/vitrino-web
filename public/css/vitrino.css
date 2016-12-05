@@ -475,10 +475,6 @@ body {
   margin: 0;
   padding: 0;
 }
-button,
-.button {
-  margin-bottom: 1rem;
-}
 input,
 textarea,
 select,
@@ -619,6 +615,12 @@ a:hover {
 .pull-left {
   float: left;
 }
+.hide {
+  display: none !important;
+}
+.hide-opacity {
+  opacity: 0 !important;
+}
 [v-cloak] {
   display: none;
 }
@@ -704,6 +706,26 @@ header nav ul > li > .log {
 }
 #map .mapboxgl-popup {
   max-width: 200px;
+}
+#loading {
+  position: absolute;
+  top: 85px;
+  width: 100%;
+  height: -webkit-calc(100% - 85px);
+  height: -moz-calc(100% - 85px);
+  height: calc(100% - 85px);
+  background-color: #fff;
+  text-align: center;
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+#loading img {
+  margin-top: 25%;
+  width: 100%;
+  height: auto;
 }
 #store-window .container {
   position: absolute;
