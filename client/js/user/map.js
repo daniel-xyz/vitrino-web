@@ -103,7 +103,7 @@ function removeLoadingLayer () {
 
   window.setTimeout(function () {
     loadingLayer.classList.add("hide");
-  }, 1000);
+  }, 500);
 }
 
 function initEventListeners () {
