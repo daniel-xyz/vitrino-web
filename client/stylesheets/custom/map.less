@@ -29,20 +29,15 @@
 
 #map-loading-screen {
   position: absolute;
-  top: @header-height-xs;
+  top: 0;
   bottom: 0;
-  height: @content-area-height-xs;
+  height: 100%;
   width: 100%;
   z-index: 10;
   text-align: center;
   background-color: #fff;
   opacity: 1;
   transition: opacity 0.5s;
-
-  @media @md-and-up {
-    top: @header-height-md;
-    height: @content-area-height-md;
-  }
 
   img {
     margin-top: 25%;

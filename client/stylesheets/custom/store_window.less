@@ -2,16 +2,20 @@
 @productImageWidth: 210px;
 
 #store-window {
-  height: 100%;
-
   .container {
     float: left;
     z-index: 3;
-    height: 100%;
+    height: 100vh;
     width: (3 * @productImageWidth) + (4 * @containerPadding);
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: @containerPadding;
     background-color: white;
     box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
+
+    @media @md-and-up {
+      overflow: hidden;
+    }
 
     #first-row {
       margin-top: @containerPadding;
