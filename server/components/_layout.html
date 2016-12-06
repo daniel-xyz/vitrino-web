@@ -26,19 +26,22 @@
     </nav>
   </header>
 
-  <div id="vue-app">
-    <% block body %>
+  <div id="content-area">
+    <div id="vue-app" style="height: inherit">
+      <% block body %>
+      <% endblock %>
+    </div>
+
+    <!-- the map is not in the vue scope as it causes problems -->
+    <% block map %>
     <% endblock %>
-  </div>
 
-  <% block map %>
-  <% endblock %>
-
-  <% for type, flash in flashes %>
+    <% for type, flash in flashes %>
     <div class="content-container flash-<$ type $>">
       <$ flash $>
     </div>
-  <% endfor %>
+    <% endfor %>
+  </div>
 
   <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-supported/v1.2.0/mapbox-gl-supported.js'></script>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
