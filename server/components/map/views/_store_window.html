@@ -1,8 +1,6 @@
 <store-window inline-template>
-  <div id="store-window">
     <transition name="fade">
-      <div class="container" v-show="show" v-cloak>
-
+      <div id="store-window" class="container" v-show="show" v-cloak>
         <div id="first-row" class="row">
           <div class="five columns">
             <div id="company-logo">
@@ -14,7 +12,6 @@
             <div id="description">{{ company.description }}</div>
           </div>
         </div>
-
         <div id="second-row" class="row">
           <div class="five columns">
             <div id="shop-link" class="button-green">
@@ -29,14 +26,11 @@
             </div>
           </div>
         </div>
-
         <div id="products">
           <div class="product" v-for="product in products.store_window">
             <img :src="product.image_url">
           </div>
         </div>
-
       </div>
     </transition>
-  </div>
 </store-window>
