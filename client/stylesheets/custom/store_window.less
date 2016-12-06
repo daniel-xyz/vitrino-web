@@ -3,7 +3,7 @@
 #store-window {
   float: left;
   z-index: 3;
-  height: 100vh;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: white;
@@ -12,6 +12,7 @@
   @media @md-and-up {
     overflow: hidden;
     width: (3 * @productImageWidth) + (4 * @container-padding-horizontal);
+    height: 100vh;
   }
 
   #first-row {
