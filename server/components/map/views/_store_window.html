@@ -1,29 +1,25 @@
 <store-window inline-template>
     <transition name="fade">
-      <div id="store-window" class="container" v-show="show" v-cloak>
-        <div id="first-row" class="row">
-          <div class="five columns">
+      <div id="store-window" class="container" v-show="show" v-cloak="">
+        <div id="first-row" class="grid">
+          <div class="hide-xs col-sm-5">
             <div id="company-logo">
               <img v-if="company.logo_url" :src="company.logo_url">
             </div>
           </div>
-          <div class="seven columns">
-            <h5 id="title">{{ company.name }}</h5>
+          <div class="col-12 col-sm-7">
+            <h4 id="title">{{ company.name }}</h4>
             <div id="description">{{ company.description }}</div>
           </div>
         </div>
-        <div id="second-row" class="row">
-          <div class="five columns">
+        <div id="second-row" class="grid hide-sm-and-down">
+          <div class="col-12 col-sm-5 align-center">
             <div id="shop-link" class="button-green">
               Zum Shop
             </div>
           </div>
-          <div class="seven columns">
-            <div id="opening-hours">
-              <b>Öfnungszeiten</b> <br>
-              Mo-Fr: 10 - 20 Uhr <br>
-              Sa: 10 - 16 Uhr
-            </div>
+          <div class="col-12 col-sm-7">
+            <div id="opening-hours"></div>
           </div>
         </div>
         <div id="products">

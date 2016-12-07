@@ -1,4 +1,5 @@
-@productImageWidth: 210px;
+@product-image-width: 210px;
+@product-padding: 12px;
 
 #store-window {
   float: left;
@@ -11,14 +12,13 @@
 
   @media @md-and-up {
     overflow: hidden;
-    width: (3 * @productImageWidth) + (4 * @container-padding-horizontal);
+    width: (3 * @product-image-width) + (4 * @product-padding);
   }
 
   #first-row {
-    margin-top: 12px;
+    margin-top: 24px;
 
     #company-logo {
-      text-align: center;
       width: 260px;
       height: 130px;
     }
@@ -31,21 +31,32 @@
 
   #second-row {
     margin-top: 24px;
-
-    #shop-link {
-      margin: 8px 0 0 34px;
-    }
   }
 
   #products {
-    margin: 72px -24px 0 0;
+    width: 100%;
+    margin: 24px -24px 0 0;
     line-height: 1;
+
+    @media @md-and-up {
+      margin-top: 72px;
+    }
 
     .product {
       display: inline-block;
-      width: @productImageWidth;
-      height: 210px;
-      margin: 0 @container-padding-horizontal @container-padding-horizontal 0;
+      width: 50%;
+      height: auto;
+      padding: 0 4px 8px 4px;
+      box-sizing: border-box;
+      
+      @media @sm-and-up {
+        width: (100% / 3);
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 }

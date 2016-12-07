@@ -2,7 +2,7 @@
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 
 // Breakpoints
-@breakpoint-xs: 0px;
+//@breakpoint-xs: 0px;
 @breakpoint-sm: 576px;
 @breakpoint-md: 768px;
 @breakpoint-lg: 992px;
@@ -21,7 +21,7 @@
 @lg:    ~"only screen and (min-width: @{breakpoint-lg}) and (max-width: @{lg-max-width})";
 @xl:    ~"only screen and (min-width: @{breakpoint-xl})";
 
-@xs-and-up:   ~"only screen and (min-width: @{breakpoint-xs})";
+//@xs-and-up:   ~"only screen and (min-width: @{breakpoint-xs})";
 @sm-and-up:    ~"only screen and (min-width: @{breakpoint-sm})";
 @md-and-up:    ~"only screen and (min-width: @{breakpoint-md})";
 @lg-and-up:    ~"only screen and (min-width: @{breakpoint-lg})";
@@ -47,11 +47,15 @@
 @button-border-radius: 45px;
 
 // Grid Variables
-@container-width: 100%;
-@container-padding-horizontal: 12px;
-@total-columns: 12;
-@column-width: 100 / @total-columns; // calculates individual column width based off of # of columns
-@column-margin: 4%; // space between columns
+@columns: 12;
+@gutter-width: 12px;
+@column-width: 100%/@columns; // Column size
+
+//@container-width: 100%;
+//@container-padding-horizontal: 12px;
+//@total-columns: 12;
+//@column-width: 100 / @total-columns; // calculates individual column width based off of # of columns
+//@column-margin: 4%; // space between columns
 
 // Misc
 @global-radius: 4px;
