@@ -134,7 +134,7 @@ function companies () {
           name: 'Schuhzauberei GmbH',
           description: 'Für jeden Fuß den passenden Schuh. Es ist wie Zauberei! Lassen Sie sich von uns nach dem perfekten Schuh beraten.',
           verified: true,
-          logo_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_130,w_260/v1480434532/logos/6-Momilk.jpg',
+          logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           product_category_id: 1,
           address_id: 1
@@ -143,7 +143,7 @@ function companies () {
           name: 'Die Glaserei GmbH & Co. KG',
           description: 'Egal ob rund, eckig oder oval, kommen Sie uns besuchen und wir werden sie begeistern.',
           verified: false,
-          logo_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_130,w_260/v1480434532/logos/6-Momilk.jpg',
+          logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 2,
           address_id: 1
@@ -152,7 +152,7 @@ function companies () {
           name: 'Voo Store Berlin',
           description: 'Lässt Sie Lebensmittel in ihrer natürlichen Form ohne Verpackung kaufen.',
           verified: false,
-          logo_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_130,w_260/v1480434532/logos/6-Momilk.jpg',
+          logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 3,
           address_id: 1
@@ -168,7 +168,7 @@ function products () {
         knex('products').insert({
           name: 'Winterschuhe',
           description: 'Ganz tolle Schuhe.',
-          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,w_210/v1480335366/hanging-terrarium_uynhd0.jpg',
+          image_url: 'v1480335366/hanging-terrarium_uynhd0.jpg',
           verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -176,7 +176,7 @@ function products () {
         knex('products').insert({
           name: 'Goldene Sneaker',
           description: 'Bitte Gewicht beachten!',
-          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_south,h_210,w_210/v1480342102/54e08a69b868da678e8481fa730d0dda_qpi7fe.jpg',
+          image_url: 'v1480342102/54e08a69b868da678e8481fa730d0dda_qpi7fe.jpg',
           verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -184,7 +184,7 @@ function products () {
         knex('products').insert({
           name: 'Eine wundersamer Schuhkarton',
           description: 'Was mag wohl drin sein?!',
-          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,w_210/v1480335365/55d20aacd3728_e7uloa.jpg',
+          image_url: 'v1480335365/55d20aacd3728_e7uloa.jpg',
           verified: true,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -192,7 +192,7 @@ function products () {
         knex('products').insert({
           name: 'Grüne Tanzschuhe',
           description: 'Ganz tolle Schuhe.',
-          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,w_210/v1480335365/33b5efe7ddcd2ca3a43f51be4cc6fc6e_az1uhh.jpg',
+          image_url: 'v1480335365/33b5efe7ddcd2ca3a43f51be4cc6fc6e_az1uhh.jpg',
           verified: false,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -200,7 +200,7 @@ function products () {
         knex('products').insert({
           name: 'Jack Wolfskin Sandalen',
           description: 'Für die nächste Weltreise.',
-          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,q_100,w_210/v1480347134/438a-nest_qulq95.jpg',
+          image_url: 'v1480347134/438a-nest_qulq95.jpg',
           verified: false,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
@@ -208,7 +208,7 @@ function products () {
         knex('products').insert({
           name: 'Herrenschuhe',
           description: 'Aus besonders schönem Leder.',
-          image_url: 'https://res.cloudinary.com/dj82hrksp/image/upload/c_fill,g_auto,h_210,w_210/v1480409424/SHOE012_101_DEFAULT_ovkj1n.jpg',
+          image_url: 'v1480409424/SHOE012_101_DEFAULT_ovkj1n.jpg',
           verified: false,
           product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")

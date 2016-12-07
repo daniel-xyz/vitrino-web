@@ -4,7 +4,7 @@
         <div id="first-row" class="grid">
           <div class="hide-xs col-sm-5">
             <div id="company-logo">
-              <img v-if="company.logo_url" :src="company.logo_url">
+              <img v-if="company.logo_url" :src="company.logo_url.standard" :srcset="company.logo_url.retina + ' 2x'">
             </div>
           </div>
           <div class="col-12 col-sm-7">
@@ -24,7 +24,7 @@
         </div>
         <div id="products">
           <div class="product" v-for="product in products.store_window">
-            <img :src="product.image_url">
+            <img :src="product.image_url.standard" :srcset="product.image_url.retina + ' 2x'">
           </div>
         </div>
       </div>

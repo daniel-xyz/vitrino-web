@@ -16,26 +16,22 @@
     width: 580px;
   }
 
-  @media @xl {
-    width: 680px;
-  }
-
   #first-row {
-    margin-top: 24px;
+    margin-top: 12px;
+
+    @media @md-and-up and (min-height: 800px) {
+      margin-top: 24px;
+    }
 
     #company-logo {
-      width: 260px;
-      height: 130px;
+      width: 200px;
+      height: 120px;
     }
 
     #description {
       color: #929292;
       margin-bottom: 30px;
     }
-  }
-
-  #second-row {
-    margin-top: 24px;
   }
 
   #products {
@@ -45,10 +41,10 @@
 
     @media @md-and-up {
       margin-top: 32px;
-    }
 
-    @media @xl{
-      margin-top: 72px;
+      @media (min-height: 800px) {
+        margin-top: 72px;
+      }
     }
 
     .product {

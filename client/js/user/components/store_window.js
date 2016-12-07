@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+var cloudinary = VitrinoLib.Cloudinary;
+
 Vue.component('store-window', {
   data: function () {
     return {
@@ -7,7 +9,10 @@ Vue.component('store-window', {
       company: {
         name: '',
         description: '',
-        logo_url: ''
+        logo_url: {
+          standard: '',
+          retina: ''
+        }
       },
       store: {
         id: ''
@@ -30,7 +35,10 @@ Vue.component('store-window', {
           if (product.image_url) {
             store_window.push({
               id: product.id,
-              image_url: product.image_url
+              image_url: {
+                standard: cloudinary.buildImageUrl(product.image_url, 260, 260, 1),
+                retina: cloudinary.buildImageUrl(product.image_url, 260, 260, 2)
+              }
             });
           }
         })
@@ -44,7 +52,8 @@ Vue.component('store-window', {
     eventHub.$on('markerClicked', function (store) {
       self.company.name = store.company;
       self.company.description = store.description;
-      self.company.logo_url = store.logo_url;
+      self.company.logo_url.standard = cloudinary.buildImageUrl(store.logo_url, 120, 200, 1);
+      self.company.logo_url.retina = cloudinary.buildImageUrl(store.logo_url, 120, 200, 2);
       self.store.id = store.id;
       self.show = true;
     });
