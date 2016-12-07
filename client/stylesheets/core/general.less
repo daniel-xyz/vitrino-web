@@ -4,11 +4,12 @@ html {
 
 main {
   position: relative;
-
-  height: @content-area-height-xs;
+  min-height: @content-area-height-xs;
 
   @media @md-and-up {
     height: @content-area-height-md;
+    min-height: 0;
+    max-height: @content-area-height-md;
   }
 }
 

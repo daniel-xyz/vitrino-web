@@ -1,19 +1,23 @@
-@product-image-width: 210px;
+@product-max-width: 260px;
 @product-padding: 12px;
 
 #store-window {
   float: left;
   z-index: 3;
-  height: 100%;
+  height: inherit;
+  min-height: inherit;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: white;
   box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
-  -webkit-overflow-scrolling: touch;
 
   @media @md-and-up {
     overflow: hidden;
-    width: (3 * @product-image-width) + (4 * @product-padding);
+    width: 580px;
+  }
+
+  @media @xl {
+    width: 680px;
   }
 
   #first-row {
@@ -40,6 +44,10 @@
     line-height: 1;
 
     @media @md-and-up {
+      margin-top: 32px;
+    }
+
+    @media @xl{
       margin-top: 72px;
     }
 
