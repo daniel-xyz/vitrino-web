@@ -89,6 +89,41 @@ function addresses () {
           zip_code: 10997,
           lat: 52.500511,
           lng: 13.444584
+        }),
+        knex('addresses').insert({
+          street: 'Wrangelstraße 49',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.49982,
+          lng: 13.439235
+        }),
+        knex('addresses').insert({
+          street: 'Skalitzer Straße 74',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.500931,
+          lng: 13.440691
+        }),
+        knex('addresses').insert({
+          street: 'Oppelner 43',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.499757,
+          lng: 13.44111
+        }),
+        knex('addresses').insert({
+          street: 'Köpenicker Straße 1A',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.501441,
+          lng: 13.441697
+        }),
+        knex('addresses').insert({
+          street: 'Oppelner Straße 48',
+          city: 'Berlin',
+          zip_code: 10997,
+          lat: 52.500318,
+          lng: 13.441728
         })
       ])
     })
@@ -145,7 +180,7 @@ function companies () {
           verified: false,
           logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
-          product_category_id: 2,
+          product_category_id: 5,
           address_id: 1
         }),
         knex('companies').insert({
@@ -154,7 +189,25 @@ function companies () {
           verified: false,
           logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
+          product_category_id: 4,
+          address_id: 1
+        }),
+        knex('companies').insert({
+          name: 'Geschenke GmbH',
+          description: 'Außergewöhnliche Geschenke für außergewöhnliche Menschen. Jetzt mit neuer Filiale in Berlin.',
+          verified: false,
+          logo_url: 'v1480434532/logos/6-Momilk.jpg',
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
           product_category_id: 3,
+          address_id: 1
+        }),
+        knex('companies').insert({
+          name: 'Kinderwelt',
+          description: 'Bekleidung und Spielzeuge für Kinder. Jetzt sogar mit Indoor-Spielplatz.',
+          verified: false,
+          logo_url: 'v1480434532/logos/6-Momilk.jpg',
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
+          product_category_id: 8,
           address_id: 1
         })
       ]);
@@ -223,21 +276,51 @@ function stores () {
       return Promise.all([
         knex('stores').insert({
           name: 'Der Saftladen',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='Voo Store Berlin')"),
+          company_id: 1,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 1
         }),
         knex('stores').insert({
           name: 'Bruno\'s Glaskunst',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='Die Glaserei GmbH & Co. KG')"),
+          company_id: 2,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 2
         }),
         knex('stores').insert({
           name: 'Skater Shop',
-          company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')"),
+          company_id: 3,
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
           address_id: 3
+        }),
+        knex('stores').insert({
+          name: 'Skater Shop',
+          company_id: 3,
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 4
+        }),
+        knex('stores').insert({
+          name: 'Skater Shop',
+          company_id: 4,
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 5
+        }),
+        knex('stores').insert({
+          name: 'Skater Shop',
+          company_id: 3,
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 6
+        }),
+        knex('stores').insert({
+          name: 'Skater Shop',
+          company_id: 1,
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 7
+        }),
+        knex('stores').insert({
+          name: 'Skater Shop',
+          company_id: 5,
+          user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
+          address_id: 8
         })
       ])
     })
