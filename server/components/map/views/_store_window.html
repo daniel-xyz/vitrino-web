@@ -1,32 +1,32 @@
 <store-window inline-template>
-    <transition name="fade">
-      <div id="store-window" class="container" v-show="show" v-cloak="">
-        <div id="first-row" class="grid">
-          <div class="hide-xs col-sm-5">
-            <div id="company-logo">
-              <img v-if="company.logo_url" :src="company.logo_url.standard" :srcset="company.logo_url.retina + ' 2x'">
-            </div>
-          </div>
-          <div class="col-12 col-sm-7">
-            <h4 id="title">{{ company.name }}</h4>
-            <div id="description">{{ company.description }}</div>
+  <transition name="fade">
+    <div id="store-window" class="container" v-show="show" v-cloak="">
+      <div id="first-row" class="grid">
+        <div class="hide-xs col-sm-5">
+          <div id="company-logo">
+            <img v-if="company.logo_url" :src="company.logo_url.standard" :srcset="company.logo_url.retina + ' 2x'">
           </div>
         </div>
-        <div id="second-row" class="grid hide-sm-and-down">
-          <div class="col-12 col-sm-5 align-center">
-            <div id="shop-link" class="button-green">
-              Zum Shop
-            </div>
-          </div>
-          <div class="col-12 col-sm-7">
-            <div id="opening-hours"></div>
-          </div>
-        </div>
-        <div id="products">
-          <div class="product" v-for="product in products.store_window">
-            <img :src="product.image_url.standard" :srcset="product.image_url.retina + ' 2x'">
-          </div>
+        <div class="col-12 col-sm-7">
+          <h4 id="title">{{ company.name }}</h4>
+          <div id="description">{{ company.description }}</div>
         </div>
       </div>
-    </transition>
+      <div id="second-row" class="grid hide-sm-and-down">
+        <div class="col-12 col-sm-5 align-center">
+          <div id="shop-link" class="button-green">
+            Zum Shop
+          </div>
+        </div>
+        <div class="col-12 col-sm-7">
+          <div id="opening-hours"></div>
+        </div>
+      </div>
+      <div id="products">
+        <div class="product" v-for="product in products.store_window">
+          <img :src="product.image_url.standard" :srcset="product.image_url.retina + ' 2x'">
+        </div>
+      </div>
+    </div>
+  </transition>
 </store-window>
