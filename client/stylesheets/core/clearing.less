@@ -2,6 +2,7 @@
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 
 /* Self Clearing Goodness */
+// TODO - clean up here where necessary
 
  //.container:after,
  .row:after,
@@ -10,3 +11,11 @@
    display: table;
    clear: both;
  }
+
+.clear {
+  &:after {
+    display: table;
+    clear: both;
+    content: " ";
+  }
+}

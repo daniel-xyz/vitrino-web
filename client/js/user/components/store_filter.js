@@ -4,6 +4,7 @@ Vue.component('store-filter', {
   data: function () {
     return {
       show: false,
+      initialFilterState: true,
       filter: {
         kids: true,
         cosmetics: true,
@@ -22,13 +23,24 @@ Vue.component('store-filter', {
       const self = this;
       var showCategory;
 
-      self.filter[categoryName] = !self.filter[categoryName];
-      showCategory = self.filter[categoryName];
+      if (self.initialFilterState) {
+        self.initialFilterState = false;
 
-      if (showCategory) {
-        VitrinoLib.Map.showLayer('marker-' + categoryName);
+        Object.keys(self.filter).forEach(function (filterName) {
+          if (filterName !== categoryName) {
+            self.filter[filterName] = false;
+            VitrinoLib.Map.hideLayer('marker-' + filterName);
+          }
+        });
       } else {
-        VitrinoLib.Map.hideLayer('marker-' + categoryName);
+        self.filter[categoryName] = !self.filter[categoryName];
+        showCategory = self.filter[categoryName];
+
+        if (showCategory) {
+          VitrinoLib.Map.showLayer('marker-' + categoryName);
+        } else {
+          VitrinoLib.Map.hideLayer('marker-' + categoryName);
+        }
       }
     }
   }
