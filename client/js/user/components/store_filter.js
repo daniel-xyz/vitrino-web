@@ -5,14 +5,30 @@ Vue.component('store-filter', {
     return {
       show: false,
       filter: {
-        child: true,
-        parfume: true,
-        colors: true,
+        kids: true,
+        cosmetics: true,
+        art: true,
         hobby: true,
-        building: true,
-        shirt: true,
-        gift: true,
-        necklace: true
+        home: true,
+        clothes: true,
+        gifts: true,
+        jewellery: true
+      }
+    }
+  },
+
+  methods: {
+    toggle: function (categoryName) {
+      const self = this;
+      var showCategory;
+
+      self.filter[categoryName] = !self.filter[categoryName];
+      showCategory = self.filter[categoryName];
+
+      if (showCategory) {
+        VitrinoLib.Map.showLayer('marker-' + categoryName);
+      } else {
+        VitrinoLib.Map.hideLayer('marker-' + categoryName);
       }
     }
   }
