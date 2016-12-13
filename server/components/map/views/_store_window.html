@@ -1,6 +1,8 @@
+<router-view class="" name="store-window"></router-view>
+
 <store-window inline-template>
   <transition name="fade">
-    <div id="store-window" class="container" v-show="show" v-cloak="">
+    <div id="store-window" v-show="show" v-cloak="">
       <div id="first-row" class="grid">
         <div class="hide-xs col-sm-5">
           <div id="company-logo" v-if="company.logo_url.standard">
@@ -14,13 +16,22 @@
       </div>
       <div id="second-row" class="grid hide-sm-and-down">
         <div class="col-12 col-sm-5 align-center">
-          <div id="shop-link" class="button-green">
+          <button id="shop-link" class="button-primary button-green">
             Zum Shop
-          </div>
+          </button>
         </div>
         <div class="col-12 col-sm-7">
           <div id="opening-hours"></div>
         </div>
+      </div>
+      <div id="tags" class="hide-md-and-up">
+        <div class="tag">Kleidung</div>
+        <div class="tag">Hobby</div>
+        <div class="tag">Kleidung</div>
+        <div class="tag">Kinderartikel</div>
+        <div class="tag">Accessoires</div>
+        <div class="tag label label-bio">Bio</div>
+        <div class="tag label label-fair">Fair</div>
       </div>
       <div id="products">
         <div class="product" v-for="product in products.store_window">

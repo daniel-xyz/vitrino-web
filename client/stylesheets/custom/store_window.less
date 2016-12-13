@@ -2,18 +2,22 @@
 @product-padding: 12px;
 
 #store-window {
+  position: relative;
   float: left;
   z-index: 3;
-  height: inherit;
-  min-height: inherit;
-  overflow-x: hidden;
-  overflow-y: auto;
+  min-height: 100vh;
+  overflow: hidden;
   background-color: white;
+  box-sizing: border-box;
   box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
+  padding-top: @header-height-xs;
 
   @media @md-and-up {
+    top: @header-height-md;
     overflow: hidden;
     width: 580px;
+    padding-top: 0;
+    min-height: @content-area-height-md;
   }
 
   #first-row {
@@ -34,10 +38,15 @@
     }
   }
 
+  #tags {
+    margin-top: 12px;
+    padding: 0 12px;
+  }
+
   #products {
     width: 100%;
-    margin: 24px -24px 0 0;
-    line-height: 1;
+    margin-top: 24px;
+    line-height: 0;
 
     @media @md-and-up {
       margin-top: 32px;
@@ -51,9 +60,9 @@
       display: inline-block;
       width: 50%;
       height: auto;
-      padding: 0 4px 8px 4px;
-      box-sizing: border-box;
-      
+      margin: -1px;
+      border: 1px solid #fff;
+
       @media @sm-and-up {
         width: (100% / 3);
       }
