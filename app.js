@@ -31,6 +31,7 @@ services.initialize(app);
 app.set('port', config.port);
 
 app.use(logger('dev'));
+app.use(deadEnd);
 app.use(helmet(config.helmet));
 app.use(historyFallback()); // TODO - bring back 404 errors if no vue route matches (https://router.vuejs.org/en/essentials/history-mode.html)
 app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: 604800000 })); // maxAge 7 days
@@ -41,7 +42,6 @@ app.use(session(config.sessions));
 app.use(flash());
 app.use(csrf({}));
 app.use(csrfError);
-app.use(deadEnd);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);
