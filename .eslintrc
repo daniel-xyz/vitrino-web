@@ -1,12 +1,16 @@
 {
   "extends": "google",
+  "plugins": [
+    "html"
+  ],
   "installedESLint": true,
   "parser": "espree",
   "ecmaFeatures": {},
   "env": {
     "node": true,
     "es6": true,
-    "mocha": true
+    "mocha": true,
+    "jasmine": true
   },
   "globals": {
     "window": true,

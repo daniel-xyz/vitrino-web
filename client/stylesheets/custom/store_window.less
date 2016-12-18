@@ -1,23 +1,11 @@
-@product-max-width: 260px;
-@product-padding: 12px;
-
 #store-window {
-  position: relative;
-  float: left;
-  z-index: 3;
-  min-height: 100vh;
-  overflow: hidden;
   background-color: white;
   box-sizing: border-box;
   box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
-  padding-top: @header-height-xs;
 
   @media @md-and-up {
-    top: @header-height-md;
-    overflow: hidden;
+    float: left;
     width: 580px;
-    padding-top: 0;
-    min-height: @content-area-height-md;
   }
 
   #first-row {

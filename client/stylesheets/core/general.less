@@ -3,13 +3,25 @@ html {
 }
 
 main {
-  //position: relative;
-  //top: @header-height-xs;
-  //min-height: @content-area-height-xs;
-  //
-  //@media @md-and-up {
-  //  height: @content-area-height-md;
-  //  min-height: 0;
-  //  max-height: @content-area-height-md;
-  //}
+  position: relative;
+  top: @header-height-xs;
+  min-height: @content-area-height-xs;
+
+  @media @md-and-up {
+    top: @header-height-md;
+    height: @content-area-height-md;
+    min-height: 0;
+    max-height: @content-area-height-md;
+  }
+
+  .main-layer {
+    position: absolute;
+    min-height: inherit;
+    overflow: hidden;
+    z-index: 3;
+
+    @media @md-and-up {
+      width: auto;
+    }
+  }
 }

@@ -116,6 +116,8 @@ let config = {
         ],
         connectSrc: [
           "'self'",
+          'http://localhost:3123/',
+          'ws://localhost:3123/',
           'https://*.tiles.mapbox.com',
           'https://api.mapbox.com'
         ],
