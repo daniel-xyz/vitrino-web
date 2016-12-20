@@ -33,6 +33,7 @@
           mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYmlzY2hvZmYiLCJhIjoiY2l1enE4cWY1MDAyazJ4cDZxYjdramk2OCJ9.MUanhYSFZNfJZOjiLRWybw';
 
           this.map = new mapboxgl.Map({
+            attributionControl: false,
             container: 'map',
             style: 'mapbox://styles/danielbischoff/citr5jj1b000d2irvg4mbic27'
           });
@@ -44,6 +45,10 @@
           }));
 
           this.map.addControl(new mapboxgl.NavigationControl());
+
+          this.map.addControl(new mapboxgl.AttributionControl({
+            compact: true
+          }));
 
           this.initEventListeners();
         }
