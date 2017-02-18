@@ -23,5 +23,5 @@
 </script>
 
 <style lang="less">
-  @import "./stylesheets/vitrino.less";
+  @import "stylesheets/vitrino.less";
 </style>

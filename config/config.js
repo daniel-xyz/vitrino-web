@@ -11,7 +11,7 @@ let config = {
 
   // --- Database ---
   database: {
-    uri: process.env.DATABASE_URL || 'postgres://asxemzsxuktjom:UjG1gCmN54eBoqyfSFzyIo5QoO@ec2-54-75-232-56.eu-west-1.compute.amazonaws.com:5432/ddm8rtt5jmaf7j?ssl=true'
+    uri: process.env.DATABASE_URL || 'postgres://xslyzqothcvnsa:4032048382591d935a165b3f053acb4c5f70e37cc4f715dee9f3c9df25724c0d@ec2-54-75-232-56.eu-west-1.compute.amazonaws.com:5432/ddm8rtt5jmaf7j?ssl=true'
   },
 
   // --- Passport authentication framework
@@ -48,12 +48,12 @@ let config = {
 
   // --- Cookie parser ---
   cookies: {
-    secret: 'iz"(_:;Q3tib<29/N˜ﬁbhgfj:Sljgs.,ss224/!%'
+    secret: process.env.SECRET_COOKIE_KEY || 'uz"(_:;Q3tib<2"(/&_.82k§§g8jgs.,ss224/!"!'
   },
 
   // --- Sessions library ---
   sessions: {
-    secret: process.env.SECRET_SESSION_KEY || 'G"ZTq^Z|T/i!cbBH"Gj2tizi2"_.("$")&?#<S<zF§S',
+    secret: process.env.SECRET_SESSION_KEY || 'G"ZTq&))/%F_H(cbBH"Gj2ti?i4"_.("$")&!#<SYzF§S',
     resave: true,
     saveUninitialized: true,
     cookie: {
@@ -147,7 +147,7 @@ let config = {
 
   // Sendgrid E-Mail service provider
   sendgrid: {
-    apikey: process.env.SENDGRID_API_KEY || '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',
+    apikey: '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',
     mails: {
       welcome: {
         sender: {
