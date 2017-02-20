@@ -106,3 +106,6 @@ To run it-tests, it's necessary to setup a local PostgreSQL database and create 
 ```
 $ grunt test-it
 ```
+
+# build for production and view the bundle analyzer report
+npm run build --report

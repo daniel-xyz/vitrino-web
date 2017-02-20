@@ -1,9 +1,10 @@
-var semver = require('semver')
 var chalk = require('chalk')
+var semver = require('semver')
 var packageConfig = require('../package.json')
-var exec = function (cmd) {
-  return require('child_process')
-    .execSync(cmd).toString().trim()
+
+function exec (cmd) {
+  return require('child_process').execSync(cmd).toString().trim()
+
 }
 
 var versionRequirements = [

@@ -72,7 +72,7 @@ let products = {
   }
 };
 
-module.exports = {
+export {
   users,
   companies,
   stores,
