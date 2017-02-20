@@ -3,10 +3,10 @@ let passport = require('passport');
 let session = require('express-session');
 let RedisStore = require('connect-redis')(session);
 let path = require('path');
-let logger = require('morgan');
 let flash = require('connect-flash');
 let bodyParser = require('body-parser');
 let cookieParser = require('cookie-parser');
+let logger = null;
 let helmet = require('helmet');
 let csrf = require('csurf');
 let historyFallback = require('connect-history-api-fallback');
@@ -14,6 +14,10 @@ let historyFallback = require('connect-history-api-fallback');
 let config = require('./config.js');
 let services = require('./services/index.js');
 let routes = require('./routes.js');
+
+if (config.env === 'development') {
+  logger = require('morgan');
+}
 
 
 // Custom middleware
@@ -30,7 +34,7 @@ services.initialize(app);
 
 app.set('port', config.port);
 
-if (config.env === 'development') {
+if (logger) {
   app.use(logger('dev'));
 }
 
