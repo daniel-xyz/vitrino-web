@@ -1,5 +1,5 @@
 let nunjucks = require('nunjucks');
-let config = require('../../config/config.js');
+let config = require('../config.js');
 
 let setupNunjucks = function (app) {
   config.nunjucks.options.express = app;

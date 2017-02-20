@@ -1,4 +1,4 @@
-let config = require('../../config/config.js');
+let config = require('../config.js');
 let sendgrid = require('sendgrid')(config.sendgrid.apikey);
 let host = (config.env === 'production' || config.env === 'staging') ? config.host : 'http://localhost:' + config.port;
 

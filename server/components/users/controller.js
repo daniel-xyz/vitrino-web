@@ -1,7 +1,7 @@
 let express = require('express');
 let passport = require('passport');
 
-let config = require('../../../config/config.js');
+let config = require('../../config.js');
 let authHelper = require('../../helpers/auth.js');
 let User = require('./User.js');
 let sendgrid = require('../../services/sendgrid.js');

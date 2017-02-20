@@ -1,12 +1,8 @@
-# IDE
+.DS_Store
 .idea
-
-# Node build artifacts
-node_modules
+node_modules/
 npm-debug.log
-
-# Local development
 *.env
 *.dev
-public/css
-public/js
+client/dist/
+

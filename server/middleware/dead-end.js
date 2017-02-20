@@ -1,4 +1,4 @@
-let config = require('../../config/config.js');
+let config = require('../config.js');
 
 let deadEnd = function (req, res, next) {
 
