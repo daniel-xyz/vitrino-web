@@ -30,7 +30,10 @@ services.initialize(app);
 
 app.set('port', config.port);
 
-app.use(logger('dev'));
+if (config.env === 'development') {
+  app.use(logger('dev'));
+}
+
 app.use(deadEnd);
 app.use(helmet(config.helmet));
 app.use(historyFallback()); // TODO - bring back 404 errors if no vue route matches (https://router.vuejs.org/en/essentials/history-mode.html)
