@@ -19,7 +19,7 @@
 <script>
   export default {
     name: 'top-header',
-    data() {
+    data () {
       return {
         showBack: false,
         backPath: '',
@@ -28,16 +28,16 @@
     },
 
     methods: {
-      home() {
+      home () {
         this.$router.push({ path: '/' });
       },
 
-      back() {
+      back () {
         this.$router.push({ path: this.backPath });
       },
     },
 
-    created() {
+    created () {
       const self = this;
 
       this.$bus.$on('menuChangeRequest', (options) => {
@@ -47,7 +47,7 @@
       });
     },
 
-    destroyed() {
+    destroyed () {
       this.$bus.$off('menuChangeRequest');
     },
   };

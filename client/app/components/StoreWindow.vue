@@ -46,7 +46,7 @@
 
   export default {
     name: 'store-window',
-    data() {
+    data () {
       return {
         company: {
           name: '',
@@ -86,13 +86,13 @@
           });
         });
       },
-      $route() {
+      $route () {
         this.fillData();
       },
     },
 
     methods: {
-      fillData() {
+      fillData () {
         const self = this;
 
         // TODO - should be done via vuex as queries are not really reliable for SEO etc.
@@ -105,7 +105,7 @@
       },
     },
 
-    created() {
+    created () {
       this.fillData();
 
       this.$bus.$emit('menuChangeRequest', {
@@ -115,7 +115,7 @@
       });
     },
 
-    destroyed() {
+    destroyed () {
       this.$bus.$emit('menuChangeRequest', {
         showBack: false,
       });

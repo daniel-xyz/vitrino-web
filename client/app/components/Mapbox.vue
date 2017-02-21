@@ -17,7 +17,7 @@
 
   export default {
     name: 'mapbox',
-    data() {
+    data () {
       return {
         map: {},
         markers: {},
@@ -25,7 +25,7 @@
     },
 
     methods: {
-      initialize() {
+      initialize () {
         if (mapboxgl && !isSupported) {
           console.log('Your browser doesn\'t support Mapbox GL.'); // eslint-disable-line no-console
         } else if (mapboxgl !== null) {
@@ -53,7 +53,7 @@
         }
       },
 
-      loadAllMarkers() {
+      loadAllMarkers () {
         const self = this;
 
         stores.getAll((error, response) => {
@@ -93,7 +93,7 @@
         });
       },
 
-      addSource(sourceID, features) {
+      addSource (sourceID, features) {
         this.map.addSource(sourceID, {
           type: 'geojson',
           data: {
@@ -103,7 +103,7 @@
         });
       },
 
-      addLayer(sourceID) {
+      addLayer (sourceID) {
         this.map.addLayer({
           id: sourceID,
           type: 'symbol',
@@ -116,7 +116,7 @@
         });
       },
 
-      removeLoadingLayer() {
+      removeLoadingLayer () {
         const loadingLayer = document.getElementById('map-loading-screen');
 
         loadingLayer.classList.add('hide-opacity');
@@ -126,7 +126,7 @@
         }, 500);
       },
 
-      initEventListeners() {
+      initEventListeners () {
         const self = this;
 
         self.map.once('load', () => {
@@ -156,7 +156,7 @@
         });
       },
 
-      getMarkerName(categoryId) {
+      getMarkerName (categoryId) {
         const markerNames = [
           'marker-clothes',
           'marker-jewellery',
@@ -171,31 +171,46 @@
         return markerNames[categoryId - 1];
       },
 
-      hideLayer(layer) {
+      hideLayer (layer) {
         if (this.map.getLayer(layer)) {
           this.map.setLayoutProperty(layer, 'visibility', 'none');
         }
       },
 
-      showLayer(layer) {
+      showLayer (layer) {
         if (this.map.getLayer(layer)) {
           this.map.setLayoutProperty(layer, 'visibility', 'visible');
         }
       },
     },
 
-    mounted() {
+    computed: {
+      filters () {
+        return this.$store.state.filters;
+      },
+    },
+
+    watch: {
+      filters: {
+        handler (filters) {
+          const self = this;
+
+          Object.keys(self.filters).forEach((filterName) => {
+            if (filters[filterName]) {
+              self.showLayer(`marker-${filterName}`);
+            } else {
+              self.hideLayer(`marker-${filterName}`);
+            }
+          });
+        },
+        deep: true,
+      },
+    },
+
+    mounted () {
       const self = this;
 
       self.initialize();
-
-      this.$bus.$on('showLayer', (layer) => {
-        self.showLayer(layer.layerName);
-      });
-
-      this.$bus.$on('hideLayer', (layer) => {
-        self.hideLayer(layer.layerName);
-      });
     },
   };
 </script>

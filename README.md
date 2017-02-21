@@ -24,10 +24,10 @@ Download all necessary dependencies:
 $ npm install
 ```
 
-Start the node.js server locally:
+Run the app locally:
 
 ```
-$ node app.js
+$ npm run dev
 ```
 
 #### Test accounts
@@ -56,27 +56,6 @@ $ heroku login
 Additional information: https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
 
 
-### Development
-
-To build the project and activate the watcher (which triggers on any further code changes automatically), type:
-
-```
-$ grunt
-```
-
-When you want to commit changes, please commit to the github master branch. The deployment to heroku (production) will be triggered within seconds automatically.
-
-
-#### ESLint
-
-To disable eslint rule warnings you have several options:
-
-- put a **/* eslint-disable */** block comment at the top of the file to disable rule warnings in an entire file
-- put a **// eslint-disable-line** comment next to a line to disable warnings for that specific line
-
-More options: http://eslint.org/docs/user-guide/configuring
-
-
 #### Database
 
 To connect to the postgreSQL CLI:
@@ -93,19 +72,9 @@ $ heroku pg:psql --app vitrino DATABASE
 **\q** - quit
 
 
-#### Testing
-
-Start the test runner with:
-
-```
-$ grunt test
-```
-
-To run it-tests, it's necessary to setup a local PostgreSQL database and create the database named 'vitrino_test'. When the database is running, start the tests with:
+#### Misc
+Build for production and view the bundle analyzer report:
 
 ```
-$ grunt test-it
+$ npm run build --report
 ```
-
-# build for production and view the bundle analyzer report
-npm run build --report

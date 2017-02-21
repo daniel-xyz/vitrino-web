@@ -43,6 +43,8 @@ module.exports = {
     'func-names': 0,
     'max-len': 0,
     'no-new': 0,
+    'space-before-function-paren': 0,
+    'no-trailing-spaces': 0,
 
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {

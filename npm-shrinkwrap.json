@@ -1512,9 +1512,9 @@
       "resolved": "https://registry.npmjs.org/escope/-/escope-3.6.0.tgz"
     },
     "eslint": {
-      "version": "3.15.0",
-      "from": "eslint@>=3.15.0 <4.0.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-3.15.0.tgz",
+      "version": "3.16.0",
+      "from": "eslint@3.16.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-3.16.0.tgz",
       "dependencies": {
         "user-home": {
           "version": "2.0.0",
@@ -5169,6 +5169,11 @@
       "version": "1.5.0",
       "from": "vue-template-es2015-compiler@>=1.2.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.5.0.tgz"
+    },
+    "vuex": {
+      "version": "2.1.2",
+      "from": "vuex@latest",
+      "resolved": "https://registry.npmjs.org/vuex/-/vuex-2.1.2.tgz"
     },
     "watchpack": {
       "version": "1.2.1",
