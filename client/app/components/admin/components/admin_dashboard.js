@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+// TODO - Does not work anymore; to be refactored as Vue component
+
 Vue.component('admin-dashboard', {
   data: function () {
     return {

@@ -40,7 +40,7 @@ let config = {
     },
     viewPaths: [
       'server/components',
-      'server/components/map/views',
+      'server/components/main/views',
       'server/components/users/views',
       'server/components/admin/views'
     ]

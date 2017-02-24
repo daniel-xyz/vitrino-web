@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div id="map-container">
     <div id="map"></div>
+    <store-filter></store-filter>
     <div id="map-loading-screen" class="main-layer hide-md-and-up">
       <div id="loading-container">
         <div id="loading-image"></div>
@@ -13,10 +14,14 @@
 </template>
 
 <script>
+  import StoreFilter from './StoreFilter';
   import { stores } from '../services/api';
 
   export default {
-    name: 'mapbox',
+    name: 'map',
+    components: {
+      StoreFilter,
+    },
     data () {
       return {
         map: {},
@@ -186,7 +191,7 @@
 
     computed: {
       filters () {
-        return this.$store.state.filters;
+        return this.$store.state.storefilters;
       },
     },
 

@@ -1,18 +1,18 @@
 import StoreWindow from './components/StoreWindow';
-import Mapbox from './components/Mapbox';
+import Map from './components/Map';
 
 export default [
   {
     path: '/store/window/:id',
     components: {
-      main: StoreWindow,
-      map: Mapbox,
+      layer: StoreWindow,
+      main: Map,
     },
   },
   {
     path: '/',
     components: {
-      map: Mapbox,
+      main: Map,
     },
   },
 ];

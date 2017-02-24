@@ -31,32 +31,26 @@
     methods: {
       toggle (categoryName) {
         const self = this;
-        let showCategory;
 
         if (self.initialFilterState) {
           self.initialFilterState = false;
 
           Object.keys(self.filters).forEach((filterName) => {
             if (filterName !== categoryName) {
-              self.$store.commit('filterOff', filterName);
+              self.$store.dispatch('filterOff', filterName);
             }
           });
+        } else if (self.filters[categoryName]) {
+          self.$store.dispatch('filterOff', categoryName);
         } else {
-          self.filters[categoryName] = !self.filters[categoryName];
-          showCategory = self.filters[categoryName];
-
-          if (showCategory) {
-            self.$store.commit('filterOn', categoryName);
-          } else {
-            self.$store.commit('filterOff', categoryName);
-          }
+          self.$store.dispatch('filterOn', categoryName);
         }
       },
     },
 
     computed: {
       filters () {
-        return this.$store.state.filters;
+        return this.$store.state.storefilters;
       },
     },
   };

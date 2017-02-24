@@ -1,23 +1,21 @@
 <template>
-  <div id="vue-app">
+  <div>
     <top-header></top-header>
     <main>
       <router-view name="main"></router-view>
-      <store-filter></store-filter>
+      <router-view name="layer"></router-view>
     </main>
-    <router-view name="map"></router-view>
   </div>
 </template>
 
+<!--suppress JSUnresolvedVariable -->
 <script>
-  import StoreFilter from './components/StoreFilter';
   import TopHeader from './components/TopHeader';
 
   export default {
     name: 'app',
     components: {
       TopHeader,
-      StoreFilter,
     },
   };
 </script>
