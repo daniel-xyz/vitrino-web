@@ -11,7 +11,7 @@ let Store = {
     return knex.select('stores.id AS id', 'stores.name AS store', 'companies.name AS company', 'companies.description AS description', 'companies.logo_url AS logo_url', 'product_categories.id AS product_category', 'addresses.lat', 'addresses.lng')
       .from('stores')
       .innerJoin('companies', 'stores.company_id', 'companies.id')
-      .innerJoin('product_categories', 'companies.product_category_id', 'product_categories.id')
+      .innerJoin('company_categories', 'companies.company_category_id', 'company_categories.id')
       .innerJoin('addresses', 'stores.address_id', 'addresses.id')
   },
 
@@ -28,7 +28,7 @@ let Store = {
       .innerJoin('addresses', 'stores.address_id', 'addresses.id')
       .whereRaw('cube_contains(earth_box(ll_to_earth(?, ?), ?), ll_to_earth(addresses.lat, addresses.lng))', [lat, lng, radius])
       .innerJoin('companies', 'stores.company_id', 'companies.id')
-      .innerJoin('product_categories', 'companies.product_category_id', 'product_categories.id')
+      .innerJoin('product_categories', 'companies.company_category_id', 'company_categories.id')
   },
 
   /**

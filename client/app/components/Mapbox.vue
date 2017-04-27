@@ -15,7 +15,7 @@
 
 <script>
   import StoreFilter from './StoreFilter';
-  import { stores } from '../services/api';
+  import { stores } from '../services/vitrinoApi';
 
   export default {
     name: 'map',
@@ -61,13 +61,13 @@
       loadAllMarkers () {
         const self = this;
 
-        stores.getAll((error, response) => {
+        stores.getStoresInRadius('52.500511', '13.444584', '2000', (error, response) => {
           if (error) {
             return console.error(error.stack); // eslint-disable-line no-console
           }
 
-          response.forEach((store) => {
-            const markerType = self.getMarkerName(store['product_category']); // eslint-disable-line dot-notation
+          response.businesses.forEach((store) => {
+            const markerType = 'marker-clothes'; // self.getStoreType(store['product_category']); // eslint-disable-line dot-notation
 
             if (!self.markers[markerType]) {
               self.markers[markerType] = [];
@@ -77,13 +77,11 @@
               type: 'Feature',
               geometry: {
                 type: 'Point',
-                coordinates: [store.lng, store.lat],
+                coordinates: [store.coordinates.longitude, store.coordinates.latitude],
               },
               properties: {
-                id: store.id,
-                company: store.company,
-                description: store.description,
-                logo_url: store.logo_url ? store.logo_url : '',
+                yid: store.id,
+                name: store.name,
                 icon: markerType,
               },
             });
@@ -132,36 +130,34 @@
       },
 
       initEventListeners () {
-        const self = this;
-
-        self.map.once('load', () => {
-          self.removeLoadingLayer();
-          self.loadAllMarkers();
+        this.map.once('load', () => {
+          this.removeLoadingLayer();
+          this.loadAllMarkers();
         });
 
-        self.map.on('click', (e) => {
-          const features = self.map.queryRenderedFeatures(e.point, { layers: Object.keys(self.markers) });
+        this.map.on('click', this.onMapClickHandler);
+      },
 
-          if (!features.length) {
-            // self.$bus.$emit('mapClicked');
-            self.$router.push({ path: '/' });
-            return;
-          }
+      onMapClickHandler (e) {
+        const features = this.map.queryRenderedFeatures(e.point, { layers: Object.keys(this.markers) });
 
-          const feature = features[0];
+        if (!features.length) {
+          // self.$bus.$emit('mapClicked');
+          this.$router.push({ path: '/' });
+          return;
+        }
 
-          self.$router.push({
-            path: `/store/window/${feature.properties.id}`,
-            query: { // TODO - good cancidate for vuex
-              company: feature.properties.company,
-              description: feature.properties.description,
-              logo_url: feature.properties.logo_url,
-            },
-          });
+        const feature = features[0];
+
+        this.$router.push({
+          path: `/store/${feature.properties.yid}`,
+          query: {
+            name: feature.properties.name,
+          },
         });
       },
 
-      getMarkerName (categoryId) {
+      getStoreType (categoryId) {
         const markerNames = [
           'marker-clothes',
           'marker-jewellery',
@@ -213,9 +209,7 @@
     },
 
     mounted () {
-      const self = this;
-
-      self.initialize();
+      this.initialize();
     },
   };
 </script>

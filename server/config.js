@@ -164,6 +164,21 @@ let config = {
         templateId: 'be66a06b-9dc6-4c19-b1b1-457b99c45dd4'
       }
     }
+  },
+
+  // Yelp
+  yelp: {
+    authToken: '0l7aSmVwtbLfh3YUNl05OOLnSs2Qknt9RFXgIOfE-MhYie50kCzWyMkLasy-iWO2Had4MIBmUxjTjDC9sFITthnq-nWwswMZx9W848gzIoD85WnTLjwNsN0dIMbcWHYx',
+    markerMapping: {
+      fashion: 'marker-clothes',
+      cosmetics: 'marker-cosmetics',
+      giftshops: 'marker-gifts',
+      hobbyshops: 'marker-hobby',
+      homeandgarden: 'marker-home',
+      jewelry: 'marker-jewellery',
+      artsandcrafts: 'marker-art',
+      childcloth: 'marker-kids'
+    }
   }
 };
 

@@ -1,36 +1,61 @@
 <template>
   <transition name="fade">
-    <div id="store-window" class="main-layer">
-      <div id="first-row" class="grid">
-        <div class="hide-xs col-sm-5">
-          <div id="company-logo" v-if="company.logo_url.standard">
-            <img :src="company.logo_url.standard" :srcset="company.logo_url.retina + ' 2x'">
+    <div id="store-window" class="main-layer content-container">
+      <h4 id="title">{{ company.name }}</h4>
+
+      <slick id="photos" ref="slick" :options="slickOptions">
+        <img v-for="photo in company.photos" :src="photo" :class="'filter-' + store.yid"/>
+      </slick>
+
+      <div class="margin-top-l">
+        <div v-for="category in company.categories" class="tag">
+          {{ category }}
+        </div>
+      </div>
+
+      <div id="action-bar" class="grid margin-top-xxl">
+        <popover name="default" id="opening-hours">
+          <div slot="face">
+            <div class="col-4 align-center">
+              <div class="icon"></div>
+              <div v-if="company.is_open_now" class="open">Jetzt geöffnet</div>
+              <div v-if="!company.is_open_now" class="closed">Öffnungszeiten</div>
+            </div>
           </div>
+          <div slot="content">
+            <h6>Öffnungszeiten</h6>
+            <ul>
+              <li v-for="obj in company.openingHours"><b>{{ obj.day }}:</b> {{ obj.start }} - {{obj.end }}</li>
+            </ul>
+          </div>
+        </popover>
+        <div id="ratings" class="col-4 align-center">
+          <div class="icon"></div>
+          <div>Bewertungen</div>
         </div>
-        <div class="col-12 col-sm-7">
-          <h4 id="title">{{ company.name }}</h4>
-          <div id="description">{{ company.description }}</div>
-        </div>
+
+        <popover name="default" id="share">
+          <div slot="face">
+            <div class="col-4 align-center">
+              <div class="icon"></div>
+              <div>Weitersagen</div>
+            </div>
+          </div>
+          <div slot="content">
+              <social-sharing id="share-icons" :url="url" :title="company.name" description="Schaue dir unser Schaufenster auf Vitrino an." inline-template>
+                <div>
+                  <network network="facebook">
+                    <div class="facebook-icon"></div>
+                  </network>
+                  <network network="whatsapp">
+                    <div class="whatsapp-icon"></div>
+                  </network>
+                </div>
+              </social-sharing>
+          </div>
+        </popover>
       </div>
-      <div id="second-row" class="grid hide-sm-and-down">
-        <div class="col-12 col-sm-5 align-center">
-          <button id="shop-link" class="button-primary button-green">
-            Zum Shop
-          </button>
-        </div>
-        <div class="col-12 col-sm-7">
-          <div id="opening-hours"></div>
-        </div>
-      </div>
-      <div id="tags" class="hide-md-and-up">
-        <div class="tag">Kleidung</div>
-        <div class="tag">Hobby</div>
-        <div class="tag">Kleidung</div>
-        <div class="tag">Kinderartikel</div>
-        <div class="tag">Accessoires</div>
-        <div class="tag label label-bio">Bio</div>
-        <div class="tag label label-fair">Fair</div>
-      </div>
+
       <div id="products">
         <div class="product" v-for="product in products.store_window">
           <img :src="product.image_url.standard" :srcset="product.image_url.retina + ' 2x'">
@@ -41,13 +66,16 @@
 </template>
 
 <script>
-  import { stores } from '../services/api';
-  import { buildImageUrl } from '../utils/cloudinary';
+  import slick from 'vue-slick';
+  import { stores } from '../services/vitrinoApi';
+  import popover from '../../assets/vue/Popover';
 
   export default {
     name: 'store-window',
+    components: { slick, popover },
     data () {
       return {
+        url: '',
         company: {
           name: '',
           description: '',
@@ -55,12 +83,28 @@
             standard: '',
             retina: '',
           },
+          is_open_now: '',
+          openingHours: [],
+          categories: [],
+          photos: [],
         },
         store: {
-          id: '',
+          yid: '',
         },
         products: {
           store_window: [],
+        },
+        slickOptions: {
+          speed: 600,
+          slidesToShow: 1,
+          arrows: false,
+          variableWidth: true,
+          centerMode: false,
+          autoplay: true,
+          autoplaySpeed: 2500,
+          pauseOnHover: true,
+          mobileFirst: true,
+          infinite: true,
         },
       };
     },
@@ -72,22 +116,24 @@
 
         storeWindow.splice(0, storeWindow.length);
 
-        stores.getStoreWindowProducts(self.store.id, (error, products) => {
-          products.forEach((product) => {
-            if (product.image_url) {
-              storeWindow.push({
-                id: product.id,
-                image_url: {
-                  standard: buildImageUrl(product.image_url, 260, 260, 1),
-                  retina: buildImageUrl(product.image_url, 260, 260, 2),
-                },
-              });
-            }
-          });
-        });
+//        stores.getStoreWindowProducts(self.store.id, (error, products) => {
+//          products.forEach((product) => {
+//            if (product.image_url) {
+//              storeWindow.push({
+//                id: product.id,
+//                image_url: {
+//                  standard: buildImageUrl(product.image_url, 260, 260, 1),
+//                  retina: buildImageUrl(product.image_url, 260, 260, 2),
+//                },
+//              });
+//            }
+//          });
+//        });
       },
       $route () {
+        this.url = window.location.href;
         this.fillData();
+        this.$refs.slick.filter('filter-' + this.store.yid);
       },
     },
 
@@ -95,13 +141,55 @@
       fillData () {
         const self = this;
 
-        // TODO - should be done via vuex as queries are not really reliable for SEO etc.
+        self.store.yid = self.$route.params.yid;
+        self.company.name = self.$route.query.name;
+        self.company.categories = [];
+        self.company.photos = [];
 
-        self.store.id = self.$route.params.id;
-        self.company.name = self.$route.query.company;
-        self.company.description = self.$route.query.description;
-        self.company.logo_url.standard = buildImageUrl(self.$route.query.logo_url, 120, 200, 1);
-        self.company.logo_url.retina = buildImageUrl(self.$route.query.logo_url, 120, 200, 2);
+        stores.getStoreByYelpID(self.store.yid, (error, response) => {
+          if (error) {
+            return console.error(error.stack); // eslint-disable-line no-console
+          }
+
+          console.log('response:' + JSON.stringify(response));
+
+          if (self.company.name === '') {
+            this.company.name = response.name;
+          }
+
+          if (response.hours !== 'undefined') {
+            this.company.is_open_now = response.hours[0].is_open_now;
+          }
+
+          response.categories.forEach((category) => {
+            this.company.categories.push(category.title);
+          });
+
+          if (response.photos !== 'undefined') {
+            response.photos.forEach((photo) => {
+              this.company.photos.push(photo);
+              // self.$refs.slick.add('<img src="' + photo + '" class="filter-' + this.store.yid + '"/>');
+            });
+          }
+
+          if (response.hours !== 'undefined' && response.hours[0] !== 'undefined' && response.hours[0].open !== 'undefined') {
+            const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+
+            response.hours[0].open.forEach((obj) => {
+              this.company.openingHours.push({
+                day: days[obj.day],
+                start: obj.start.slice(0, 2) + ':' + obj.start.slice(2),
+                end: obj.end.slice(0, 2) + ':' + obj.end.slice(2),
+              });
+            });
+          }
+
+          return null;
+        });
+      },
+
+      reInitSlick() {
+        this.$refs.slick.reSlick();
       },
     },
 
@@ -113,6 +201,10 @@
         backPath: '/',
         backText: 'Zur Karte',
       });
+    },
+
+    updated () {
+      this.reInitSlick();
     },
 
     destroyed () {

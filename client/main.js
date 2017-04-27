@@ -1,8 +1,9 @@
 /* eslint-disable */
+'use strict'
 
 import Vue from 'vue';
 import store from './app/store';
-import App from './app/App';
+import App from './app/App.vue';
 import { router } from './bootstrap';
 
 require('./bootstrap');

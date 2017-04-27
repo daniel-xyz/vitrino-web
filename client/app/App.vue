@@ -2,20 +2,21 @@
   <div>
     <top-header></top-header>
     <main>
-      <router-view name="main"></router-view>
       <router-view name="layer"></router-view>
+      <mapbox></mapbox>
     </main>
   </div>
 </template>
 
-<!--suppress JSUnresolvedVariable -->
 <script>
   import TopHeader from './components/TopHeader';
+  import Mapbox from './components/Mapbox';
 
   export default {
     name: 'app',
     components: {
       TopHeader,
+      Mapbox,
     },
   };
 </script>

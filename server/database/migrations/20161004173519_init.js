@@ -55,9 +55,9 @@ exports.up = function(knex, Promise) {
         .references('id')
         .inTable('users')
         .notNullable();
-      table.integer('product_category_id')
+      table.integer('company_category_id')
         .references('id')
-        .inTable('product_categories')
+        .inTable('company_categories')
         .notNullable();
       table.integer('address_id')
         .references('id')
@@ -81,7 +81,7 @@ exports.up = function(knex, Promise) {
         .notNullable();
     }),
 
-    knex.schema.createTableIfNotExists('product_categories', function (table) {
+    knex.schema.createTableIfNotExists('company_categories', function (table) {
       table.integer('id').primary();
       table.string('name').unique().notNullable();
     }),
@@ -92,10 +92,6 @@ exports.up = function(knex, Promise) {
       table.text('description').notNullable();
       table.string('image_url').notNullable();
       table.boolean('verified').defaultTo(false).notNullable();
-      table.integer('product_category_id')
-        .references('id')
-        .inTable('product_categories')
-        .notNullable();
       table.integer('company_id')
         .references('id')
         .inTable('companies')
@@ -137,7 +133,7 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTableIfExists('products'),
     knex.schema.dropTableIfExists('stores'),
     knex.schema.dropTableIfExists('companies'),
-    knex.schema.dropTableIfExists('product_categories'),
+    knex.schema.dropTableIfExists('company_categories'),
     knex.schema.dropTableIfExists('user_has_address'),
     knex.schema.dropTableIfExists('addresses'),
     knex.schema.dropTableIfExists('users'),

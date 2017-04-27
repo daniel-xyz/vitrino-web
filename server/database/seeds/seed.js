@@ -1,4 +1,4 @@
-let authHelper = require('../../server/helpers/auth.js');
+let authHelper = require('../../helpers/auth.js');
 
 let email_dummy_user = 'dummy.user@vitrino.de';
 let email_dummy_vendor = 'dummy.vendor@vitrino.de';
@@ -25,39 +25,39 @@ function roles () {
     });
 }
 
-function productCategories () {
-  return knex('product_categories').del()
+function companyCategories () {
+  return knex('company_categories').del()
     .then(function () {
       return Promise.all([
-        knex('product_categories').insert({
+        knex('company_categories').insert({
           id: 1,
           name: 'Mode & Accessoires'
         }),
-        knex('product_categories').insert({
+        knex('company_categories').insert({
           id: 2,
           name: 'Schmuck'
         }),
-        knex('product_categories').insert({
+        knex('company_categories').insert({
           id: 3,
           name: 'Design & Geschenkartikel'
         }),
-        knex('product_categories').insert({
+        knex('company_categories').insert({
           id: 4,
           name: 'Parfumerie & Kosmetik'
         }),
-        knex('product_categories').insert({
+        knex('company_categories').insert({
           id: 5,
           name: 'Kunst'
         }),
-        knex('product_categories').insert({
+        knex('company_categories').insert({
           id: 6,
           name: 'Hobby'
         }),
-        knex('product_categories').insert({
+        knex('company_categories').insert({
           id: 7,
           name: 'Haus & Wohnen'
         }),
-        knex('product_categories').insert({
+        knex('company_categories').insert({
           id: 8,
           name: 'Kinder'
         })
@@ -171,7 +171,7 @@ function companies () {
           verified: true,
           logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_vendor + "')"),
-          product_category_id: 1,
+          company_category_id: 1,
           address_id: 1
         }),
         knex('companies').insert({
@@ -180,7 +180,7 @@ function companies () {
           verified: false,
           logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
-          product_category_id: 5,
+          company_category_id: 5,
           address_id: 1
         }),
         knex('companies').insert({
@@ -189,7 +189,7 @@ function companies () {
           verified: false,
           logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
-          product_category_id: 4,
+          company_category_id: 4,
           address_id: 1
         }),
         knex('companies').insert({
@@ -198,7 +198,7 @@ function companies () {
           verified: false,
           logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
-          product_category_id: 3,
+          company_category_id: 3,
           address_id: 1
         }),
         knex('companies').insert({
@@ -207,7 +207,7 @@ function companies () {
           verified: false,
           logo_url: 'v1480434532/logos/6-Momilk.jpg',
           user_id: knex.raw("(SELECT id FROM users WHERE email='" + email_dummy_admin + "')"),
-          product_category_id: 8,
+          company_category_id: 8,
           address_id: 1
         })
       ]);
@@ -223,7 +223,6 @@ function products () {
           description: 'Ganz tolle Schuhe.',
           image_url: 'v1480335366/hanging-terrarium_uynhd0.jpg',
           verified: true,
-          product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
         knex('products').insert({
@@ -231,7 +230,6 @@ function products () {
           description: 'Bitte Gewicht beachten!',
           image_url: 'v1480342102/54e08a69b868da678e8481fa730d0dda_qpi7fe.jpg',
           verified: true,
-          product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
         knex('products').insert({
@@ -239,7 +237,6 @@ function products () {
           description: 'Was mag wohl drin sein?!',
           image_url: 'v1480335365/55d20aacd3728_e7uloa.jpg',
           verified: true,
-          product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
         knex('products').insert({
@@ -247,7 +244,6 @@ function products () {
           description: 'Ganz tolle Schuhe.',
           image_url: 'v1480335365/33b5efe7ddcd2ca3a43f51be4cc6fc6e_az1uhh.jpg',
           verified: false,
-          product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
         knex('products').insert({
@@ -255,7 +251,6 @@ function products () {
           description: 'Für die nächste Weltreise.',
           image_url: 'v1480347134/438a-nest_qulq95.jpg',
           verified: false,
-          product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         }),
         knex('products').insert({
@@ -263,7 +258,6 @@ function products () {
           description: 'Aus besonders schönem Leder.',
           image_url: 'v1480409424/SHOE012_101_DEFAULT_ovkj1n.jpg',
           verified: false,
-          product_category_id: 1,
           company_id: knex.raw("(SELECT id FROM companies WHERE name='Schuhzauberei GmbH')")
         })
       ]);
@@ -437,7 +431,187 @@ function store_has_product () {
           store_id: 3,
           in_store_window: true,
           price: 4.90
-        })
+        }),
+        knex('store_has_product').insert({
+          product_id: 1,
+          store_id: 4,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 2,
+          store_id: 4,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 3,
+          store_id: 4,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 4,
+          store_id: 4,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 5,
+          store_id: 4,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 6,
+          store_id: 4,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 1,
+          store_id: 5,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 2,
+          store_id: 5,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 3,
+          store_id: 5,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 4,
+          store_id: 5,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 5,
+          store_id: 5,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 6,
+          store_id: 5,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 1,
+          store_id: 6,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 2,
+          store_id: 6,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 3,
+          store_id: 6,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 4,
+          store_id: 6,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 5,
+          store_id: 6,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 6,
+          store_id: 6,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 1,
+          store_id: 7,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 2,
+          store_id: 7,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 3,
+          store_id: 7,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 4,
+          store_id: 7,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 5,
+          store_id: 7,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 6,
+          store_id: 7,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 1,
+          store_id: 8,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 2,
+          store_id: 8,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 3,
+          store_id: 8,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 4,
+          store_id: 8,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 5,
+          store_id: 8,
+          in_store_window: true,
+          price: 4.90
+        }),
+        knex('store_has_product').insert({
+          product_id: 6,
+          store_id: 8,
+          in_store_window: true,
+          price: 4.90
+        }),
       ])
     })
 }
@@ -447,7 +621,7 @@ exports.seed = function(k, p) {
   Promise = p;
 
   return roles()
-    .then(productCategories)
+    .then(companyCategories)
     .then(addresses)
     .then(users)
     .then(companies)

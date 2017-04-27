@@ -3,10 +3,10 @@ header {
   top: 0;
   width: 100%;
   height: @header-height-xs;
-  padding: 0 8px;
+  padding: 0 16px;
   box-sizing: border-box;
   border-bottom: 5px solid #fff;
-  background: #0DBAFF;
+  background: #10CDFF;
   box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
@@ -19,10 +19,10 @@ header {
   }
 
   #logo {
-    max-height: 32px;
+    max-height: 30px;
 
     @media @md-and-up {
-      max-height: 40px;
+      max-height: 38px;
     }
   }
 
@@ -35,7 +35,6 @@ header {
     .back-icon {
       display: inline-block;
       width: 18px;
-      margin-left: 6px;
       height: 100%;
       vertical-align: middle;
       background-size: contain;
@@ -51,21 +50,63 @@ header {
     }
   }
 
-  nav {
-    display: inline-block;
+  #main-nav {
+    float: right;
 
     ul {
-      & > li {
-        display: inline-block;
-        margin-left: 10px;
-        margin-bottom: 0;
+      position: absolute;
+      top: @header-height-xs;
+      left: 0;
+      display: block;
+      height: auto;
+      list-style-type: none;
+      text-align: center;
+      width: 100vw;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
 
-        & > .log {
-          background: #fff;
-          box-shadow: 0 1px 2px 0 rgba(123,123,123,0.50);
-          border-radius: @button-border-radius;
-          color: @light-grey;
-          padding: 13px;
+      a {
+        color: @light-grey;
+        text-decoration: none;
+        transition: all .5s ease;
+
+        li {
+          display: block;
+          padding: 1em 0;
+          margin-left: 24px;
+          margin-right: 24px;
+        }
+      }
+    }
+
+    .menu-toggle-icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 8px;
+      height: 29px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%226%22%20height%3D%2227%22%20viewBox%3D%22337%2013%206%2027%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(337%2013)%22%3E%3Crect%20width%3D%225.962%22%20height%3D%225.309%22%20rx%3D%222.654%22%2F%3E%3Crect%20y%3D%2210.565%22%20width%3D%225.962%22%20height%3D%225.309%22%20rx%3D%222.654%22%2F%3E%3Crect%20y%3D%2221.13%22%20width%3D%225.962%22%20height%3D%225.309%22%20rx%3D%222.654%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    }
+
+    @media @md-and-up {
+      ul {
+        position: static;
+        background-color: transparent;
+        width: 100%;
+        box-shadow: none;
+
+        a {
+          color: #fff;
+
+          li  {
+            display: inline;
+            border-bottom: none;
+            margin-right: 24px;
+          }
         }
       }
     }

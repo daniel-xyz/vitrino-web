@@ -1,0 +1,40 @@
+html {
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+  top: @header-height-xs;
+  height: @content-area-height-xs;
+
+  @media @md-and-up {
+    top: @header-height-md;
+    height: @content-area-height-md;
+    max-height: @content-area-height-md;
+  }
+
+  .scrollable-layer {
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 3;
+    background-color: white;
+    box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
+
+    @media @md-and-up {
+      overflow: auto;
+      max-height: 100%;
+      float: left;
+      width: 580px;
+    }
+  }
+
+  .non-scrollable-layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+}
