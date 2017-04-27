@@ -98,13 +98,14 @@ let config = {
           'https://*.tiles.mapbox.com',
           'https://api.mapbox.com',
           'https://unpkg.com/vue@2.1.4/dist/vue.min.js',
-          'https://code.jquery.com/jquery-3.1.1.min.js'
+          'https://code.jquery.com/jquery-3.1.1.min.js',
         ],
         styleSrc: [
           "'self'",
           "'unsafe-inline'",
           'https://*.tiles.mapbox.com',
-          'https://api.mapbox.com'
+          'https://api.mapbox.com',
+          'https://fonts.googleapis.com',
         ],
         childSrc: ["'self'", 'blob:'],
         imgSrc: [
@@ -112,19 +113,20 @@ let config = {
           'data:',
           'blob:',
           'https://*.mapbox.com',
-          'https://res.cloudinary.com/dj82hrksp/'
+          'https://res.cloudinary.com/dj82hrksp',
+          'https://*.yelpcdn.com',
         ],
         connectSrc: [
           "'self'",
           'http://localhost:3123/',
           'ws://localhost:3123/',
           'https://*.tiles.mapbox.com',
-          'https://api.mapbox.com'
+          'https://api.mapbox.com',
         ],
         objectSrc: ["'none'"],
         formAction: ["'self'"],
         frameAncestors: ["'none'"],
-        sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin'],
+        sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin', 'allow-popups'],
         // TODO: Specify 'reportUri' to report CSP violations in a log file
       },
 
