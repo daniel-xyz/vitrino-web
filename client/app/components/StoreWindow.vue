@@ -141,6 +141,7 @@
       fillData () {
         const self = this;
 
+        self.url = window.location.href;
         self.store.yid = self.$route.params.yid;
         self.company.name = self.$route.query.name;
         self.company.categories = [];
