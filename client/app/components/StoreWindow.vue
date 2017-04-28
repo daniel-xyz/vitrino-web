@@ -14,7 +14,7 @@
       </div>
 
       <div id="action-bar" class="grid margin-top-xxl">
-        <popover name="default" id="opening-hours">
+        <popover name="opening-hours" id="opening-hours" :left="true">
           <div slot="face">
             <div class="col-4 align-center">
               <div class="icon"></div>
@@ -34,7 +34,7 @@
           <div>Bewertungen</div>
         </div>
 
-        <popover name="default" id="share">
+        <popover id="share" name="social-share" :closeOnContentClick="false" :right="true">
           <div slot="face">
             <div class="col-4 align-center">
               <div class="icon"></div>

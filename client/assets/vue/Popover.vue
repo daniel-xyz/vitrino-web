@@ -1,12 +1,12 @@
 <template>
-  <div class="popover" v-bind:class="{ open: isOpen, [name]: true }">
+  <div class="popover" :class="{ open: isOpen, [name]: true }">
     <div class="popover__face" :aria-owns="id" @click="onPopoverToggle">
       <slot name="face" >
         <a href="#">popover</a>
       </slot>
     </div>
 
-    <div class="popover__container" :id="id" v-if="isOpen">
+    <div class="popover__container" :class="{left: left, right: right}" :id="id" v-if="isOpen" @click="onPopoverContentClick">
       <slot name="content"></slot>
     </div>
   </div>
@@ -26,12 +26,28 @@
         type: Boolean,
         required: false,
       },
+      left: {
+        default: false,
+        type: Boolean,
+        required: false,
+      },
+      right: {
+        default: false,
+        type: Boolean,
+        required: false,
+      },
     },
 
     data () {
       return {
         isOpen: false,
       };
+    },
+
+    computed: {
+      id () {
+        return `popover-${this.name}`;
+      },
     },
 
     watch: {
@@ -92,12 +108,6 @@
       },
     },
 
-    computed: {
-      id () {
-        return `popover-${this.name}`;
-      },
-    },
-
     mounted () {
       popovers.push(this);
       this.$on('popover:close', this.removeDocumentEvent);
@@ -113,16 +123,24 @@
 <style lang="less">
   .popover {
     position: relative;
+    -webkit-tap-highlight-color: transparent;
 
     &__container {
       position: absolute;
       z-index: 4;
-      left: 0;
       bottom: 0;
       padding: 8px;
       background: #FFFFFF;
       box-shadow: 0 1px 8px 0 rgba(0,0,0,0.50);
       border-radius: 8px;
+
+      &.left {
+        left: 0;
+      }
+
+      &.right {
+        right: 0;
+      }
     }
   }
 </style>
