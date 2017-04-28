@@ -7,7 +7,6 @@
 
 import Vue from 'vue';
 import SocialSharing from 'vue-social-sharing';
-import VueTouch from 'vue-touch';
 import VueRouter from 'vue-router';
 import routes from './app/router';
 
@@ -41,18 +40,6 @@ export const router = new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes,
 });
-
-
-/* ============
- * Vue Touch
- * ============
- *
- * Hammer.js wrapper for Vue.js
- *
- * https://github.com/vuejs/vue-touch/
- */
-
-Vue.use(VueTouch, { name: 'v-touch' });
 
 
 /* ============

@@ -42,7 +42,7 @@
             </div>
           </div>
           <div slot="content">
-              <social-sharing id="share-icons" :url="url" :title="company.name" description="Schaue dir unser Schaufenster auf Vitrino an." inline-template>
+              <social-sharing id="share-icons" :title="company.name" description="Schaue dir jetzt unser Schaufenster auf Vitrino an!" inline-template>
                 <div>
                   <network network="facebook">
                     <div class="facebook-icon"></div>

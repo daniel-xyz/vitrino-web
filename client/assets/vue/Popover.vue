@@ -1,14 +1,14 @@
 <template>
   <div class="popover" v-bind:class="{ open: isOpen, [name]: true }">
-    <v-touch class="popover__face" :aria-owns="id" @tap="onPopoverToggle">
+    <div class="popover__face" :aria-owns="id" @click="onPopoverToggle">
       <slot name="face" >
         <a href="#">popover</a>
       </slot>
-    </v-touch>
+    </div>
 
-    <v-touch class="popover__container" :id="id" v-if="isOpen">
+    <div class="popover__container" :id="id" v-if="isOpen">
       <slot name="content"></slot>
-    </v-touch>
+    </div>
   </div>
 </template>
 
@@ -34,9 +34,21 @@
       };
     },
 
+    watch: {
+      isOpen (boolean) {
+        const element = document.documentElement;
+
+        if (boolean) {
+          element.classList.add('click-area');
+        } else {
+          element.classList.remove('click-area');
+        }
+      },
+    },
+
     methods: {
-      onPopoverToggle () {
-        // e.stopPropagation();
+      onPopoverToggle (e) {
+        e.stopPropagation();
 
         if (this.isOpen) {
           this.isOpen = false;
@@ -56,17 +68,18 @@
         }
 
         this.isOpen = true;
-//        document.documentElement.addEventListener('click', this.onDocumentClick, false);
+        document.documentElement.addEventListener('click', this.onDocumentClick, false);
         this.$emit('popover:open');
       },
 
-      onDocumentClick () {
+      onDocumentClick (e) {
+        e.stopPropagation();
         this.isOpen = false;
         this.$emit('popover:close');
       },
 
-      onPopoverContentClick () {
-        // e.stopPropagation();
+      onPopoverContentClick (e) {
+        e.stopPropagation();
 
         if (this.closeOnContentClick) {
           this.isOpen = false;
@@ -75,7 +88,7 @@
       },
 
       removeDocumentEvent () {
-//        document.documentElement.removeEventListener('touchstart', this.onDocumentClick, false);
+        document.documentElement.removeEventListener('click', this.onDocumentClick, false);
       },
     },
 
