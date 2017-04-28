@@ -145,6 +145,7 @@
         self.company.name = self.$route.query.name;
         self.company.categories = [];
         self.company.photos = [];
+        self.company.openingHours = [];
 
         stores.getStoreByYelpID(self.store.yid, (error, response) => {
           if (error) {
