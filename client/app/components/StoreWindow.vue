@@ -131,7 +131,6 @@
 //        });
       },
       $route () {
-        this.url = window.location.href;
         this.fillData();
         this.$refs.slick.filter('filter-' + this.store.yid);
       },
@@ -190,7 +189,7 @@
         });
       },
 
-      reInitSlick() {
+      reInitSlick () {
         this.$refs.slick.reSlick();
       },
     },

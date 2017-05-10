@@ -2,7 +2,7 @@ let config = require('../config.js');
 
 let deadEnd = function (req, res, next) {
 
-  if (config.env !== 'production') {
+  if (config.env !== 'staging') {
     return next();
   }
 
