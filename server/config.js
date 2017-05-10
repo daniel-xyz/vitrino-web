@@ -123,6 +123,9 @@ let config = {
           'https://*.tiles.mapbox.com',
           'https://api.mapbox.com',
         ],
+        fontSrc: [
+          'https://fonts.gstatic.com',
+        ],
         objectSrc: ["'none'"],
         formAction: ["'self'"],
         frameAncestors: ["'none'"],

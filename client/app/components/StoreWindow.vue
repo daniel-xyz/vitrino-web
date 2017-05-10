@@ -152,7 +152,7 @@
             return console.error(error.stack); // eslint-disable-line no-console
           }
 
-          console.log('response:' + JSON.stringify(response));
+          // console.log('response:' + JSON.stringify(response));
 
           if (self.company.name === '') {
             this.company.name = response.name;
