@@ -106,6 +106,7 @@ let config = {
           'https://*.tiles.mapbox.com',
           'https://api.mapbox.com',
           'https://fonts.googleapis.com',
+          'https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2',
         ],
         childSrc: ["'self'", 'blob:'],
         imgSrc: [
