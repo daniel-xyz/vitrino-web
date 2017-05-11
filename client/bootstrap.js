@@ -9,6 +9,7 @@ import Vue from 'vue';
 import SocialSharing from 'vue-social-sharing';
 import VueRouter from 'vue-router';
 import routes from './app/router';
+import cookieMessage from './app/utils/cookie-policy';
 
 /* ============
  * Vue
@@ -61,7 +62,19 @@ Vue.use(SocialSharing);
  * Require the application styling.
  * http://lesscss.org/
  */
+
 require('./assets/less/vitrino.less');
+
+
+/* ============
+ * Cookie Policy
+ * ============
+ *
+ * Contains the cookie message and a function to clear cookies from the client.
+ * https://cookieconsent.insites.com/
+ */
+
+cookieMessage.enableCookieMessage();
 
 
 export default {
