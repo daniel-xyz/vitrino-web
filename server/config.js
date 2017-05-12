@@ -119,6 +119,7 @@ let config = {
           'https://*.mapbox.com',
           'https://res.cloudinary.com/dj82hrksp',
           'https://*.yelpcdn.com',
+          'https://rum-collector.pingdom.net/',
         ],
         connectSrc: [
           "'self'",
