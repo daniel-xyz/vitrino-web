@@ -100,6 +100,7 @@ let config = {
           'https://unpkg.com/vue@2.1.4/dist/vue.min.js',
           'https://code.jquery.com/jquery-3.1.1.min.js',
           'https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/',
+          'https://js-agent.newrelic.com/',
         ],
         styleSrc: [
           "'self'",
