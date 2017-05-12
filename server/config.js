@@ -101,6 +101,7 @@ let config = {
           'https://code.jquery.com/jquery-3.1.1.min.js',
           'https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/',
           'https://js-agent.newrelic.com/',
+          'https://rum-static.pingdom.net/',
         ],
         styleSrc: [
           "'self'",
