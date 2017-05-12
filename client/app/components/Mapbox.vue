@@ -136,6 +136,8 @@
         });
 
         this.map.on('click', this.onMapClickHandler);
+
+        this.map.on('mousemove', this.onMouseMoveHandler);
       },
 
       onMapClickHandler (e) {
@@ -155,6 +157,12 @@
             name: feature.properties.name,
           },
         });
+      },
+
+      onMouseMoveHandler (e) {
+        const features = this.map.queryRenderedFeatures(e.point, { layers: Object.keys(this.markers) });
+
+        this.map.getCanvas().style.cursor = features.length ? 'pointer' : '';
       },
 
       getStoreType (categoryId) {
