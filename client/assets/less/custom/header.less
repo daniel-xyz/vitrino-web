@@ -3,15 +3,16 @@ header {
   top: 0;
   width: 100%;
   height: @header-height-xs;
-  padding: 0 16px;
+  padding: 0 @spacing-l;
   box-sizing: border-box;
   border-bottom: 5px solid #fff;
-  background: #10CDFF;
   box-shadow: 1px 1px 9px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 4;
+
+  .vitrino-gradient;
 
   @media @md-and-up {
     position: absolute;
@@ -22,7 +23,7 @@ header {
     max-height: 30px;
 
     @media @md-and-up {
-      max-height: 38px;
+      max-height: 32px;
     }
   }
 
@@ -75,8 +76,7 @@ header {
         li {
           display: block;
           padding: 1em 0;
-          margin-left: 24px;
-          margin-right: 24px;
+          margin: 0 24px;
         }
       }
     }
@@ -101,12 +101,15 @@ header {
         box-shadow: none;
 
         a {
-          color: #fff;
-
           li  {
             display: inline;
-            border-bottom: none;
-            margin-right: 24px;
+            margin: 0 0 0 @spacing-l;
+            background: #fff;
+            box-shadow: 0 1px 2px 0 hsla(0,0%,48%,.5);
+            border-radius: 5px;
+            font-size: 14px;
+            padding: 8px;
+            line-height: 2;
           }
         }
       }

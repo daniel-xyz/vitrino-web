@@ -29,13 +29,15 @@
 @lg-and-down: ~"only screen and (max-width: @{lg-max-width})";
 
 // Colors
-@background-color: #fff;
-@light-grey: #9b9b9b;
+@white: #fff;
+@background-color: @white;
+@light-grey: lighten(@dark-grey, 20%);
 @dark-grey: #454545;
 @green: #7ED321;
-@primary-color: #33c3f0;
-@border-color: @background-color;
-@link-color: #1eaedb;
+@light-green: #a0e080;
+@primary-color: #10cffe;
+@border-color: @white;
+@link-color: @primary-color;
 @font-color: @dark-grey;
 
 
@@ -61,7 +63,7 @@
 
 // Misc
 @global-radius: 4px;
-@header-height-md: 60px;
+@header-height-md: 50px;
 @header-height-xs: 50px;
 @content-area-height-xs: ~"calc(100vh - @{header-height-xs})";
 @content-area-height-md: ~"calc(100vh - @{header-height-md})";

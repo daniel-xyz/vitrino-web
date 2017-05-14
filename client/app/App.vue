@@ -5,10 +5,14 @@
       <router-view name="layer"></router-view>
       <mapbox></mapbox>
     </main>
+    <footer>
+      <cookie-message buttonText="Ich mag Cookies" message="Diese Webseite nutzt sogenannte Cookies, um dir ein angenehmes Nutzererlebnis zu ermöglichen."></cookie-message>
+    </footer>
   </div>
 </template>
 
 <script>
+  import CookieMessage from './components/CookieMessage';
   import TopHeader from './components/TopHeader';
   import Mapbox from './components/Mapbox';
 
@@ -17,6 +21,7 @@
     components: {
       TopHeader,
       Mapbox,
+      CookieMessage,
     },
   };
 </script>
