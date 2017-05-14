@@ -2,7 +2,7 @@
   <transition appear :name="transitionName">
     <div class="Cookie" :class="[containerPosition]" v-if="isOpen">
       <div class="Cookie__content">
-        Diese Webseite nutzt sogenannte Cookies, um dir ein angenehmes Nutzererlebnis zu ermöglichen. Weitere Informationen in unseren Datenschutzbestimmungen.
+        Diese Webseite nutzt sogenannte Cookies, um dir ein angenehmes Nutzererlebnis zu ermöglichen. Weitere Informationen in unseren <router-link :to="{ path: '/data' }" class="Cookie__link">Datenschutzbestimmungen</router-link>.
       </div>
       <div class="Cookie__button" @click="accept">
         Ich mag Cookies

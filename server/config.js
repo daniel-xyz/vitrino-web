@@ -108,8 +108,7 @@ let config = {
           "'unsafe-inline'",
           'https://*.tiles.mapbox.com',
           'https://api.mapbox.com',
-          'https://fonts.googleapis.com',
-          'https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/',
+          'https://fonts.googleapis.com'
         ],
         childSrc: ["'self'", 'blob:'],
         imgSrc: [
