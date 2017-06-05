@@ -10,14 +10,6 @@
 
 ### Getting started
 
-Create an account on github.com if you don't have one. If you have never used git before, check this out: https://help.github.com/articles/set-up-git/
-
-If everything is set up, clone the project via git:
-
-```
-$ git clone https://github.com/Flur3x/Vitrino.git
-```
-
 Download all necessary dependencies:
 
 ```
@@ -43,7 +35,7 @@ For testing purposes, there are always three different accounts setup and free f
 
 #### Setting up Heroku
 
-This project is hosted on Heroku. All pushes to the github master branch will automatically be deployed after the build succeded in Travis CI.
+This project is hosted on Heroku. All pushes to the github master branch will automatically be deployed.
 
 Sign up for a heroku.com account and install the toolbelt (https://toolbelt.heroku.com/) and tell us your mail so we can give you access to the project.
 
