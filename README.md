@@ -5,7 +5,7 @@
 ### Requirements
 
   - git
-  - node.js v8.0.0 and npm v5.0.1
+  - node.js v8.0 and npm v5.0
   
 
 ### Getting started
