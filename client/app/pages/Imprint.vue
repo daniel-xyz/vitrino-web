@@ -12,6 +12,10 @@
       E-Mail: <a href="mailto:danielbischoff@hotmail.com">danielbischoff@hotmail.com</a><br />
     </p>
 
+    <p>
+      Vitrino® ist eine eingetragene Marke beim Deutschen Patent- und Markenamt.
+    </p>
+
     <br />
 
     <h4>Disclaimer – rechtliche Hinweise</h4>
