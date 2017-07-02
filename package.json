@@ -30,6 +30,7 @@
   "homepage": "https://github.com/Flur3x/Vitrino#readme",
   "dependencies": {
     "autoprefixer": "^6.7.2",
+    "axios": "^0.16.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
@@ -80,6 +81,7 @@
     "sendgrid": "^4.0.2",
     "url-loader": "^0.5.7",
     "vue": "^2.1.10",
+    "vue-lazyload": "^1.0.5",
     "vue-loader": "^11.0.0",
     "vue-router": "^2.2.0",
     "vue-slick": "^1.1.3",

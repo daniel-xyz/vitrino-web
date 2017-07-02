@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import MainLayer from '../components/MainLayer';
-import StoreWindow from '../components/StoreWindow';
+import MainLayer from '../components/partials/layers/MainLayer';
+import StoreWindow from '../components/map/StoreWindow';
 import Imprint from '../pages/Imprint';
 import DataProtection from '../pages/DataProtection';
 

@@ -15,7 +15,7 @@
 
 <script>
   import StoreFilter from './StoreFilter';
-  import { stores } from '../services/vitrinoApi';
+  import { stores } from '../../services/vitrinoApi';
 
   export default {
     name: 'map',

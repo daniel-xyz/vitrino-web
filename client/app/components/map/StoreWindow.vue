@@ -4,7 +4,7 @@
       <h4 id="title">{{ company.name }}</h4>
 
       <slick id="photos" ref="slick" :options="slickOptions">
-        <img v-for="photo in company.photos" :src="photo" :class="'filter-' + store.yid"/>
+        <img v-for="photo in company.photos" v-lazy="photo" :class="'filter-' + store.yid"/>
       </slick>
 
       <div class="margin-top-l">
@@ -58,7 +58,7 @@
 
       <div id="products">
         <div class="product" v-for="product in products.store_window">
-          <img :src="product.image_url.standard" :srcset="product.image_url.retina + ' 2x'">
+          <img v-lazy="product.image_url.standard" :srcset="product.image_url.retina + ' 2x'">
         </div>
       </div>
     </div>
@@ -67,8 +67,9 @@
 
 <script>
   import slick from 'vue-slick';
-  import { stores } from '../services/vitrinoApi';
-  import popover from '../../assets/vue/Popover';
+  // todo: refact
+  import { stores } from '../../services/vitrinoApi';
+  import popover from '../partials/Popover';
 
   export default {
     name: 'store-window',

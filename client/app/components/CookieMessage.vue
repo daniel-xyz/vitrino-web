@@ -1,4 +1,4 @@
-<template>
+-<template>
   <transition appear :name="transitionName">
     <div class="Cookie" :class="[containerPosition]" v-if="isOpen">
       <div class="Cookie__content">
