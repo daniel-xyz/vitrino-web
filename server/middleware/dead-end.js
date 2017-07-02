@@ -2,7 +2,7 @@ let config = require('../config.js');
 
 let deadEnd = function (req, res, next) {
 
-  if (config.env !== 'staging') {
+  if (config.stagingCredentials.login === 'undefined') {
     return next();
   }
 
