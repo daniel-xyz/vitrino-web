@@ -5,8 +5,8 @@ let config = {
 
   // --- Staging authentication ---
   stagingCredentials: {
-    login: process.env.STAGING_LOGIN,
-    password: process.env.STAGING_PW
+    login: process.env.STAGING_LOGIN || null,
+    password: process.env.STAGING_PW || null
   },
 
   // --- Database ---

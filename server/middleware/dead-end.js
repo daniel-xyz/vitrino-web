@@ -1,7 +1,7 @@
 const config = require('../config.js');
 
 const deadEnd = function (req, res, next) {
-  if (config.stagingCredentials.login === 'undefined') {
+  if (config.stagingCredentials.login === null) {
     return next();
   }
 
