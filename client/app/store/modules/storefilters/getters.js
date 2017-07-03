@@ -1,5 +1,10 @@
 /* eslint-disable */
 
-export const filters = state => (payload) => {
-  return state.filters[payload];
+export const getFilter = state => (payload) => {
+  return state.filters.find((f) => {
+    return f.name === payload;
+  });
+};
+export const getAllFilters = state => {
+  return state.filters;
 };
