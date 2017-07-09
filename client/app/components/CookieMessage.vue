@@ -49,7 +49,7 @@
       },
     },
     created () {
-      if (!this.getVisited() === true) {
+      if (!this.getVisited()) {
         this.isOpen = true;
       }
     },

@@ -39,8 +39,5 @@
 <script>
   export default {
     name: 'data-protection',
-    data () {
-      return {};
-    },
   };
 </script>
