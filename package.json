@@ -68,6 +68,7 @@
     "knex": "^0.12.2",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
+    "lodash": "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz",
     "node-fetch": "^1.6.3",
     "nunjucks": "^2.4.2",
     "opn": "^4.0.2",

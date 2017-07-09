@@ -15,6 +15,7 @@ import * as getters from './getters';
 
 // Modules
 import storefilters from './modules/storefilters';
+import mapbox from './modules/mapbox';
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -26,7 +27,9 @@ export default new Vuex.Store({
 
   modules: {
     storefilters,
+    mapbox,
   },
+
   strict: debug,
   plugins: debug ? [createLogger()] : [],
 });

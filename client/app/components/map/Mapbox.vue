@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+  import * as _ from 'lodash';
   import StoreFilter from './StoreFilter';
   import { stores } from '../../services/vitrinoApi';
 
@@ -67,7 +69,7 @@
           }
 
           response.businesses.forEach((store) => {
-            const markerType = 'marker-clothes'; // self.getStoreType(store['product_category']); // eslint-disable-line dot-notation
+            const markerType = this.getStoreType(1); // self.getStoreType(store['product_category']); // eslint-disable-line dot-notation
 
             if (!self.markers[markerType]) {
               self.markers[markerType] = [];
@@ -124,7 +126,7 @@
 
         loadingLayer.classList.add('hide-opacity');
 
-        window.setTimeout(() => {
+        _.delay(() => {
           loadingLayer.classList.add('hide');
         }, 500);
       },
@@ -136,7 +138,6 @@
         });
 
         this.map.on('click', this.onMapClickHandler);
-
         this.map.on('mousemove', this.onMouseMoveHandler);
       },
 
@@ -144,7 +145,6 @@
         const features = this.map.queryRenderedFeatures(e.point, { layers: Object.keys(this.markers) });
 
         if (!features.length) {
-          // self.$bus.$emit('mapClicked');
           this.$router.push({ path: '/' });
           return;
         }
@@ -165,21 +165,6 @@
         this.map.getCanvas().style.cursor = features.length ? 'pointer' : '';
       },
 
-      getStoreType (categoryId) {
-        const markerNames = [
-          'marker-clothes',
-          'marker-jewellery',
-          'marker-gifts',
-          'marker-cosmetics',
-          'marker-art',
-          'marker-hobby',
-          'marker-home',
-          'marker-kids',
-        ];
-
-        return markerNames[categoryId - 1];
-      },
-
       hideLayer (layer) {
         if (this.map.getLayer(layer)) {
           this.map.setLayoutProperty(layer, 'visibility', 'none');
@@ -194,9 +179,10 @@
     },
 
     computed: {
-      filters () {
-        return this.$store.state.storefilters;
-      },
+      ...mapGetters({
+        getStoreType: 'mapbox/storeType',
+        filters: 'storefilters/getAllFilters',
+      }),
     },
 
     watch: {
