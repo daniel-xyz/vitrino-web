@@ -37,7 +37,7 @@ let stores = {
   },
 
   getStoreByYelpID: function (yelpID, callback) {
-    getJSON(endpoint+ '/stores/yid/' + yelpID, null, callback);
+    getJSON(endpoint + '/stores/yid/' + yelpID, null, callback);
   }
 };
 

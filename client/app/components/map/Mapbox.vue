@@ -14,10 +14,9 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex';
   import * as _ from 'lodash';
   import StoreFilter from './StoreFilter';
-  import { stores } from '../../services/vitrinoApi';
 
   export default {
     name: 'map',
@@ -27,11 +26,14 @@
     data () {
       return {
         map: {},
-        markers: {},
       };
     },
 
     methods: {
+      ...mapActions({
+        setPosition: 'mapbox/position',
+        loadMarkers: 'mapbox/loadAllMarkers',
+      }),
       initialize () {
         if (mapboxgl && !isSupported) {
           console.log('Your browser doesn\'t support Mapbox GL.'); // eslint-disable-line no-console
@@ -58,44 +60,6 @@
 
           this.initEventListeners();
         }
-      },
-
-      loadAllMarkers () {
-        const self = this;
-
-        stores.getStoresInRadius('52.500511', '13.444584', '2000', (error, response) => {
-          if (error) {
-            return console.error(error.stack); // eslint-disable-line no-console
-          }
-
-          response.businesses.forEach((store) => {
-            const markerType = this.getStoreType(1); // self.getStoreType(store['product_category']); // eslint-disable-line dot-notation
-
-            if (!self.markers[markerType]) {
-              self.markers[markerType] = [];
-            }
-
-            self.markers[markerType].push({
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: [store.coordinates.longitude, store.coordinates.latitude],
-              },
-              properties: {
-                yid: store.id,
-                name: store.name,
-                icon: markerType,
-              },
-            });
-          });
-
-          Object.keys(self.markers).forEach((markerType) => {
-            self.addSource(markerType, self.markers[markerType]);
-            self.addLayer(markerType);
-          });
-
-          return null;
-        });
       },
 
       addSource (sourceID, features) {
@@ -134,7 +98,7 @@
       initEventListeners () {
         this.map.once('load', () => {
           this.removeLoadingLayer();
-          this.loadAllMarkers();
+          this.setPosition({ lat: '52.500511', lng: '13.444584', meters: '2000' });
         });
 
         this.map.on('click', this.onMapClickHandler);
@@ -182,6 +146,8 @@
       ...mapGetters({
         getStoreType: 'mapbox/storeType',
         filters: 'storefilters/getAllFilters',
+        markers: 'mapbox/markers',
+        addedMarkers: 'mapbox/addedMarkers',
       }),
     },
 
@@ -199,6 +165,16 @@
           });
         },
         deep: true,
+      },
+      addedMarkers: {
+        handler () {
+          const self = this;
+
+          Object.keys(self.markers).forEach((markerType) => {
+            self.addSource(markerType, self.markers[markerType]);
+            self.addLayer(markerType);
+          });
+        },
       },
     },
 

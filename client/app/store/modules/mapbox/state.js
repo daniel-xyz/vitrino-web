@@ -9,4 +9,12 @@ export default {
     'marker-home',
     'marker-kids',
   ],
+  position: {
+    lat: null,
+    lng: null,
+    meters: null,
+  },
+  markers: {},
+  // hook for the marker watcher
+  addedMarkers: false,
 };
