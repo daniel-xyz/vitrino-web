@@ -129,6 +129,7 @@ const config = {
         ],
         fontSrc: [
           "'self'",
+          'data:',
           'https://fonts.gstatic.com',
         ],
         objectSrc: ["'none'"],
