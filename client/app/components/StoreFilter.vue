@@ -2,7 +2,7 @@
   <div id="store-filter" class="height-transition" :class="{ 'filter-opened': show }">
 
     <div id="filter-toggle" class="hide-md-and-up" @click="show = !show">
-      <div :class="{ 'icon-close': show, 'icon-filter': !show }"></div>
+      <div :class="{ 'close': show, 'filter': !show }"></div>
     </div>
 
     <div id="category-icons">
