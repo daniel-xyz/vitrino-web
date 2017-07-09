@@ -1,4 +1,4 @@
-let config = {
+const config = {
   env: process.env.NODE_ENV || 'development',
   host: 'http://vitrino.herokuapp.com',
   port: process.env.PORT || 3000,
@@ -6,7 +6,7 @@ let config = {
   // --- Staging authentication ---
   stagingCredentials: {
     login: process.env.STAGING_LOGIN || null,
-    password: process.env.STAGING_PW || null
+    password: process.env.STAGING_PW || null,
   },
 
   // --- Database ---
@@ -18,7 +18,7 @@ let config = {
   passport: {
     successRedirect: '/',
     failureRedirect: '/login',
-    failureFlash: true
+    failureFlash: true,
   },
 
   // --- Nunjucks templating engine ---
@@ -35,15 +35,15 @@ let config = {
         variableStart: '<$',
         variableEnd: '$>',
         commentStart: '<#',
-        commentEnd: '#>'
-      }
+        commentEnd: '#>',
+      },
     },
     viewPaths: [
       'server/components',
       'server/components/main/views',
       'server/components/users/views',
-      'server/components/admin/views'
-    ]
+      'server/components/admin/views',
+    ],
   },
 
   // --- Cookie parser ---
@@ -60,8 +60,8 @@ let config = {
       path: '/',
       httpOnly: false,
       secure: false, // TODO: Must be set to true as soon as we haved switched to https
-      maxAge: null
-    }
+      maxAge: null,
+    },
   },
 
   // --- Redis storage ---
@@ -81,10 +81,10 @@ let config = {
     noSniff: true,
     noCache: false,
     dnsPrefetchControl: {
-      allow: true
+      allow: true,
     },
     frameguard: {
-      action: 'deny'
+      action: 'deny',
     },
 
     contentSecurityPolicy: {
@@ -128,6 +128,7 @@ let config = {
           'https://api.mapbox.com',
         ],
         fontSrc: [
+          "'self'",
           'https://fonts.gstatic.com',
         ],
         objectSrc: ["'none'"],
@@ -150,8 +151,8 @@ let config = {
       // Set to false if you want to completely disable any user-agent sniffing.
       // This may make the headers less compatible but it will be much faster.
       // This defaults to `true`.
-      browserSniff: true
-    }
+      browserSniff: true,
+    },
   },
 
   // Sendgrid E-Mail service provider
@@ -168,11 +169,11 @@ let config = {
       passwordForgotten: {
         sender: {
           email: 'info@vitrino.de',
-          name: 'Vitrino'
+          name: 'Vitrino',
         },
         templateId: 'be66a06b-9dc6-4c19-b1b1-457b99c45dd4'
-      }
-    }
+      },
+    },
   },
 
   // Yelp
@@ -186,9 +187,9 @@ let config = {
       homeandgarden: 'marker-home',
       jewelry: 'marker-jewellery',
       artsandcrafts: 'marker-art',
-      childcloth: 'marker-kids'
-    }
-  }
+      childcloth: 'marker-kids',
+    },
+  },
 };
 
 module.exports = config;
