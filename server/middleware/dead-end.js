@@ -1,8 +1,7 @@
-let config = require('../config.js');
+const config = require('../config.js');
 
-let deadEnd = function (req, res, next) {
-
-  if (config.env !== 'staging') {
+const deadEnd = function (req, res, next) {
+  if (config.stagingCredentials.login === null) {
     return next();
   }
 
@@ -10,11 +9,11 @@ let deadEnd = function (req, res, next) {
   const [login, password] = new Buffer(b64auth, 'base64').toString().split(':');
 
   if (!login || !password || login !== config.stagingCredentials.login || password !== config.stagingCredentials.password) {
-    res.set('WWW-Authenticate', 'Basic realm=\"Authorization Required\"');
+    res.set('WWW-Authenticate', 'Basic realm="Authorization Required"');
     return res.status(401).send('Keinen Schritt weiter.');
-  } else {
-    next();
   }
+
+  return next();
 };
 
 module.exports = deadEnd;

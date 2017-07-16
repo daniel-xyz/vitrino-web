@@ -69,6 +69,7 @@
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "lodash": "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz",
+    "morgan": "^1.8.1",
     "node-fetch": "^1.6.3",
     "nunjucks": "^2.4.2",
     "opn": "^4.0.2",
@@ -97,7 +98,6 @@
   "devDependencies": {
     "http-proxy-middleware": "^0.17.3",
     "http-server": "^0.9.0",
-    "morgan": "^1.8.1",
     "npm-run-all": "^4.0.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1"
