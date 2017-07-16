@@ -168,11 +168,9 @@
       },
       addedMarkers: {
         handler () {
-          const self = this;
-
-          Object.keys(self.markers).forEach((markerType) => {
-            self.addSource(markerType, self.markers[markerType]);
-            self.addLayer(markerType);
+          Object.keys(this.markers).forEach((markerType) => {
+            this.addSource(markerType, this.markers[markerType]);
+            this.addLayer(markerType);
           });
         },
       },

@@ -52,12 +52,10 @@
     },
 
     created () {
-      const self = this;
-
       this.$bus.$on('menuChangeRequest', (options) => {
-        self.showBack = options.showBack;
-        self.backPath = options.backPath;
-        self.backText = options.backText;
+        this.showBack = options.showBack;
+        this.backPath = options.backPath;
+        this.backText = options.backText;
       });
     },
 

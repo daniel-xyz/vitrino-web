@@ -129,11 +129,10 @@
         loadData: 'storewindow/load',
       }),
       fillData () {
-        const self = this;
-        self.setUrl(window.location.href);
-        self.setYid(self.$route.params.yid);
-        self.clearCompany();
-        self.loadData();
+        this.setUrl(window.location.href);
+        this.setYid(this.$route.params.yid);
+        this.clearCompany();
+        this.loadData();
         //   self.company.name = self.$route.query.name;
       },
 
