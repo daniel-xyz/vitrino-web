@@ -2,7 +2,7 @@
 
 const baseUrl = 'https://res.cloudinary.com/dj82hrksp/image/upload/';
 
-function buildImageUrl (imageUrl, height, width, density) {
+export const buildImageUrl = (imageUrl, height, width, density) => {
   let url = baseUrl;
 
   url += 'c_fill,g_auto,';
@@ -15,8 +15,4 @@ function buildImageUrl (imageUrl, height, width, density) {
   }
 
   return url + imageUrl;
-}
-
-module.exports = {
-  buildImageUrl
-}
+};

@@ -44,8 +44,5 @@
 <script>
   export default {
     name: 'imprint',
-    data () {
-      return {};
-    },
   };
 </script>

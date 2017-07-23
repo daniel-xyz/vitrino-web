@@ -13,8 +13,8 @@
 
 <script>
   import CookieMessage from './components/CookieMessage';
-  import TopHeader from './components/TopHeader';
-  import Mapbox from './components/Mapbox';
+  import TopHeader from './components/layout/TopHeader';
+  import Mapbox from './components/map/Mapbox';
 
   export default {
     name: 'app',

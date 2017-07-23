@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-function send (method, json, url, headers, callback) {
-  let xhr = typeof XMLHttpRequest !== 'undefined'
+export const send = (method, json, url, headers, callback) => {
+  const xhr = typeof XMLHttpRequest !== 'undefined'
     ? new XMLHttpRequest()
     : new ActiveXObject('Microsoft.XMLHTTP');
 
@@ -19,7 +19,7 @@ function send (method, json, url, headers, callback) {
     setHeaders(xhr, headers);
   }
 
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = () => {
     let status;
     let data;
 
@@ -37,23 +37,19 @@ function send (method, json, url, headers, callback) {
   };
 
   xhr.send();
-}
+};
 
-function setHeaders(xhr, headers) {
-  Object.keys(headers).forEach(function(key) {
+export const setHeaders = (xhr, headers) => {
+  Object.keys(headers).forEach((key) => {
     xhr.setRequestHeader(key, headers[key]);
   });
-}
-
-function getJSON (url, headers, callback) {
-  send('get', true, url, headers, callback)
-}
-
-function post (url, callback) {
-  send('post', true, url, callback)
-}
-
-export {
-  getJSON,
-  post
 };
+
+export const getJSON = (url, headers, callback) => {
+  send('get', true, url, headers, callback);
+};
+
+export const post = (url, callback) => {
+  send('post', true, url, callback);
+};
+

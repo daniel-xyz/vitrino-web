@@ -1,4 +1,4 @@
-<template>
+-<template>
   <transition appear :name="transitionName">
     <div class="Cookie" :class="[containerPosition]" v-if="isOpen">
       <div class="Cookie__content">
@@ -49,7 +49,7 @@
       },
     },
     created () {
-      if (!this.getVisited() === true) {
+      if (!this.getVisited()) {
         this.isOpen = true;
       }
     },

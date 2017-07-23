@@ -1,14 +1,21 @@
-import {
-  FILTER_ON,
-  FILTER_OFF,
-} from './../../mutation-types';
+/* eslint-disable */
+import * as types from './mutation-types';
 
 export default {
-  [FILTER_ON](state, filterName) {
-    state[filterName] = true;
+  [types.FILTER_TOGGLE] (state, filterName) {
+    const current = state.filters.find((f) => {
+      return f.name === filterName;
+    });
+    current.active = !current.active;
   },
 
-  [FILTER_OFF](state, filterName) {
-    state[filterName] = false;
+  [types.FILTER_SET_ALL] (state, filterState) {
+    state.filters.forEach((v) => {
+      v.active = filterState;
+    });
+  },
+
+  [types.FILTER_FIRST_VISITED] (state) {
+    state.firstVisit = true;
   },
 };

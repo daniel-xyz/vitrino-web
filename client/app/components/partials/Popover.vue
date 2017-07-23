@@ -6,7 +6,11 @@
       </slot>
     </div>
 
-    <div class="popover__container" :class="{left: left, right: right}" :id="id" v-if="isOpen" @click="onPopoverContentClick">
+    <div class="popover__container"
+         :class="{left: left, right: right}"
+         :id="id"
+         v-if="isOpen"
+         @click="onPopoverContentClick">
       <slot name="content"></slot>
     </div>
   </div>

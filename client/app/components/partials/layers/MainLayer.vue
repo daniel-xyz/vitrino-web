@@ -13,7 +13,7 @@
       return {};
     },
 
-    created () {
+    mounted () {
       this.$bus.$emit('menuChangeRequest', {
         showBack: true,
         backPath: '/',

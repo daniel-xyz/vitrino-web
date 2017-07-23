@@ -14,8 +14,9 @@
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex';
+  import * as _ from 'lodash';
   import StoreFilter from './StoreFilter';
-  import { stores } from '../services/vitrinoApi';
 
   export default {
     name: 'map',
@@ -25,11 +26,14 @@
     data () {
       return {
         map: {},
-        markers: {},
       };
     },
 
     methods: {
+      ...mapActions({
+        setPosition: 'mapbox/position',
+        loadMarkers: 'mapbox/loadAllMarkers',
+      }),
       initialize () {
         if (mapboxgl && !isSupported) {
           console.log('Your browser doesn\'t support Mapbox GL.'); // eslint-disable-line no-console
@@ -56,44 +60,6 @@
 
           this.initEventListeners();
         }
-      },
-
-      loadAllMarkers () {
-        const self = this;
-
-        stores.getStoresInRadius('52.500511', '13.444584', '2000', (error, response) => {
-          if (error) {
-            return console.error(error.stack); // eslint-disable-line no-console
-          }
-
-          response.businesses.forEach((store) => {
-            const markerType = 'marker-clothes'; // self.getStoreType(store['product_category']); // eslint-disable-line dot-notation
-
-            if (!self.markers[markerType]) {
-              self.markers[markerType] = [];
-            }
-
-            self.markers[markerType].push({
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: [store.coordinates.longitude, store.coordinates.latitude],
-              },
-              properties: {
-                yid: store.id,
-                name: store.name,
-                icon: markerType,
-              },
-            });
-          });
-
-          Object.keys(self.markers).forEach((markerType) => {
-            self.addSource(markerType, self.markers[markerType]);
-            self.addLayer(markerType);
-          });
-
-          return null;
-        });
       },
 
       addSource (sourceID, features) {
@@ -124,7 +90,7 @@
 
         loadingLayer.classList.add('hide-opacity');
 
-        window.setTimeout(() => {
+        _.delay(() => {
           loadingLayer.classList.add('hide');
         }, 500);
       },
@@ -132,11 +98,10 @@
       initEventListeners () {
         this.map.once('load', () => {
           this.removeLoadingLayer();
-          this.loadAllMarkers();
+          this.setPosition({ lat: '52.500511', lng: '13.444584', meters: '2000' });
         });
 
         this.map.on('click', this.onMapClickHandler);
-
         this.map.on('mousemove', this.onMouseMoveHandler);
       },
 
@@ -144,7 +109,6 @@
         const features = this.map.queryRenderedFeatures(e.point, { layers: Object.keys(this.markers) });
 
         if (!features.length) {
-          // self.$bus.$emit('mapClicked');
           this.$router.push({ path: '/' });
           return;
         }
@@ -165,21 +129,6 @@
         this.map.getCanvas().style.cursor = features.length ? 'pointer' : '';
       },
 
-      getStoreType (categoryId) {
-        const markerNames = [
-          'marker-clothes',
-          'marker-jewellery',
-          'marker-gifts',
-          'marker-cosmetics',
-          'marker-art',
-          'marker-hobby',
-          'marker-home',
-          'marker-kids',
-        ];
-
-        return markerNames[categoryId - 1];
-      },
-
       hideLayer (layer) {
         if (this.map.getLayer(layer)) {
           this.map.setLayoutProperty(layer, 'visibility', 'none');
@@ -194,9 +143,12 @@
     },
 
     computed: {
-      filters () {
-        return this.$store.state.storefilters;
-      },
+      ...mapGetters({
+        getStoreType: 'mapbox/storeType',
+        filters: 'storefilters/getAllFilters',
+        markers: 'mapbox/markers',
+        addedMarkers: 'mapbox/addedMarkers',
+      }),
     },
 
     watch: {
@@ -213,6 +165,14 @@
           });
         },
         deep: true,
+      },
+      addedMarkers: {
+        handler () {
+          Object.keys(this.markers).forEach((markerType) => {
+            this.addSource(markerType, this.markers[markerType]);
+            this.addLayer(markerType);
+          });
+        },
       },
     },
 
