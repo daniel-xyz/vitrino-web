@@ -40,6 +40,7 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/imports-first': 0,
 
+    'indent': 0,
     'func-names': 0,
     'max-len': 0,
     'no-new': 0,

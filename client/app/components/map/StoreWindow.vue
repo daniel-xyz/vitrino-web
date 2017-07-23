@@ -19,7 +19,7 @@
         <popover name="opening-hours" id="opening-hours" :left="true">
           <div slot="face">
             <div class="col-4 align-center">
-              <div class="icon"></div>
+              <i class="icon-market icon-2x"></i>
               <div v-if="company.is_open_now" class="open">Jetzt geöffnet</div>
               <div v-else class="closed">Öffnungszeiten</div>
             </div>
@@ -34,7 +34,7 @@
           </div>
         </popover>
         <div id="ratings" class="col-4 align-center">
-          <div class="icon"></div>
+          <i class="icon-talk icon-2x"></i>
           <div>Bewertungen</div>
         </div>
 
@@ -44,7 +44,7 @@
                  :right="true">
           <div slot="face">
             <div class="col-4 align-center">
-              <div class="icon"></div>
+              <i class="icon-share icon-2x"></i>
               <div>Weitersagen</div>
             </div>
           </div>
