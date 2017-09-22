@@ -1,6 +1,6 @@
 const knex = require('../../services/knex.js');
 
-/** Store model **/
+/* Store model */
 const Store = {
 
   /**

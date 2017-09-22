@@ -1,14 +1,14 @@
-let knex = require('../../services/knex.js');
-let authHelper = require('../../helpers/auth.js');
+const knex = require('../../services/knex.js');
+const authHelper = require('../../helpers/auth.js');
 
-/** User model **/
-let User = {
+/* User model */
+const User = {
 
   /**
    * Find all users in the database and return them
    * @return {Promise<Array, Error>} An array containing the user objects
    */
-  findAllUsers: function () {
+  findAllUsers () {
     return knex('users');
   },
 
@@ -17,7 +17,7 @@ let User = {
    * @param {Number} id The user's ID
    * @return {Promise<Object, Error>} The user object
    */
-  findById: function (id) {
+  findById (id) {
     return knex('users').where('id', id).first();
   },
 
@@ -26,8 +26,8 @@ let User = {
    * @param {String} email The user's E-Mail
    * @return {Promise<Object, Error>} The user object
    */
-  findByEmail: function (email) {
-    return knex('users').where('email', email).first()
+  findByEmail (email) {
+    return knex('users').where('email', email).first();
   },
 
   /**
@@ -36,14 +36,14 @@ let User = {
    * @param {String} password The raw (unhashed) password
    * @return {Promise<Array, Error>} An array containing only the new created user object
    */
-  create: function (email, password) {
+  create (email, password) {
     return knex('users')
       .insert({
-        email: email,
+        email,
         password: authHelper.generateSecureHash(password),
-        auth_token: authHelper.generateToken(email)
+        auth_token: authHelper.generateToken(email),
       })
-      .returning('*')
+      .returning('*');
   },
 
   /**
@@ -52,11 +52,11 @@ let User = {
    * @param {String} password The raw (unhashed) password
    * @return {Promise<Array, Error>} An array containing only the updated user object
    */
-  updatePassword: function (id, password) {
+  updatePassword (id, password) {
     return knex('users')
       .where('id', id)
       .update('password', authHelper.generateSecureHash(password))
-      .returning('*')
+      .returning('*');
   },
 
   /**
@@ -65,14 +65,14 @@ let User = {
    * @param token Necessary to identify the request later on
    * @return {Promise<Array, Error>} An array containing only the updated user object
      */
-  setResetPasswordExpiration: function (id, token) {
+  setResetPasswordExpiration (id, token) {
     return knex('users')
       .where('id', id)
       .update({
-        'pw_reset_token': token,
-        'pw_reset_requested_at': knex.raw('CURRENT_TIMESTAMP')
+        pw_reset_token: token,
+        pw_reset_requested_at: knex.raw('CURRENT_TIMESTAMP'),
       })
-      .returning('*')
+      .returning('*');
   },
 
   /**
@@ -80,10 +80,10 @@ let User = {
    * @param token The token which the password reset has been requested with initially
    * @return {Promise<Object, Error>} The user object
      */
-  findUserWithValidResetToken: function (token) {
+  findUserWithValidResetToken (token) {
     return knex('users')
       .whereRaw("pw_reset_token = ? AND pw_reset_requested_at > CURRENT_TIMESTAMP - INTERVAL '1 hour'", token)
-      .first()
+      .first();
   },
 
   /**
@@ -91,12 +91,12 @@ let User = {
    * @param {String} authToken The authToken that should be searched for
    * @return {Promise<Array, Error>} An array containing only the updated user object
    */
-  verifyEmail: function (authToken) {
+  verifyEmail (authToken) {
     return knex('users')
       .where('auth_token', authToken)
       .update('email_verified', true)
-      .returning('*')
-  }
+      .returning('*');
+  },
 };
 
 module.exports = User;

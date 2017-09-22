@@ -1,13 +1,13 @@
-let knex = require('../../services/knex.js');
+const knex = require('../../services/knex.js');
 
-/** Product model **/
-let Product = {
+/* Product model */
+const Product = {
 
   /**
    * Find all products in the database and return them
    * @return {Promise<Array, Error>} An array containing the product objects
    */
-  findAllProducts: function () {
+  findAllProducts () {
     return knex('products');
   },
 
@@ -16,12 +16,12 @@ let Product = {
    * @param {Number} id The product's ID
    * @return {Promise<Array, Error>} An array containing only the updated product object
    */
-  verifyProduct: function (id) {
+  verifyProduct (id) {
     return knex('products')
       .where('id', id)
       .update('verified', true)
-      .returning('*')
-  }
+      .returning('*');
+  },
 };
 
 module.exports = Product;

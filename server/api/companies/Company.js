@@ -1,6 +1,6 @@
 const knex = require('../../services/knex.js');
 
-/** Company model **/
+/* Company model */
 const Company = {
 
   /**

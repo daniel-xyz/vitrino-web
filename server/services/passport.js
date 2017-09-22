@@ -2,7 +2,7 @@ let passport = require("passport");
 let LocalStrategy = require("passport-local").Strategy;
 
 let authHelper = require('../helpers/auth.js');
-let User = require('../components/users/User.js');
+let User = require('../api/users/User.js');
 
 let setupPassport = function () {
 

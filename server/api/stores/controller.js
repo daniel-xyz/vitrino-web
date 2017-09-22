@@ -14,21 +14,21 @@ api.get(endpoint, (req, res) => {
 
 api.get(endpoint + '/yid/:yid', (req, res) => {
   yelp.findStoreByYelpID(req.params.yid)
-    .then(res => res.json())
+    .then(store => store.json())
     .then(json => res.json(json))
     .catch(err => res.status(500).json(err));
 });
 
 api.get(endpoint + '/:id', (req, res) => {
     Store.findStoreByID(req.params.id)
-        .then(res => res.json())
+        .then(store => store.json())
         .then(json => res.json(json))
         .catch(err => res.status(500).json(err));
 });
 
 api.get(endpoint + '/radius/:lat/:lng/:meters', (req, res) => {
   yelp.findStoresByRadius(req.params.lat, req.params.lng, req.params.meters)
-    .then(res => res.json())
+    .then(stores => stores.json())
     .then(json => res.json(json))
     .catch(err => res.status(500).json(err));
 

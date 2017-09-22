@@ -7,6 +7,6 @@ router.use((req, res, next) => {
   next();
 });
 
-router.use(require('./components/index.js'));
+router.use(require('./api/index.js'));
 
 module.exports = router;
