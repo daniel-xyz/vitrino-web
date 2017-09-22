@@ -9,9 +9,9 @@ import * as actions from './actions';
 import * as getters from './getters';
 
 export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions,
-  getters,
+    namespaced: true,
+    state,
+    mutations,
+    actions,
+    getters,
 };

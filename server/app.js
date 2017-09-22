@@ -6,8 +6,6 @@ const path = require('path');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
-let logger = null;
 const helmet = require('helmet');
 const csrf = require('csurf');
 const historyFallback = require('connect-history-api-fallback');
@@ -16,27 +14,23 @@ const config = require('./config.js');
 const services = require('./services/index.js');
 const routes = require('./routes.js');
 
-if (config.env === 'development') {
-    logger = require('morgan');
-}
-
-// Custom middleware
 const csrfError = require('./middleware/csrf-custom-error.js');
 const deadEnd = require('./middleware/dead-end.js');
 
+const useLogger = (config.env === 'development');
+const useRedis = (config.env === 'production' || config.env === 'staging');
+
+const logger = (useLogger) ? require('morgan') : null;
+
 const app = express();
 
-if (config.env === 'production' || config.env === 'staging') {
-    config.sessions.store = new RedisStore(config.redis.sessions);
-}
+if (useRedis) config.sessions.store = new RedisStore(config.redis.sessions);
 
 services.initialize(app);
 
 app.set('port', config.port);
 
-if (logger) {
-    app.use(logger('dev'));
-}
+if (logger) app.use(logger('dev'));
 
 app.use(deadEnd);
 app.use(helmet(config.helmet));
@@ -53,8 +47,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);
 
-app.listen(app.get('port'), () => {
-    console.log('Server started on port', app.get('port')); // eslint-disable-line no-console
-});
+app.listen(app.get('port'), () => console.log('Server started on port', app.get('port')));
 
 module.exports = app;

@@ -10,55 +10,35 @@ const router = express.Router();
 
 // API
 
-router.get('/api/users', (req, res) => {
-               User.findAllUsers()
-                   .then((users) => {
-                       res.json(users);
-                   })
-                   .catch((err) => {
-                       res.status(500)
-                           .json(err);
-                   });
-           },
-);
+router.get('/api/users', (req, res) => User.findAllUsers()
+    .then(users => res.json(users))
+    .catch(err => res.status(500).json(err)));
 
 // --- Signup and E-Mail verification
 
-router.get('/signup', (req, res) => {
-    res.render('signup.html', {});
-});
+router.get('/signup', (req, res) => res.render('signup.html', {}));
 
-router.post('/signup', (req, res, next) => {
-    User.create(req.body.email, req.body.password)
-        .then((user) => {
-            sendgrid.sendToken(user[0].email, user[0].auth_token);
-            next();
-        })
-        .catch((err) => {
-            console.error(err.stack);
-        });
-}, passport.authenticate('local', config.passport));
+router.post('/signup', (req, res, next) => User.create(req.body.email, req.body.password)
+    .then((user) => {
+        sendgrid.sendToken(user[0].email, user[0].auth_token);
+        next();
+    })
+    .catch(err => console.error(err.stack)), passport.authenticate('local', config.passport));
 
-router.get('/verify_email/:token', (req, res) => {
-    User.verifyEmail(req.params.token)
-        .then(() => {
-            res.render('verify.html', {
+router.get('/verify_email/:token', (req, res) => User.verifyEmail(req.params.token)
+        .then(() => res.render('verify.html', {
                 status: 'Erfolgreich! :)',
-            });
-        })
+            }))
         .catch((err) => {
             console.error(err);
             res.render('verify.html', {
                 status: 'Fehler :(',
             });
-        });
-});
+        }));
 
 // --- Login / Logout
 
-router.get('/login', (req, res) => {
-    res.render('login.html', {});
-});
+router.get('/login', (req, res) => res.render('login.html', {}));
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
@@ -102,9 +82,7 @@ router.get('/logout', (req, res) => {
 
 // --- Password forgotten
 
-router.get('/forgot', (req, res) => {
-    res.render('forgotPassword.html', {});
-});
+router.get('/forgot', (req, res) => res.render('forgotPassword.html', {}));
 
 router.post('/forgot', (req, res) => {
     User.findByEmail(req.body.email)

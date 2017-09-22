@@ -7,12 +7,9 @@ module.exports = {
         sourceType: 'module',
     },
     extends: 'airbnb-base',
-    // required to lint *.vue files
     plugins: [
         'html',
     ],
-
-    // check if imports actually resolve
     'settings': {
         'import/resolver': {
             'webpack': {
@@ -31,7 +28,6 @@ module.exports = {
         'isSupported': true,
         'MapboxGeocoder': true,
     },
-    // add your custom rules here
     'rules': {
         'global-require': 0,
 
@@ -49,13 +45,14 @@ module.exports = {
         'no-trailing-spaces': 0,
         'prefer-template': 0,
         'no-console': 0,
+        'no-use-before-define': ['error', { 'functions': false }],
+        'prefer-default-export': 0,
 
-        // don't require .vue extension when importing
         'import/extensions': ['error', 'always', {
             'js': 'never',
             'vue': 'never',
         }],
-        // allow debugger during development
+        // deactivate debugger during production
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     },
 };

@@ -1,189 +1,216 @@
 <template>
-  <div id="map-container">
-    <div id="map"></div>
-    <store-filter></store-filter>
-    <div id="map-loading-screen" class="main-layer hide-md-and-up">
-      <div id="loading-container">
-        <div id="loading-image"></div>
-        <div id="loading-text">
-          <h4>Karte wird geladen ...</h4>
+    <div id="map-container">
+        <div id="map"></div>
+        <store-filter></store-filter>
+        <div id="map-loading-screen" class="main-layer hide-md-and-up">
+            <div id="loading-container">
+                <div id="loading-image"></div>
+                <div id="loading-text">
+                    <h4>Karte wird geladen ...</h4>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex';
-  import StoreFilter from './StoreFilter';
+    import {
+        mapGetters,
+        mapActions,
+    } from 'vuex';
+    import StoreFilter from './StoreFilter';
 
-  export default {
-    name: 'map',
-    components: {
-      StoreFilter,
-    },
-    data () {
-      return {
-        map: {},
-      };
-    },
+    export default {
+        name: 'map',
+        components: {
+            StoreFilter,
+        },
+        data () {
+            return {
+                map: {},
+            };
+        },
 
-    methods: {
-      ...mapActions({
-        setPosition: 'mapbox/position',
-        loadMarkers: 'mapbox/loadAllMarkers',
-      }),
-      initialize () {
-        if (mapboxgl && !isSupported) {
-          console.log('Your browser doesn\'t support Mapbox GL.'); // eslint-disable-line no-console
-        } else if (mapboxgl !== null) {
-          mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYmlzY2hvZmYiLCJhIjoiY2l1enE4cWY1MDAyazJ4cDZxYjdramk2OCJ9.MUanhYSFZNfJZOjiLRWybw';
+        methods: {
+            ...mapActions(
+                {
+                    setPosition: 'mapbox/position',
+                    loadMarkers: 'mapbox/loadAllMarkers',
+                },
+            ),
+            initialize () {
+                if (mapboxgl && !isSupported) {
+                    console.log('Your browser doesn\'t support Mapbox GL.'); // eslint-disable-line no-console
+                } else if (mapboxgl !== null) {
+                    mapboxgl.accessToken = 'pk.eyJ1IjoiZGFuaWVsYmlzY2hvZmYiLCJhIjoiY2l1enE4cWY1MDAyazJ4cDZxYjdramk2OCJ9.MUanhYSFZNfJZOjiLRWybw';
 
-          this.map = new mapboxgl.Map({
-            attributionControl: false,
-            container: 'map',
-            style: 'mapbox://styles/danielbischoff/citr5jj1b000d2irvg4mbic27',
-          });
+                    this.map = new mapboxgl.Map(
+                        {
+                            attributionControl: false,
+                            container: 'map',
+                            style: 'mapbox://styles/danielbischoff/citr5jj1b000d2irvg4mbic27',
+                        },
+                    );
 
-          this.map.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            country: 'de',
-            placeholder: 'Ort, Straße, Hausnummer',
-          }));
+                    this.map.addControl(new MapboxGeocoder(
+                        {
+                            accessToken: mapboxgl.accessToken,
+                            country: 'de',
+                            placeholder: 'Ort, Straße, Hausnummer',
+                        },
+                    ));
 
-          this.map.addControl(new mapboxgl.NavigationControl());
+                    this.map.addControl(new mapboxgl.NavigationControl());
 
-        this.map.addControl(new mapboxgl.GeolocateControl({
-            positionOptions: {
-                enableHighAccuracy: false,
+                    this.map.addControl(new mapboxgl.GeolocateControl(
+                        {
+                            positionOptions: {
+                                enableHighAccuracy: false,
+                            },
+                            trackUserLocation: true,
+                        },
+                    ));
+
+                    this.map.addControl(new mapboxgl.AttributionControl(
+                        {
+                            compact: true,
+                        },
+                    ));
+
+                    this.initEventListeners();
+                }
             },
-            trackUserLocation: true,
-        }));
 
-          this.map.addControl(new mapboxgl.AttributionControl({
-            compact: true,
-          }));
+            addSource (sourceID, features) {
+                this.map.addSource(sourceID, {
+                    type: 'geojson',
+                    data: {
+                        type: 'FeatureCollection',
+                        features,
+                    },
+                });
+            },
 
-          this.initEventListeners();
-        }
-      },
+            addLayer (sourceID) {
+                this.map.addLayer(
+                    {
+                        id: sourceID,
+                        type: 'symbol',
+                        source: sourceID,
+                        layout: {
+                            'icon-image': '{icon}',
+                            'icon-offset': [0, -51],
+                            'icon-allow-overlap': true,
+                        },
+                    },
+                );
+            },
 
-      addSource (sourceID, features) {
-        this.map.addSource(sourceID, {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features,
-          },
-        });
-      },
+            removeLoadingLayer () {
+                const loadingLayer = document.getElementById('map-loading-screen');
 
-      addLayer (sourceID) {
-        this.map.addLayer({
-          id: sourceID,
-          type: 'symbol',
-          source: sourceID,
-          layout: {
-            'icon-image': '{icon}',
-            'icon-offset': [0, -51],
-            'icon-allow-overlap': true,
-          },
-        });
-      },
+                loadingLayer.classList.add('hide-opacity');
 
-      removeLoadingLayer () {
-        const loadingLayer = document.getElementById('map-loading-screen');
+                window.setTimeout(() => {
+                    loadingLayer.classList.add('hide');
+                }, 500);
+            },
 
-        loadingLayer.classList.add('hide-opacity');
+            initEventListeners () {
+                this.map.once('load', () => {
+                    this.removeLoadingLayer();
+                    this.setPosition(
+                        {
+                            lat: '52.500511',
+                            lng: '13.444584',
+                            meters: '2000',
+                        },
+                    );
+                });
 
-        window.setTimeout(() => {
-          loadingLayer.classList.add('hide');
-        }, 500);
-      },
+                this.map.on('click', this.onMapClickHandler);
+                this.map.on('mousemove', this.onMouseMoveHandler);
+            },
 
-      initEventListeners () {
-        this.map.once('load', () => {
-          this.removeLoadingLayer();
-          this.setPosition({ lat: '52.500511', lng: '13.444584', meters: '2000' });
-        });
+            onMapClickHandler (e) {
+                const features = this.map.queryRenderedFeatures(e.point, { layers: Object.keys(this.markers) });
 
-        this.map.on('click', this.onMapClickHandler);
-        this.map.on('mousemove', this.onMouseMoveHandler);
-      },
+                if (!features.length) {
+                    this.$router.push({ path: '/' });
+                    return;
+                }
 
-      onMapClickHandler (e) {
-        const features = this.map.queryRenderedFeatures(e.point, { layers: Object.keys(this.markers) });
+                const feature = features[0];
 
-        if (!features.length) {
-          this.$router.push({ path: '/' });
-          return;
-        }
+                this.$router.push(
+                    {
+                        path: `/store/${feature.properties.yid}`,
+                        query: {
+                            name: feature.properties.name,
+                        },
+                    },
+                );
+            },
 
-        const feature = features[0];
+            onMouseMoveHandler (e) {
+                const features = this.map.queryRenderedFeatures(e.point, { layers: Object.keys(this.markers) });
 
-        this.$router.push({
-          path: `/store/${feature.properties.yid}`,
-          query: {
-            name: feature.properties.name,
-          },
-        });
-      },
+                this.map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+            },
 
-      onMouseMoveHandler (e) {
-        const features = this.map.queryRenderedFeatures(e.point, { layers: Object.keys(this.markers) });
+            hideLayer (layer) {
+                if (this.map.getLayer(layer)) {
+                    this.map.setLayoutProperty(layer, 'visibility', 'none');
+                }
+            },
 
-        this.map.getCanvas().style.cursor = features.length ? 'pointer' : '';
-      },
-
-      hideLayer (layer) {
-        if (this.map.getLayer(layer)) {
-          this.map.setLayoutProperty(layer, 'visibility', 'none');
-        }
-      },
-
-      showLayer (layer) {
-        if (this.map.getLayer(layer)) {
-          this.map.setLayoutProperty(layer, 'visibility', 'visible');
-        }
-      },
-    },
-
-    computed: {
-      ...mapGetters({
-        getStoreType: 'mapbox/storeType',
-        filters: 'storefilters/getAllFilters',
-        markers: 'mapbox/markers',
-        addedMarkers: 'mapbox/addedMarkers',
-      }),
-    },
-
-    watch: {
-      filters: {
-        handler (filters) {
-          const self = this;
-
-          Object.keys(self.filters).forEach((filterName) => {
-            if (filters[filterName]) {
-              self.showLayer(`marker-${filterName}`);
-            } else {
-              self.hideLayer(`marker-${filterName}`);
-            }
-          });
+            showLayer (layer) {
+                if (this.map.getLayer(layer)) {
+                    this.map.setLayoutProperty(layer, 'visibility', 'visible');
+                }
+            },
         },
-        deep: true,
-      },
-      addedMarkers: {
-        handler () {
-          Object.keys(this.markers).forEach((markerType) => {
-            this.addSource(markerType, this.markers[markerType]);
-            this.addLayer(markerType);
-          });
-        },
-      },
-    },
 
-    mounted () {
-      this.initialize();
-    },
-  };
+        computed: {
+            ...mapGetters(
+                {
+                    getStoreType: 'mapbox/storeType',
+                    filters: 'storefilters/getAllFilters',
+                    markers: 'mapbox/markers',
+                    addedMarkers: 'mapbox/addedMarkers',
+                },
+            ),
+        },
+
+        watch: {
+            filters: {
+                handler (filters) {
+                    const self = this;
+
+                    Object.keys(self.filters)
+                        .forEach((filterName) => {
+                            if (filters[filterName]) {
+                                self.showLayer(`marker-${filterName}`);
+                            } else {
+                                self.hideLayer(`marker-${filterName}`);
+                            }
+                        });
+                },
+                deep: true,
+            },
+            addedMarkers: {
+                handler () {
+                    Object.keys(this.markers)
+                        .forEach((markerType) => {
+                            this.addSource(markerType, this.markers[markerType]);
+                            this.addLayer(markerType);
+                        });
+                },
+            },
+        },
+
+        mounted () {
+            this.initialize();
+        },
+    };
 </script>

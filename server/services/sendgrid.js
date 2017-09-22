@@ -1,96 +1,97 @@
-let config = require('../config.js');
-let sendgrid = require('sendgrid')(config.sendgrid.apikey);
-let host = (config.env === 'production' || config.env === 'staging') ? config.host : 'http://localhost:' + config.port;
+const config = require('../config.js');
+const sendgrid = require('sendgrid')(config.sendgrid.apikey);
 
-function sendToken(receiver, token) {
-  let verificationURL = host + '/verify_email/' + token;
+const host = (config.env === 'production' || config.env === 'staging') ? config.host : 'http://localhost:' + config.port;
 
-  let request = sendgrid.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: {
-      personalizations: [
+function sendToken (receiver, token) {
+    const verificationURL = host + '/verify_email/' + token;
+
+    const request = sendgrid.emptyRequest(
         {
-          to: [
-            {
-              email: receiver
-            }
-          ],
-          'substitutions': {
-            '-verificationURL-': verificationURL
-          }
-        }
-      ],
-      from: {
-        email: config.sendgrid.mails.welcome.sender.email,
-        name: config.sendgrid.mails.welcome.sender.name
-      },
-      content: [
-        {
-          type: 'text/html',
-          value: '<p></p>'
-        }
-      ],
-      'template_id': config.sendgrid.mails.welcome.templateId
-    }
-  });
+            method: 'POST',
+            path: '/v3/mail/send',
+            body: {
+                personalizations: [
+                    {
+                        to: [
+                            {
+                                email: receiver,
+                            },
+                        ],
+                        substitutions: {
+                            '-verificationURL-': verificationURL,
+                        },
+                    },
+                ],
+                from: {
+                    email: config.sendgrid.mails.welcome.sender.email,
+                    name: config.sendgrid.mails.welcome.sender.name,
+                },
+                content: [
+                    {
+                        type: 'text/html',
+                        value: '<p></p>',
+                    },
+                ],
+                template_id: config.sendgrid.mails.welcome.templateId,
+            },
+        },
+    );
 
-  sendgrid.API(request)
-    .then(response => {
-      console.log(response.statusCode); // eslint-disable-line
-      console.log(response.body); // eslint-disable-line
-      console.log(response.headers); // eslint-disable-line
-    })
-    .catch(error => {
-      console.log(error.response);  // eslint-disable-line
-    });
+    sendgrid.API(request)
+        .then((response) => {
+            console.log(response.statusCode); // eslint-disable-line
+            console.log(response.body); // eslint-disable-line
+            console.log(response.headers); // eslint-disable-line
+        })
+        .catch(error => console.log(error.response));
 }
 
-function sendResetPasswordLink(receiver, token) {
-  let resetURL = host + '/reset/' + token;
+function sendResetPasswordLink (receiver, token) {
+    const resetURL = host + '/reset/' + token;
 
-  let request = sendgrid.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: {
-      personalizations: [
+    const request = sendgrid.emptyRequest(
         {
-          to: [
-            {
-              email: receiver
-            }
-          ],
-          'substitutions': {
-            '-resetURL-': resetURL
-          }
-        }
-      ],
-      from: {
-        email: config.sendgrid.mails.passwordForgotten.sender.email,
-        name: config.sendgrid.mails.passwordForgotten.sender.name
-      },
-      content: [
-        {
-          type: 'text/html',
-          value: '<p></p>'
-        }
-      ],
-      'template_id': config.sendgrid.mails.passwordForgotten.templateId
-    }
-  });
+            method: 'POST',
+            path: '/v3/mail/send',
+            body: {
+                personalizations: [
+                    {
+                        to: [
+                            {
+                                email: receiver,
+                            },
+                        ],
+                        substitutions: {
+                            '-resetURL-': resetURL,
+                        },
+                    },
+                ],
+                from: {
+                    email: config.sendgrid.mails.passwordForgotten.sender.email,
+                    name: config.sendgrid.mails.passwordForgotten.sender.name,
+                },
+                content: [
+                    {
+                        type: 'text/html',
+                        value: '<p></p>',
+                    },
+                ],
+                template_id: config.sendgrid.mails.passwordForgotten.templateId,
+            },
+        },
+    );
 
-  sendgrid.API(request)
-    .then(response => {
-      console.log(response.statusCode); // eslint-disable-line
-      console.log(response.body); // eslint-disable-line
-      console.log(response.headers); // eslint-disable-line
-    })
-    .catch(error => {
-      console.log(error.response);  // eslint-disable-line
-    });
+    sendgrid.API(request)
+        .then((response) => {
+            console.log(response.statusCode); // eslint-disable-line
+            console.log(response.body); // eslint-disable-line
+            console.log(response.headers); // eslint-disable-line
+        })
+        .catch(error => console.log(error.response));
 }
 
 module.exports = {
-  sendToken: sendToken,
-  sendResetPasswordLink: sendResetPasswordLink
+    sendToken,
+    sendResetPasswordLink,
 };

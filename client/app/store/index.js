@@ -22,16 +22,18 @@ const debug = process.env.NODE_ENV !== 'production';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  actions,
-  getters,
+export default new Vuex.Store(
+    {
+        actions,
+        getters,
 
-  modules: {
-    storefilters,
-    storewindow,
-    mapbox,
-  },
+        modules: {
+            storefilters,
+            storewindow,
+            mapbox,
+        },
 
-  strict: debug,
-  // plugins: debug ? [createLogger()] : [],
-});
+        strict: debug,
+        // plugins: debug ? [createLogger()] : [],
+    },
+);

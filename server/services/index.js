@@ -1,7 +1,7 @@
-let initialize = function(app) {
-  require("./passport")();
+const initialize = function () {
+    require('./passport')();
 };
 
 module.exports = {
-  initialize
+    initialize,
 };
