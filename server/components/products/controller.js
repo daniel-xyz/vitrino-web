@@ -1,10 +1,10 @@
-let express = require('express');
-let Product = require('./Product.js');
-let api = express.Router();
+const express = require('express');
+const Product = require('./Product.js');
 
+const api = express.Router();
 const endpoint = '/api/products';
 
-api.get(endpoint, function (req, res) {
+api.get(endpoint, (req, res) => {
     Product.findAllProducts()
       .then((products) => {
         res.json(products);
@@ -12,10 +12,10 @@ api.get(endpoint, function (req, res) {
       .catch((err) => {
         res.status(500).json(err);
       });
-  }
+  },
 );
 
-api.post(endpoint + '/:id/verify', function (req, res) {
+api.post(endpoint + '/:id/verify', (req, res) => {
     Product.verifyProduct(req.params.id)
       .then((products) => {
         res.json(products[0]);
@@ -23,7 +23,7 @@ api.post(endpoint + '/:id/verify', function (req, res) {
       .catch((err) => {
         res.status(500).json(err);
       });
-  }
+  },
 );
 
 module.exports = api;

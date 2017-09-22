@@ -15,7 +15,6 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex';
-  import * as _ from 'lodash';
   import StoreFilter from './StoreFilter';
 
   export default {
@@ -97,7 +96,7 @@
 
         loadingLayer.classList.add('hide-opacity');
 
-        _.delay(() => {
+        window.setTimeout(() => {
           loadingLayer.classList.add('hide');
         }, 500);
       },

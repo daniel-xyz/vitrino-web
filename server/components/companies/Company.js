@@ -1,13 +1,13 @@
-let knex = require('../../services/knex.js');
+const knex = require('../../services/knex.js');
 
 /** Company model **/
-let Company = {
+const Company = {
 
   /**
    * Find all companies in the database and return them
    * @return {Promise<Array, Error>} An array containing the company objects
    */
-  findAllCompanies: function () {
+  findAllCompanies () {
     return knex('companies');
   },
 
@@ -16,12 +16,12 @@ let Company = {
    * @param {Number} id The company's ID
    * @return {Promise<Array, Error>} An array containing only the updated company object
    */
-  verifyCompany: function (id) {
+  verifyCompany (id) {
     return knex('companies')
       .where('id', id)
       .update('verified', true)
-      .returning('*')
-  }
+      .returning('*');
+  },
 };
 
 module.exports = Company;

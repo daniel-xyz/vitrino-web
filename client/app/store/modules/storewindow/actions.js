@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import clone from 'lodash-es/clone';
 import * as mutations from './mutation-types';
 import { company } from './defaults';
 import { stores } from '../../../services/vitrinoApi';
@@ -10,7 +10,7 @@ export const setUrl = ({ commit }, payload) => {
 };
 
 export const clearCompany = ({ commit }) => {
-  commit(mutations.CURRENT_COMPANY, _.clone(company));
+  commit(mutations.CURRENT_COMPANY, clone(company));
 };
 
 export const setCompany = ({ commit }, payload) => {
