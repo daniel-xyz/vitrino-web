@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTableIfNotExists('company_category', (table) => {
         table.integer('id').primary();
-        table.string('name').unique().notNullable();
+        table.string('key').unique().notNullable();
     });
 };
 

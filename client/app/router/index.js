@@ -9,7 +9,7 @@ Vue.use(Router);
 
 export default [
     {
-        path: '/store/:yid',
+        path: '/store/:id',
         components: {
             layer: MainLayer,
         },

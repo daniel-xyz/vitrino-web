@@ -33,35 +33,35 @@ function company_category () {
       return Promise.all([
         knex('company_category').insert({
           id: 1,
-          name: 'Mode & Accessoires',
+          key: 'clothes',
         }),
         knex('company_category').insert({
           id: 2,
-          name: 'Schmuck',
+          key: 'jewellery',
         }),
         knex('company_category').insert({
           id: 3,
-          name: 'Design & Geschenkartikel',
+          key: 'gifts',
         }),
         knex('company_category').insert({
           id: 4,
-          name: 'Parfumerie & Kosmetik',
+          key: 'cosmetics',
         }),
         knex('company_category').insert({
           id: 5,
-          name: 'Kunst',
+          key: 'arts',
         }),
         knex('company_category').insert({
           id: 6,
-          name: 'Hobby',
+          key: 'hobby',
         }),
         knex('company_category').insert({
           id: 7,
-          name: 'Haus & Wohnen',
+          key: 'home',
         }),
         knex('company_category').insert({
           id: 8,
-          name: 'Kinder',
+          key: 'kids',
         }),
       ]);
     });

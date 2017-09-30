@@ -1,16 +1,12 @@
 import * as mutations from './mutation-types';
 
-export const filterToggle = ({ commit, dispatch }, payload) => {
-    console.log('toggle', payload);
-    dispatch('filterFirstVisit');
-    commit(mutations.FILTER_TOGGLE, payload.name);
-};
-
-export const filterFirstVisit = ({ commit, state }) => {
+export const filterToggle = ({ commit, dispatch, state }, payload) => {
     if (!state.firstVisit) {
         commit(mutations.FILTER_SET_ALL, false);
         commit(mutations.FILTER_FIRST_VISITED);
     }
+
+    commit(mutations.FILTER_TOGGLE, payload.name);
 };
 
 export const filterOn = ({ commit, dispatch }, payload) => {

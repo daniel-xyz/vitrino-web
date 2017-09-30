@@ -36,8 +36,8 @@ export const stores = {
         getJSON(endpoint + '/stores/radius/' + lat + '/' + lng + '/' + meters, null, callback);
     },
 
-    getStoreByYelpID: (yelpID, callback) => {
-        getJSON(endpoint + '/stores/yid/' + yelpID, null, callback);
+    getStoreByID: (storeID, callback) => {
+        getJSON(endpoint + '/stores/' + storeID, null, callback);
     },
 };
 

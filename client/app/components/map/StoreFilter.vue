@@ -4,6 +4,7 @@
         <div id="filter-toggle" class="hide-md-and-up" @click="show = !show">
             <div :class="{ 'close': show, 'filter': !show }"></div>
         </div>
+
         <div id="category-icons">
             <div v-for="f in filters"
                  :class="[ {'deactivated': !f.active }, f.styleClass ]"

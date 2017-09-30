@@ -6,6 +6,7 @@ export default {
         const current = state.filters.find((f) => {
             return f.name === filterName;
         });
+
         current.active = !current.active;
     },
 
