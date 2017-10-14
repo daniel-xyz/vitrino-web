@@ -1,5 +1,5 @@
-let config = require('../config.js');
-let knexConfig = require('../database/knexfile.js');
-let knex = require('knex')(knexConfig[config.env]);
+const config = require('../config.js');
+const knexConfig = require('../database/knexfile.js');
+const knex = require('knex')(knexConfig[config.env]);
 
 module.exports = knex;

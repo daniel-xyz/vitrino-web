@@ -22,7 +22,6 @@ import routes from './app/router';
 
 Vue.config.debug = process.env.NODE_ENV !== 'production';
 
-
 /* ============
  * Vue Router
  * ============
@@ -35,12 +34,13 @@ Vue.config.debug = process.env.NODE_ENV !== 'production';
 
 Vue.use(VueRouter);
 
-export const router = new VueRouter({
-  mode: 'history',
-  scrollBehavior: () => ({ y: 0 }),
-  routes,
-});
-
+export const router = new VueRouter(
+    {
+        mode: 'history',
+        scrollBehavior: () => ({ y: 0 }),
+        routes,
+    },
+);
 
 /* ============
  * Vue Social Sharing
@@ -53,7 +53,6 @@ export const router = new VueRouter({
 
 Vue.use(SocialSharing);
 
-
 /* ============
  * Styling
  * ============
@@ -64,7 +63,6 @@ Vue.use(SocialSharing);
 
 require('./assets/less/vitrino.less');
 
-
 export default {
-  router,
+    router,
 };

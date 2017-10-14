@@ -1,59 +1,55 @@
-/* eslint-disable */
+/* eslint-disable no-undef,no-use-before-define */
+export const send = (method, json, url, headers, callback) => {
+    const xhr = typeof XMLHttpRequest !== 'undefined'
+        ? new XMLHttpRequest()
+        : new ActiveXObject('Microsoft.XMLHTTP');
 
-function send (method, json, url, headers, callback) {
-  let xhr = typeof XMLHttpRequest !== 'undefined'
-    ? new XMLHttpRequest()
-    : new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.open(method, url, true);
 
-  xhr.open(method, url, true);
-
-  if (method === 'post') {
-    xhr.setRequestHeader('X-CSRF-Token', csrfToken);
-  }
-
-  if (json) {
-    xhr.setRequestHeader('Accept', 'application/json');
-  }
-
-  if (headers) {
-    setHeaders(xhr, headers);
-  }
-
-  xhr.onreadystatechange = function() {
-    let status;
-    let data;
-
-    // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
-    if (xhr.readyState === 4) { // `DONE`
-      status = xhr.status;
-
-      if (status === 200) {
-        data = json ? JSON.parse(xhr.responseText) : xhr.responseText;
-        callback(null, data);
-      } else {
-        callback(status, null);
-      }
+    if (method === 'post') {
+        xhr.setRequestHeader('X-CSRF-Token', csrfToken);
     }
-  };
 
-  xhr.send();
-}
+    if (json) {
+        xhr.setRequestHeader('Accept', 'application/json');
+    }
 
-function setHeaders(xhr, headers) {
-  Object.keys(headers).forEach(function(key) {
-    xhr.setRequestHeader(key, headers[key]);
-  });
-}
+    if (headers) {
+        setHeaders(xhr, headers);
+    }
 
-function getJSON (url, headers, callback) {
-  send('get', true, url, headers, callback)
-}
+    xhr.onreadystatechange = () => {
+        let status;
+        let data;
 
-function post (url, callback) {
-  send('post', true, url, callback)
-}
+        // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
+        if (xhr.readyState === 4) { // `DONE`
+            status = xhr.status;
 
-export {
-  getJSON,
-  post
+            if (status === 200) {
+                data = json ? JSON.parse(xhr.responseText) : xhr.responseText;
+                callback(null, data);
+            } else {
+                callback(status, null);
+            }
+        }
+    };
+
+    xhr.send();
 };
+
+export const setHeaders = (xhr, headers) => {
+    Object.keys(headers)
+        .forEach((key) => {
+            xhr.setRequestHeader(key, headers[key]);
+        });
+};
+
+export const getJSON = (url, headers, callback) => {
+    send('get', true, url, headers, callback);
+};
+
+export const post = (url, callback) => {
+    send('post', true, url, callback);
+};
+

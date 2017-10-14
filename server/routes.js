@@ -1,13 +1,12 @@
-let express = require('express');
-let router = express.Router();
+const router = require('express').Router();
 
-router.use(function(req, res, next) {
-  res.locals.csrfToken = req.csrfToken();
-  res.locals.currentUser = req.user;
-  res.locals.flashes = req.flash();
-  next();
+router.use((req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    res.locals.currentUser = req.user;
+    res.locals.flashes = req.flash();
+    next();
 });
 
-router.use(require('./components/index.js'));
+router.use(require('./api/index.js'));
 
 module.exports = router;

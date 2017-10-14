@@ -50,10 +50,12 @@ Additional information: https://devcenter.heroku.com/articles/getting-started-wi
 
 #### Database
 
+The model documentation: https://my.vertabelo.com/doc/scrjTTDnP8y5v2S9HMDNJlV5eIUq3wb4
+
 To connect to the postgreSQL CLI:
 
 ```
-$ heroku pg:psql --app vitrino DATABASE
+$ heroku pg:psql --app vitrino-production DATABASE
 ```
 
 

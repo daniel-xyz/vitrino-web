@@ -1,47 +1,47 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import MainLayer from '../components/MainLayer';
-import StoreWindow from '../components/StoreWindow';
+import MainLayer from '../components/partials/layers/MainLayer';
+import StoreWindow from '../components/map/StoreWindow';
 import Imprint from '../pages/Imprint';
 import DataProtection from '../pages/DataProtection';
 
 Vue.use(Router);
 
 export default [
-  {
-    path: '/store/:yid',
-    components: {
-      layer: MainLayer,
+    {
+        path: '/store/:id',
+        components: {
+            layer: MainLayer,
+        },
+        children: [
+            {
+                path: '',
+                component: StoreWindow,
+            },
+        ],
     },
-    children: [
-      {
-        path: '',
-        component: StoreWindow,
-      },
-    ],
-  },
-  {
-    path: '/imprint',
-    components: {
-      layer: MainLayer,
+    {
+        path: '/imprint',
+        components: {
+            layer: MainLayer,
+        },
+        children: [
+            {
+                path: '',
+                component: Imprint,
+            },
+        ],
     },
-    children: [
-      {
-        path: '',
-        component: Imprint,
-      },
-    ],
-  },
-  {
-    path: '/data',
-    components: {
-      layer: MainLayer,
+    {
+        path: '/data',
+        components: {
+            layer: MainLayer,
+        },
+        children: [
+            {
+                path: '',
+                component: DataProtection,
+            },
+        ],
     },
-    children: [
-      {
-        path: '',
-        component: DataProtection,
-      },
-    ],
-  },
 ];

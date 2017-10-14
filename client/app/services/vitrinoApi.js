@@ -1,60 +1,52 @@
 /* eslint-disable */
 
-import { getJSON, post } from '../utils/ajax'
+import {
+    getJSON,
+    post,
+} from '../utils/ajax';
 
 const endpoint = '/api';
 
-let users = {
-
-  getAll: function (callback) {
-    getJSON(endpoint + '/users/', null, callback)
-  }
+export const users = {
+    getAll: (callback) => {
+        getJSON(endpoint + '/users/', null, callback);
+    },
 };
 
-let companies = {
+export const companies = {
+    getAll: (callback) => {
+        getJSON(endpoint + '/companies/', null, callback);
+    },
 
-  getAll: function (callback) {
-    getJSON(endpoint + '/companies/', null, callback)
-  },
-
-  verify: function (id, callback) {
-    post(endpoint + '/companies/' + id + '/verify', callback)
-  }
+    verify: (id, callback) => {
+        post(endpoint + '/companies/' + id + '/verify', callback);
+    },
 };
 
-let stores = {
+export const stores = {
+    getAll: (callback) => {
+        getJSON(endpoint + '/stores/', null, callback);
+    },
 
-  getAll: function (callback) {
-    getJSON(endpoint + '/stores/', null, callback);
-  },
+    getStoreWindowProducts: (storeId, callback) => {
+        getJSON(endpoint + '/stores/' + storeId + '/products/window', null, callback);
+    },
 
-  getStoreWindowProducts: function (storeId, callback) {
-    getJSON(endpoint + '/stores/' + storeId + '/products/window', null, callback);
-  },
+    getStoresInRadius: (lat, lng, meters, callback) => {
+        getJSON(endpoint + '/stores/radius/' + lat + '/' + lng + '/' + meters, null, callback);
+    },
 
-  getStoresInRadius: function (lat, lng, meters, callback) {
-    getJSON(endpoint + '/stores/radius/' + lat + '/' + lng + '/' + meters, null, callback);
-  },
-
-  getStoreByYelpID: function (yelpID, callback) {
-    getJSON(endpoint+ '/stores/yid/' + yelpID, null, callback);
-  }
+    getStoreByID: (storeID, callback) => {
+        getJSON(endpoint + '/stores/' + storeID, null, callback);
+    },
 };
 
-let products = {
+export const products = {
+    getAll: (callback) => {
+        getJSON(endpoint + '/products/', null, callback);
+    },
 
-  getAll: function (callback) {
-    getJSON(endpoint + '/products/', null, callback)
-  },
-
-  verify: function (id, callback) {
-    post(endpoint + '/products/' + id + '/verify', callback)
-  }
-};
-
-export {
-  users,
-  companies,
-  stores,
-  products
+    verify: (id, callback) => {
+        post(endpoint + '/products/' + id + '/verify', callback);
+    },
 };

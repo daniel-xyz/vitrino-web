@@ -1,8 +1,7 @@
-let initialize = function(app) {
-  require("./passport")();
-  require("./nunjucks")(app);
+const initialize = function () {
+    require('./passport')();
 };
 
 module.exports = {
-  initialize
+    initialize,
 };

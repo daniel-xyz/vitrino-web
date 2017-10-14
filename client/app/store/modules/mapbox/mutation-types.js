@@ -1,0 +1,3 @@
+export const LAST_MARKER_UPDATE_AT = 'LAST_MARKER_UPDATE_AT';
+export const CLEAR_MARKERS = 'CLEAR_MARKERS';
+export const ADD_MARKER = 'ADD_MARKER';

@@ -1,0 +1,5 @@
+export const FILTER_ON = 'FILTER_ON';
+export const FILTER_OFF = 'FILTER_OFF';
+export const FILTER_TOGGLE = 'FILTER_TOGGLE';
+export const FILTER_SET_ALL = 'FILTER_SET_ALL';
+export const FILTER_FIRST_VISITED = 'FILTER_FIRST_VISITED';
