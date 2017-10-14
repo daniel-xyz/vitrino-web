@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define,no-undef,prefer-destructuring */
-const endpoint = process.env.apiEndpoint;
+const endpoint = process.env.API_ENDPOINT;
 
 export const users = {
     getAll: (callback) => {

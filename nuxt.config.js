@@ -1,6 +1,6 @@
 module.exports = {
     env: {
-        apiEndpoint: process.env.apiEndpoint || 'http://localhost:4000',
+        API_ENDPOINT: process.env.API_ENDPOINT || 'https://vitrino-api-staging.herokuapp.com',
     },
     head: {
         title: 'Vitrino',

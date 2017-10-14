@@ -9,10 +9,13 @@
         "npm": "5.5.*"
     },
     "scripts": {
-        "dev": "cross-env NODE_ENV=development node server/index.js",
+        "dev": "cross-env NODE_ENV=development npm run node-web",
+        "dev-local-api": "cross-env NODE_ENV=development API_ENDPOINT=http://localhost:4000 npm-run-all --parallel node-web node-api",
         "build": "nuxt build",
         "start": "node server/index.js",
         "heroku-postbuild": "npm run build",
+        "node-web": "node server/index.js",
+        "node-api": "node ../vitrino-api/server/index.js",
         "generate": "nuxt generate",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
         "precommit": "npm run lint"
@@ -41,6 +44,7 @@
         "eslint-plugin-import": "^2.7.0",
         "eslint-plugin-node": "^5.1.1",
         "eslint-plugin-promise": "^3.5.0",
-        "eslint-plugin-standard": "^3.0.1"
+        "eslint-plugin-standard": "^3.0.1",
+        "npm-run-all": "^4.1.1"
     }
 }
