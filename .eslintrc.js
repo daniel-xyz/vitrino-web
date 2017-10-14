@@ -24,5 +24,8 @@ module.exports = {
             'vue': 'never',
         }],
     },
-    globals: {},
+    'globals': {
+        'mapboxgl': false,
+        'MapboxGeocoder': false,
+    },
 };

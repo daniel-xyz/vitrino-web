@@ -28,7 +28,7 @@ module.exports = {
             },
             {
                 rel: 'stylesheet',
-                href: 'https://api.mapbox.com/mapbox-gl-js/v0.40.1/mapbox-gl.css',
+                href: 'https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css',
             },
             {
                 rel: 'stylesheet',
@@ -36,7 +36,14 @@ module.exports = {
                 href: 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.css',
             },
         ],
-
+         script: [
+            {
+                src: 'https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js',
+            },
+             {
+                src: 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.1/mapbox-gl-geocoder.min.js',
+            },
+         ],
     },
 
     loading: false,
@@ -46,6 +53,7 @@ module.exports = {
     ],
 
     build: {
+        analyze: false,
         vendor: [
             'vue-no-ssr',
         ],

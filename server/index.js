@@ -5,7 +5,6 @@ const { Nuxt, Builder } = require('nuxt');
 const stagingAuth = require('./middleware/stagingAuth.js');
 
 const isDev = (process.env.NODE_ENV === 'development');
-const logger = (isDev) ? require('morgan') : false;
 
 process.env.DEBUG = 'nuxt:*';
 nuxtConfig.dev = isDev;
@@ -14,10 +13,6 @@ const app = express();
 const nuxt = new Nuxt(nuxtConfig);
 
 app.set('port', config.port);
-
-if (logger) {
-    app.use(logger('dev'));
-}
 
 app.use(stagingAuth);
 app.use(nuxt.render);

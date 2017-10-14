@@ -22,10 +22,7 @@
         mapActions,
     } from 'vuex';
 
-        import StoreFilter from './StoreFilter.vue';
-
-    const mapboxgl = process.browser ? require('mapbox-gl') : null;
-    const MapboxGeocoder = process.browser ? require('@mapbox/mapbox-gl-geocoder') : null;
+    import StoreFilter from './StoreFilter.vue';
 
     export default {
         name: 'full-size-map',
@@ -60,7 +57,7 @@
                 },
             ),
 
-            initialize () {
+            initMap () {
                 this.map = this.initMapbox();
                 this.addMapControls();
                 this.initEventListeners();
@@ -217,9 +214,7 @@
         },
 
         mounted () {
-            if (process.browser) {
-                this.initialize();
-            }
+            this.initMap();
         },
     };
 </script>
