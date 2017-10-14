@@ -1,0 +1,68 @@
+// Variables
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Breakpoints
+@breakpoint-sm: 576px;
+@breakpoint-md: 768px;
+@breakpoint-lg: 992px;
+@breakpoint-xl: 1200px;
+
+// Breakpoint ranges
+@xs-max-width: (@breakpoint-sm - 1px);
+@sm-max-width: (@breakpoint-md - 1px);
+@md-max-width: (@breakpoint-lg - 1px);
+@lg-max-width: (@breakpoint-xl - 1px);
+
+// Media Queries
+@xs: ~"only screen and (max-width: @{xs-max-width})";
+@sm: ~"only screen and (min-width: @{breakpoint-sm}) and (max-width: @{sm-max-width})";
+@md: ~"only screen and (min-width: @{breakpoint-md}) and (max-width: @{md-max-width})";
+@lg: ~"only screen and (min-width: @{breakpoint-lg}) and (max-width: @{lg-max-width})";
+@xl: ~"only screen and (min-width: @{breakpoint-xl})";
+
+@sm-and-up: ~"only screen and (min-width: @{breakpoint-sm})";
+@md-and-up: ~"only screen and (min-width: @{breakpoint-md})";
+@lg-and-up: ~"only screen and (min-width: @{breakpoint-lg})";
+
+@sm-and-down: ~"only screen and (max-width: @{sm-max-width})";
+@md-and-down: ~"only screen and (max-width: @{md-max-width})";
+@lg-and-down: ~"only screen and (max-width: @{lg-max-width})";
+
+// Colors
+@white: #fff;
+@background-color: @white;
+@light-grey: lighten(@dark-grey, 20%);
+@dark-grey: #454545;
+@green: #7ED321;
+@light-green: #a0e080;
+@primary-color: #10cffe;
+@border-color: @white;
+@link-color: @primary-color;
+@font-color: @dark-grey;
+
+// Spacings
+@spacing-xs: 4px;
+@spacing-s: 8px;
+@spacing-m: 12px;
+@spacing-l: 18px;
+@spacing-xl: 24px;
+@spacing-xxl: 28px;
+
+// Typography
+@font-family: 'Lato', sans-serif;
+//@font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Buttons
+@button-border-radius: 45px;
+
+// Grid Variables
+@columns: 12;
+@gutter-width: 12px;
+@column-width: (100% / @columns);
+
+// Misc
+@global-radius: 4px;
+@header-height-md: 50px;
+@header-height-xs: 50px;
+@content-area-height-xs: ~"calc(100vh - @{header-height-xs})";
+@content-area-height-md: ~"calc(100vh - @{header-height-md})";

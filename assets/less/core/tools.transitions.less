@@ -1,0 +1,42 @@
+.page-enter-active, .page-leave-active {
+    transition: opacity 0.2s;
+}
+
+.page-enter, .page-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.2s
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0
+}
+
+.slide-from-top-enter,
+.slide-from-top-leave-to {
+    transform: translate(0px, -12.500em);
+}
+
+.slide-from-top-enter-to,
+.slide-from-top-leave {
+    transform: translate(0px, 0px);
+}
+
+.slide-from-bottom-enter,
+.slide-from-bottom-leave-to {
+    transform: translate(0px, 12.500em);
+}
+
+.slide-from-bottom-enter-to,
+.slide-from-bottom-leave {
+    transform: translate(0px, 0px);
+}
+
+.slide-from-bottom-enter-active,
+.slide-from-bottom-leave-active,
+.slide-from-top-enter-active,
+.slide-from-top-leave-active {
+    transition: transform 0.4s ease-in;
+}

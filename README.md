@@ -1,11 +1,10 @@
-[![Build Status](https://travis-ci.com/Flur3x/Vitrino.svg?token=HAauytqpvPqx5oqGBkQp&branch=master)](https://travis-ci.com/Flur3x/Vitrino)
-
-# Vitrino
+# Vitrino Web
 
 ### Requirements
 
-  - git
-  - node.js v8.0 and npm v5.0
+  - node.js v8.0
+  - npm v5.0
+  - yarn v1.2
   
 
 ### Getting started
@@ -13,7 +12,7 @@
 Download all necessary dependencies:
 
 ```
-$ npm install
+$ yarn install
 ```
 
 Run the app locally:
@@ -50,12 +49,10 @@ Additional information: https://devcenter.heroku.com/articles/getting-started-wi
 
 #### Database
 
-The model documentation: https://my.vertabelo.com/doc/scrjTTDnP8y5v2S9HMDNJlV5eIUq3wb4
-
 To connect to the postgreSQL CLI:
 
 ```
-$ heroku pg:psql --app vitrino-production DATABASE
+$ heroku pg:psql --app vitrino DATABASE
 ```
 
 

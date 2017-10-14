@@ -1,0 +1,18 @@
+// Clearing
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+//.container:after,
+.row:after,
+.cf {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.clear {
+    &:after {
+        display: table;
+        clear: both;
+        content: " ";
+    }
+}

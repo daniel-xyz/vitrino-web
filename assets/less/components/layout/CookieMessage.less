@@ -1,0 +1,42 @@
+.c-cookie-message {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 9999;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    background: #10cffe;
+    color: @white;
+
+    &__content {
+        margin: 16px 24px;
+    }
+
+    &__link {
+        color: @white;
+        text-decoration: underline;
+
+        &:hover {
+            color: darken(@white, 5%);
+        }
+    }
+
+    &__button {
+        margin: 16px 24px;
+        cursor: pointer;
+        background: @light-green;
+        padding: 0.625em 3.125em;
+        color: @white;
+        border-radius: 5px;
+
+        &:hover {
+            background: darken(#a0e080, 5%);
+        }
+    }
+}
