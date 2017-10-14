@@ -6,8 +6,7 @@
     "private": true,
     "engines": {
         "node": "8.5",
-        "npm": "5.*",
-        "yarn": "1.2.*"
+        "npm": "5.*"
     },
     "scripts": {
         "dev": "cross-env NODE_ENV=development node server/index.js",

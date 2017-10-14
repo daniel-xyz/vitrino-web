@@ -4,7 +4,6 @@
 
   - node.js v8.0
   - npm v5.0
-  - yarn v1.2
   
 
 ### Getting started
@@ -12,7 +11,7 @@
 Download all necessary dependencies:
 
 ```
-$ yarn install
+$ npm install
 ```
 
 Run the app locally:
