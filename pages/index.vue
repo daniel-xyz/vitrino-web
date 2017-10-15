@@ -13,7 +13,6 @@
                 },
             ),
         },
-
         created () {
             this.setBackButton(
                 {

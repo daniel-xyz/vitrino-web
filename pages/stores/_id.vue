@@ -5,34 +5,24 @@
 </template>
 
 <script>
-    import {
-        mapGetters,
-        mapActions,
-    } from 'vuex';
-
+    import { mapGetters } from 'vuex';
+    import backButtonToHome from '../../components/mixins/backButtonToHome';
     import { stores } from '../../utils/vitrinoApi';
 
     export default {
         name: 'store-window',
+        mixins: [backButtonToHome],
         data () {
             return {
                 store: {},
             };
         },
-
         watch: {
             $route () {
                 this.setData();
             },
         },
-
         methods: {
-            ...mapActions(
-                {
-                    setBackButton: 'navigation/setBackButton',
-                },
-            ),
-
             setData () {
                 const storeID = this.$route.params.id;
 
@@ -41,7 +31,6 @@
                 });
             },
         },
-
         computed: {
             ...mapGetters(
                 {
@@ -50,24 +39,8 @@
             ),
         },
 
-        created () {
+        mounted () {
             this.setData();
-
-            this.setBackButton(
-                {
-                    show: true,
-                    text: 'zur Karte',
-                    path: '/',
-                },
-            );
-        },
-
-        beforeDestroy () {
-            this.setBackButton(
-                {
-                    show: false,
-                },
-            );
         },
     };
 </script>

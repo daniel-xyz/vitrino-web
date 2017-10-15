@@ -88,7 +88,10 @@
 </template>
 
 <script>
+    import backButtonToHome from '../components/mixins/backButtonToHome';
+
     export default {
         name: 'data-protection',
+        mixins: [backButtonToHome],
     };
 </script>

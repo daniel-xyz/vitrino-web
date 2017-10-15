@@ -72,7 +72,10 @@
 </template>
 
 <script>
+    import backButtonToHome from '../components/mixins/backButtonToHome';
+
     export default {
         name: 'imprint',
+        mixins: [backButtonToHome],
     };
 </script>
