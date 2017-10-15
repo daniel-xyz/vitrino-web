@@ -1,41 +1,35 @@
 /* eslint-disable import/prefer-default-export */
 import * as mutations from './mutation-types';
-import { stores } from '../../../utils/vitrinoApi';
 
-export const loadMarkersInRadius = ({ commit, state }, position) => stores.getStoresInRadius(position.lat, position.lng, position.markerRadius,
-    (error, response) => {
-        if (error) {
-            return console.error(error.stack);
+export const loadMarkers = ({ commit, state }, stores) => {
+    stores.forEach((store) => {
+        const type = 'marker-' + store.company.category.key;
+
+        if (!state.markers[type]) {
+            commit(mutations.CLEAR_MARKERS, type);
         }
 
-        response.forEach((store) => {
-            const type = 'marker-' + store.company.category;
+        const marker = {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [
+                    store.address.lng,
+                    store.address.lat,
+                ],
+            },
+            properties: {
+                id: store.id,
+                name: store.name,
+                icon: type,
+            },
+        };
 
-            if (!state.markers[type]) {
-                commit(mutations.CLEAR_MARKERS, type);
-            }
-
-            const marker = {
-                type: 'Feature',
-                geometry: {
-                    type: 'Point',
-                    coordinates: [
-                        store.address.lng,
-                        store.address.lat,
-                    ],
-                },
-                properties: {
-                    id: store.id,
-                    name: store.name,
-                    icon: type,
-                },
-            };
-
-            commit(mutations.ADD_MARKER, {
-                type,
-                marker,
-            });
+        commit(mutations.ADD_MARKER, {
+            type,
+            marker,
         });
-
-        return commit(mutations.LAST_MARKER_UPDATE_AT);
     });
+
+    return commit(mutations.LAST_MARKER_UPDATE_AT);
+};

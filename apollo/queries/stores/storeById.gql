@@ -1,0 +1,5 @@
+query storeById($id: Int!) {
+    store: storeById(id: $id) {
+        name
+    }
+}

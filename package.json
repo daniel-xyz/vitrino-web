@@ -10,7 +10,7 @@
     },
     "scripts": {
         "dev": "cross-env NODE_ENV=development npm run node-web",
-        "dev-local-api": "cross-env NODE_ENV=development API_ENDPOINT=http://localhost:4000 npm-run-all --parallel node-web node-api",
+        "dev-local-api": "cross-env NODE_ENV=development API_ENDPOINT=http://localhost:4000/graphql npm-run-all --parallel node-api node-web",
         "build": "nuxt build",
         "start": "cross-env NODE_ENV=production npm run node-web",
         "heroku-postbuild": "npm run build",
@@ -21,6 +21,7 @@
         "precommit": "npm run lint"
     },
     "dependencies": {
+        "@nuxtjs/apollo": "^2.1.1",
         "cross-env": "^5.0.5",
         "express": "^4.16.1",
         "helmet": "^3.8.2",

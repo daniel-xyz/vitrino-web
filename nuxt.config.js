@@ -52,6 +52,16 @@ module.exports = {
         '~/assets/less/vitrino.less',
     ],
 
+    modules: [
+        '@nuxtjs/apollo',
+    ],
+
+    apollo: {
+        networkInterfaces: {
+            default: '~/apollo/network-interfaces/default.js',
+        },
+    },
+
     build: {
         analyze: false,
         vendor: [

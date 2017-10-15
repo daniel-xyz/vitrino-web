@@ -19,9 +19,11 @@ module.exports = {
         'prefer-template': 0,
         'no-console': 0,
         'no-use-before-define': ['error', { 'functions': false }],
+        'import/no-extraneous-dependencies': 0,
         'import/extensions': ['error', 'always', {
             'js': 'never',
             'vue': 'never',
+            'gql': 'never',
         }],
     },
     'globals': {

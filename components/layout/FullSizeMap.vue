@@ -17,11 +17,13 @@
 </template>
 
 <script>
+    /* eslint-disable */
     import {
         mapGetters,
         mapActions,
     } from 'vuex';
 
+    import allStores from '~/apollo/queries/stores/allStores';
     import StoreFilter from './StoreFilter.vue';
 
     export default {
@@ -40,6 +42,13 @@
             };
         },
 
+        apollo: {
+            stores: {
+                query: allStores,
+                prefetch: true,
+            },
+        },
+
         computed: {
             ...mapGetters(
                 {
@@ -53,7 +62,7 @@
         methods: {
             ...mapActions(
                 {
-                    loadMarkersInRadius: 'mapbox/loadMarkersInRadius',
+                    loadMarkers: 'mapbox/loadMarkers',
                 },
             ),
 
@@ -144,7 +153,7 @@
             initEventListeners () {
                 this.map.once('load', () => {
                     this.removeLoadingLayer();
-                    this.loadMarkersInRadius(this.fakePosition);
+                    this.loadMarkers(this.stores.nodes);
                 });
 
                 this.map.on('click', this.onMapClickHandler);
@@ -204,8 +213,7 @@
 
             lastMarkerUpdateAt: {
                 handler () {
-                    Object.keys(this.markers)
-                        .forEach((markerType) => {
+                    Object.keys(this.markers).forEach((markerType) => {
                             this.addSource(markerType, this.markers[markerType]);
                             this.addLayer(markerType);
                         });
