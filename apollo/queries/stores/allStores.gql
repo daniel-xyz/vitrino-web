@@ -3,10 +3,10 @@
         nodes {
             id
             name
-      			company: companyByCompanyId {
-              category: companyCategoryByCompanyCategoryId {
-                key
-              }
+      		company: companyByCompanyId {
+                category: companyCategoryByCompanyCategoryId {
+                    key
+                }
             }
             address: addressByAddressId {
                 lat,

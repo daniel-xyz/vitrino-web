@@ -170,7 +170,7 @@
                     return this.$router.push({ path: '/' });
                 }
 
-                return this.$router.push(`/stores/${features[0].properties.id}`);
+                return this.$router.push(`/store/${features[0].properties.id}`);
             },
 
             onMouseMoveHandler (e) {
