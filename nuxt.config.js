@@ -1,6 +1,6 @@
 module.exports = {
     env: {
-        API_ENDPOINT: process.env.API_ENDPOINT || 'https://vitrino-api-staging.herokuapp.com',
+        API_ENDPOINT: process.env.API_ENDPOINT || 'https://vitrino-api-staging.herokuapp.com/graphql',
     },
     head: {
         title: 'Vitrino',
