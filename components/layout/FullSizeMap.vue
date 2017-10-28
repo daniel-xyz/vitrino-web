@@ -17,14 +17,13 @@
 </template>
 
 <script>
-    /* eslint-disable */
     import {
         mapGetters,
         mapActions,
     } from 'vuex';
 
     import allStores from '~/apollo/queries/stores/allStores';
-    import StoreFilter from './StoreFilter.vue';
+    import StoreFilter from './StoreFilter';
 
     export default {
         name: 'full-size-map',

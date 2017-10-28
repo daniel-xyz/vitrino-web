@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars,import/prefer-default-export */
 import * as mutations from './mutation-types';
 
-const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+// const days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
 
 export const setUrl = ({ commit }, payload) => {
     commit(mutations.CURRENT_URL, payload);

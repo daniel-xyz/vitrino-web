@@ -48,6 +48,11 @@ module.exports = {
 
     loading: false,
 
+    transition: {
+        name: 'page',
+        mode: '',
+    },
+
     css: [
         '~/assets/less/vitrino.less',
     ],

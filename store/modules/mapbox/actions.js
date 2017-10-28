@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import * as mutations from './mutation-types';
 
 export const loadMarkers = ({ commit, state }, stores) => {

@@ -1,11 +1,8 @@
-/* eslint-disable */
 import * as types from './mutation-types';
 
 export default {
     [types.FILTER_TOGGLE] (state, filterName) {
-        const current = state.filters.find((f) => {
-            return f.name === filterName;
-        });
+        const current = state.filters.find(f => f.name === filterName);
 
         current.active = !current.active;
     },

@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import * as types from './mutation-types';
 
 export default {

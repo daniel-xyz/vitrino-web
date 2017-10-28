@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export const CURRENT_URL = 'CURRENT_URL';
 // export const CURRENT_COMPANY = 'CURRENT_COMPANY';
 // export const YID = 'YID';

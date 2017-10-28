@@ -51,7 +51,7 @@ Additional information: https://devcenter.heroku.com/articles/getting-started-wi
 To connect to the postgreSQL CLI:
 
 ```
-$ heroku pg:psql --app vitrino DATABASE
+$ heroku pg:psql --app vitrino-web-production DATABASE
 ```
 
 
