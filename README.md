@@ -1,5 +1,7 @@
 # Vitrino Web
 
+###### This project has been abandoned :broken_heart: RIP Vitrino
+
 ### Requirements
 
   - node.js v8.0
