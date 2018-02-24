@@ -17,12 +17,13 @@
 </template>
 
 <script>
+    /* eslint-disable */
+
     import {
         mapGetters,
         mapActions,
     } from 'vuex';
 
-    import allStores from '~/apollo/queries/stores/allStores';
     import StoreFilter from './StoreFilter';
 
     export default {
@@ -40,37 +41,59 @@
                 },
             };
         },
+        watch: {
+            mapLoaded () {
+                this.removeLoadingLayer();
+                this.loadMarkers();
+            },
+            filters: {
+                handler (filters) {
+                    const self = this;
 
-        apollo: {
-            stores: {
-                query: allStores,
-                prefetch: true,
+                    filters.forEach((filter) => {
+                        if (filter.active) {
+                            self.showLayer(`marker-${filter.name}`);
+                        } else {
+                            self.hideLayer(`marker-${filter.name}`);
+                        }
+                    });
+                },
+                deep: true,
+            },
+
+            lastMarkerUpdateAt: {
+                handler () {
+                    Object.keys(this.markers).forEach((markerType) => {
+                        this.addSource(markerType, this.markers[markerType]);
+                        this.addLayer(markerType);
+                    });
+                },
             },
         },
-
         computed: {
             ...mapGetters(
                 {
+                    user: 'auth/user',
                     filters: 'storefilters/getAllFilters',
                     markers: 'mapbox/markers',
                     lastMarkerUpdateAt: 'mapbox/lastMarkerUpdateAt',
+                    mapLoaded: 'mapbox/mapLoaded',
                 },
             ),
         },
-
         methods: {
             ...mapActions(
                 {
+                    setUser: 'auth/setUser',
                     loadMarkers: 'mapbox/loadMarkers',
+                    setMapLoaded: 'mapbox/setMapLoaded',
                 },
             ),
-
             initMap () {
                 this.map = this.initMapbox();
                 this.addMapControls();
                 this.initEventListeners();
             },
-
             initMapbox () {
 //                if (mapboxgl && !isSupported) {
 //                    return console.log('Your browser doesn\'t support Mapbox GL.');
@@ -86,7 +109,6 @@
                     },
                 );
             },
-
             addMapControls () {
                 this.map.addControl(new MapboxGeocoder(
                     {
@@ -113,7 +135,6 @@
                     },
                 ));
             },
-
             addSource (sourceID, features) {
                 this.map.addSource(sourceID, {
                     type: 'geojson',
@@ -123,7 +144,6 @@
                     },
                 });
             },
-
             addLayer (sourceID) {
                 this.map.addLayer(
                     {
@@ -138,7 +158,6 @@
                     },
                 );
             },
-
             removeLoadingLayer () {
                 const loadingLayer = document.getElementsByClassName('c-full-size-map__loading')[0];
 
@@ -148,17 +167,14 @@
                     loadingLayer.classList.add('u-hide');
                 }, 500);
             },
-
             initEventListeners () {
                 this.map.once('load', () => {
-                    this.removeLoadingLayer();
-                    this.loadMarkers(this.stores.nodes);
+                    this.setMapLoaded();
                 });
 
                 this.map.on('click', this.onMapClickHandler);
                 this.map.on('mousemove', this.onMouseMoveHandler);
             },
-
             onMapClickHandler (e) {
                 const features = this.map.queryRenderedFeatures(
                     e.point,
@@ -171,7 +187,6 @@
 
                 return this.$router.push(`/store/${features[0].properties.id}`);
             },
-
             onMouseMoveHandler (e) {
                 const features = this.map.queryRenderedFeatures(
                     e.point,
@@ -180,48 +195,29 @@
 
                 this.map.getCanvas().style.cursor = features.length ? 'pointer' : '';
             },
-
             hideLayer (layer) {
                 if (this.map.getLayer(layer)) {
                     this.map.setLayoutProperty(layer, 'visibility', 'none');
                 }
             },
-
             showLayer (layer) {
                 if (this.map.getLayer(layer)) {
                     this.map.setLayoutProperty(layer, 'visibility', 'visible');
                 }
             },
         },
-
-        watch: {
-            filters: {
-                handler (filters) {
-                    const self = this;
-
-                    filters.forEach((filter) => {
-                        if (filter.active) {
-                            self.showLayer(`marker-${filter.name}`);
-                        } else {
-                            self.hideLayer(`marker-${filter.name}`);
-                        }
-                    });
-                },
-                deep: true,
-            },
-
-            lastMarkerUpdateAt: {
-                handler () {
-                    Object.keys(this.markers).forEach((markerType) => {
-                            this.addSource(markerType, this.markers[markerType]);
-                            this.addLayer(markerType);
-                        });
-                },
-            },
-        },
-
         mounted () {
             this.initMap();
+
+            this.$firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    const { uid, isAnonymous } = user;
+
+                    console.log('login as: ', uid, isAnonymous ? ' anonymous' : 'registered');
+
+                    this.setUser(user);
+                }
+            });
         },
     };
 </script>

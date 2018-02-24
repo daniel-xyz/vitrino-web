@@ -1,8 +1,15 @@
+/* eslint-disable */
 import * as mutations from './mutation-types';
 
-export const loadMarkers = ({ commit, state }, stores) => {
-    stores.forEach((store) => {
-        const type = 'marker-' + store.company.category.key;
+export const loadMarkers = async function ({ commit, state }) {
+    const vitrins = await this.$firestore.collection("vitrins").get();
+
+    vitrins.forEach((vitrin) => {
+        const data = vitrin.data();
+
+        console.log(data);
+
+        const type = 'marker-art';
 
         if (!state.markers[type]) {
             commit(mutations.CLEAR_MARKERS, type);
@@ -13,13 +20,13 @@ export const loadMarkers = ({ commit, state }, stores) => {
             geometry: {
                 type: 'Point',
                 coordinates: [
-                    store.address.lng,
-                    store.address.lat,
+                    data.geo.longitude,
+                    data.geo.latitude,
                 ],
             },
             properties: {
-                id: store.id,
-                name: store.name,
+                id: vitrin.id,
+                name: data.title,
                 icon: type,
             },
         };
@@ -31,4 +38,8 @@ export const loadMarkers = ({ commit, state }, stores) => {
     });
 
     return commit(mutations.LAST_MARKER_UPDATE_AT);
+};
+
+export const setMapLoaded = ({ commit }) => {
+    return commit(mutations.SET_MAP_LOADED);
 };

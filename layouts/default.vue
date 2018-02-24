@@ -25,5 +25,18 @@
             FullSizeMap,
             CookieMessage,
         },
+        mounted () {
+            this.$firebase.auth().signInAnonymously()
+                .catch((error) => {
+                    const errorCode = error.code;
+                    // const errorMessage = error.message;
+
+                    if (errorCode === 'auth/operation-not-allowed') {
+                        console.log('You must enable Anonymous auth in the Firebase Console.');
+                    } else {
+                        console.error(error);
+                    }
+            });
+        },
     };
 </script>

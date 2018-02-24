@@ -10,4 +10,7 @@ export default {
     [types.ADD_MARKER] (state, payload) {
         state.markers[payload.type].push(payload.marker);
     },
+    [types.SET_MAP_LOADED] (state) {
+        state.mapLoaded = true;
+    },
 };

@@ -1,3 +1,4 @@
 export const LAST_MARKER_UPDATE_AT = 'LAST_MARKER_UPDATE_AT';
 export const CLEAR_MARKERS = 'CLEAR_MARKERS';
 export const ADD_MARKER = 'ADD_MARKER';
+export const SET_MAP_LOADED = 'SET_MAP_LOADED';

@@ -45,28 +45,15 @@ module.exports = {
             },
          ],
     },
-
     loading: false,
-
     transition: {
         name: 'page',
         mode: '',
     },
-
     css: [
         '~/assets/less/vitrino.less',
     ],
-
-    modules: [
-        '@nuxtjs/apollo',
-    ],
-
-    apollo: {
-        networkInterfaces: {
-            default: '~/apollo/network-interfaces/default.js',
-        },
-    },
-
+    plugins: ['~/plugins/firebase'],
     build: {
         analyze: false,
         vendor: [
@@ -74,7 +61,7 @@ module.exports = {
         ],
 
         extend (config, ctx) {
-            if (ctx.dev && ctx.isClient) {
+            if (ctx.isDev && ctx.isClient) {
                 config.module.rules.push({
                         enforce: 'pre',
                         test: /\.(js|vue)$/,
