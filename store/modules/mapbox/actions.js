@@ -1,8 +1,7 @@
-/* eslint-disable */
 import * as mutations from './mutation-types';
 
 export const loadMarkers = async function ({ commit, state }) {
-    const vitrins = await this.$firestore.collection("vitrins").get();
+    const vitrins = await this.$firestore.collection('vitrins').get();
 
     vitrins.forEach((vitrin) => {
         const data = vitrin.data();
@@ -40,6 +39,4 @@ export const loadMarkers = async function ({ commit, state }) {
     return commit(mutations.LAST_MARKER_UPDATE_AT);
 };
 
-export const setMapLoaded = ({ commit }) => {
-    return commit(mutations.SET_MAP_LOADED);
-};
+export const setMapLoaded = ({ commit }) => commit(mutations.SET_MAP_LOADED);

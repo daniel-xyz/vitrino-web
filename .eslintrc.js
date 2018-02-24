@@ -11,6 +11,7 @@ module.exports = {
         'import',
     ],
     rules: {
+        'func-names': 0,
         'global-require': 0,
         'indent': 0,
         'max-len': 0,

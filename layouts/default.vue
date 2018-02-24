@@ -14,9 +14,9 @@
 </template>
 
 <script>
-    import MainHeader from '../components/layout/MainHeader.vue';
-    import CookieMessage from '../components/layout/CookieMessage.vue';
-    import FullSizeMap from '../components/layout/FullSizeMap.vue';
+    import MainHeader from '~/components/layout/MainHeader.vue';
+    import CookieMessage from '~/components/layout/CookieMessage.vue';
+    import FullSizeMap from '~/components/layout/FullSizeMap.vue';
 
     export default {
         name: 'default',

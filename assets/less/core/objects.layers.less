@@ -20,6 +20,36 @@
     }
 }
 
+.o-modal {
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    padding: 16px;
+    overflow: hidden;
+    z-index: 3;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
+
+    &__title{
+        margin-bottom: 16px;
+    }
+
+    &__subtitle {
+        margin-bottom: 12px;
+    }
+
+    @media @md-and-up {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        min-height: auto;
+        //max-height: calc(100% - 100px);
+        transform: translate(-49%, -49%);
+    }
+}
+
 //.o-non-scrollable-layer {
 //    position: absolute;
 //    top: 0;
