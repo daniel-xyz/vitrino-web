@@ -57,11 +57,39 @@
             };
         },
         methods: {
-            onSubmit () {
+            async onSubmit () {
+                const isFormValid = await this.$validator.validateAll();
+
+                if (!isFormValid) return;
+
                 this.$firebase.auth()
                     .createUserWithEmailAndPassword(this.email, this.password)
-                    .then(this.$router.push('/'))
-                    .catch(error => console.log(error));
+                    .then(() => this.$router.push('/signup/verify'))
+                    .catch(error => this.showFirebaseError(error));
+            },
+            showFirebaseError (error) {
+                const codes = {
+                    'auth/email-already-in-use': {
+                        field: 'email',
+                        message: 'auth.signup.email_already_in_use',
+                    },
+                    'auth/invalid-email': {
+                        field: 'email',
+                        message: 'auth.signup.invalid_email',
+                    },
+                    'auth/weak-password': {
+                        field: 'password',
+                        message: 'auth.signup.weak_password',
+                    },
+                };
+
+                const knownError = codes[error.code];
+
+                if (!knownError) {
+                    this.errors.add('email', this.$t('auth.signup.unhandled_error'));
+                }
+
+                this.errors.add(knownError.field, this.$t(knownError.message));
             },
         },
     };

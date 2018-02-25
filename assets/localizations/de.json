@@ -11,7 +11,15 @@
         "signup": {
             "title": "Registrieren",
             "subtitle": "Sei jetzt dabei. Wir freuen uns auf dich!",
-            "submit": "Jetzt registrieren"
+            "submit": "Jetzt registrieren",
+            "email_already_in_use": "Diese E-Mail ist bereits registriert.",
+            "invalid_email": "Diese E-Mail ist nicht gültig.",
+            "weak_password": "Das Passwort ist nicht sicher genug.",
+            "unhandled_error": "Die Registrierung hat leider fehlgeschlagen",
+            "verification": {
+                "title": "Wir freuen uns, dass du dabei bist!",
+                "subtitle": "Wir haben dir eine E-Mail zur Verifizierung deiner Registrierung gesendet."
+            }
         },
         "form": {
             "email": "E-Mail",
