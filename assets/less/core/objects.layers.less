@@ -31,12 +31,12 @@
     box-sizing: border-box;
     box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
 
-    &__title{
-        margin-bottom: 16px;
+    &__title {
+        margin-bottom: @spacing-l;
     }
 
     &__subtitle {
-        margin-bottom: 12px;
+        margin-bottom: @spacing-4xl;
     }
 
     @media @md-and-up {
@@ -45,8 +45,12 @@
         left: 50%;
         width: auto;
         min-height: auto;
-        //max-height: calc(100% - 100px);
+        //max-height: calc(100% - 24px);
         transform: translate(-49%, -49%);
+
+        &--medium {
+            width: 400px;
+        }
     }
 }
 

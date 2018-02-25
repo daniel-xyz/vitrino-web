@@ -53,7 +53,11 @@ module.exports = {
     css: [
         '~/assets/less/vitrino.less',
     ],
-    plugins: ['~/plugins/firebase'],
+    plugins: [
+        '~/plugins/firebase',
+        '~/plugins/i18n',
+        '~/plugins/vee-validate',
+    ],
     build: {
         analyze: false,
         vendor: [

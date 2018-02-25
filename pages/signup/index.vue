@@ -1,14 +1,44 @@
 <template>
-    <div class="o-modal">
-        <h4 class="o-modal__title">Registrierung</h4>
-        <div class="o-modal__subtitle">Sei jetzt dabei. Wir freuen uns auf dich!</div>
+    <div class="o-modal o-modal--medium">
+        <h4 class="o-modal__title">{{ $t('auth.signup.title') }}</h4>
+        <div class="o-modal__subtitle">{{ $t('auth.signup.subtitle') }}</div>
 
         <form class="c-form" @submit.prevent="onSubmit">
-            <input type="email" placeholder="E-Mail" class="c-form__block-input" v-model="email">
-            <input type="password" placeholder="Passwort" class="c-form__block-input" v-model="password">
-            <input type="password" placeholder="Passwort wiederholen" class="c-form__block-input" v-model="passwordConfirmation">
+            <input name="email"
+                   type="email"
+                   :placeholder="$t('auth.form.email')"
+                   class="c-form__input u-block"
+                   :class="{'c-form__input--error': errors.has('email') }"
+                   v-model="email"
+                   v-validate="'required|email'">
 
-            <button type="submit">Jetzt registrieren</button>
+            <div v-show="errors.has('email')" class="c-form__error-message u-margin-bottom-l">
+                {{ errors.first('email') }}
+            </div>
+
+            <input name="password"
+                   type="password"
+                   :placeholder="$t('auth.form.password')"
+                   class="c-form__input u-block"
+                   v-model="password"
+                   v-validate="'required|min:6'">
+
+            <div v-show="errors.has('password')" class="c-form__error-message u-margin-bottom-l">
+                {{ errors.first('password') }}
+            </div>
+
+            <input name="password_confirmation"
+                   type="password"
+                   :placeholder="$t('auth.form.password_confirmation')"
+                   class="c-form__input u-block"
+                   v-model="passwordConfirmation"
+                   v-validate="'required|confirmed:password'">
+
+            <div v-show="errors.has('password_confirmation')" class="c-form__error-message u-margin-bottom-l">
+                {{ errors.first('password_confirmation') }}
+            </div>
+
+            <button type="submit" class="c-button-primary u-full-width">{{ $t('auth.signup.submit') }}</button>
         </form>
     </div>
 </template>

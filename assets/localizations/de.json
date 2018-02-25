@@ -1,0 +1,43 @@
+{
+    "header": {
+        "menu": {
+            "signin": "Login",
+            "signup": "Registrieren",
+            "data_protection": "Datenschutz",
+            "imprint": "Impressum"
+        }
+    },
+    "auth": {
+        "signup": {
+            "title": "Registrieren",
+            "subtitle": "Sei jetzt dabei. Wir freuen uns auf dich!",
+            "submit": "Jetzt registrieren"
+        },
+        "form": {
+            "email": "E-Mail",
+            "password": "Passwort",
+            "password_confirmation": "Passwort wiederholen"
+        }
+    },
+    "form_validation": {
+        "messages": {
+            "required": "Bitte ausfüllen.",
+            "email": "Dies ist keine gültige E-Mail.",
+            "numeric": "Bitte nur Zahlen verwenden."
+        },
+        "custom": {
+            "email": {
+                "required": "Bitte gib deine E-Mail-Adresse ein.",
+                "email": "Dies ist keine gültige E-Mail."
+            },
+            "password": {
+                "required": "Bitte wähle ein Passwort.",
+                "min": "Das Passwort muss min. 6 Zeichen enthalten."
+            },
+            "password_confirmation": {
+                "required": "Bitte wiederhole dein Passwort.",
+                "confirmed": "Stimmt nicht mit dem Passwort überein."
+            }
+        }
+    }
+}

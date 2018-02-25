@@ -1,19 +1,19 @@
 <template>
     <ul>
         <nuxt-link :to="{ path: '/signin' }">
-            <li>Login</li>
+            <li>{{ $t('header.menu.signin') }}</li>
         </nuxt-link>
 
         <nuxt-link :to="{ path: '/signup' }">
-            <li>Registrierung</li>
+            <li>{{ $t('header.menu.signup') }}</li>
         </nuxt-link>
 
         <nuxt-link :to="{ path: '/data-protection' }">
-            <li>Datenschutz</li>
+            <li>{{ $t('header.menu.data_protection') }}</li>
         </nuxt-link>
 
         <nuxt-link :to="{ path: '/imprint' }">
-            <li>Impressum</li>
+            <li>{{ $t('header.menu.imprint') }}</li>
         </nuxt-link>
     </ul>
 </template>

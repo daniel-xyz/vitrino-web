@@ -1,6 +1,24 @@
 .c-form {
-    &__block-input {
+    &__input {
         display: block;
         width: 100%;
+    }
+
+    &__input--error {
+        &[type="email"],
+        &[type="number"],
+        &[type="search"],
+        &[type="text"],
+        &[type="tel"],
+        &[type="url"],
+        &[type="password"] {
+            color: @error-color;
+            border: @error-color 1px solid;
+        }
+    }
+
+    &__error-message {
+        margin-top: -4px;
+        color: @error-color;
     }
 }
